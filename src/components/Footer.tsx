@@ -55,9 +55,6 @@ export default function Footer() {
             <p>
               &copy; {new Date().getFullYear()} <strong>Nasywan Jibran Aryadi</strong>. All Rights Reserved.
             </p>
-            <p className="footer-v1__philosophy">
-              Dirancang dengan prinsip desain <strong>DealTech UI</strong> — <em>#PakaiAiTapiBerasaBukanAi</em>
-            </p>
           </div>
 
           <button
