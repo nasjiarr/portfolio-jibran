@@ -4,8 +4,9 @@
 
 .page-header {
   padding: 40px 0 20px;
-  background: #ffffff;
+  background: var(--dt-surface);
   border-bottom: 1px solid var(--dt-line-light);
+  transition: background-color 0.2s ease;
 }
 
 .page-header__shell {
@@ -32,7 +33,7 @@
   margin: 0 0 10px;
   font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   font-weight: 800;
-  color: var(--dt-ink);
+  color: var(--dt-ink-heading);
   letter-spacing: -0.035em;
 }
 
@@ -51,7 +52,8 @@
 /* Page CTA banner */
 .page-cta-banner {
   padding: 48px 0;
-  background: #ffffff;
+  background: var(--dt-surface);
+  transition: background-color 0.2s ease;
 }
 
 .page-cta-banner__shell {
@@ -62,8 +64,8 @@
 .page-cta-banner__box {
   padding: clamp(28px, 4vw, 44px);
   border-radius: 20px;
-  background: linear-gradient(135deg, rgba(1, 73, 139, 0.05) 0%, rgba(1, 73, 139, 0.02) 100%);
-  border: 1px solid rgba(1, 73, 139, 0.15);
+  background: var(--dt-cta-box-bg);
+  border: 1px solid var(--dt-line);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -75,7 +77,7 @@
   margin: 0 0 8px;
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--dt-ink);
+  color: var(--dt-ink-heading);
 }
 
 .page-cta-banner__content p {
@@ -99,6 +101,10 @@
   white-space: nowrap;
 }
 
+[data-theme="dark"] .page-cta-banner__action {
+  color: #0b1120;
+}
+
 .page-cta-banner__action:hover {
   background: var(--dt-primary-dark);
   transform: translateY(-1px);
@@ -107,7 +113,8 @@
 /* Home teasers */
 .home-teasers {
   padding: 48px 0;
-  background: #ffffff;
+  background: var(--dt-surface);
+  transition: background-color 0.2s ease;
 }
 
 .home-teasers__shell {
@@ -125,8 +132,8 @@
   padding: 24px;
   border-radius: 16px;
   border: 1px solid var(--dt-line);
-  background: #ffffff;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+  background: var(--dt-surface-card);
+  box-shadow: var(--dt-shadow-sm);
   display: flex;
   flex-direction: column;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
@@ -134,8 +141,8 @@
 
 .home-teaser-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(1, 73, 139, 0.3);
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+  border-color: var(--dt-primary);
+  box-shadow: var(--dt-shadow-md);
 }
 
 .home-teaser-card__icon {
@@ -154,7 +161,7 @@
   margin: 0 0 8px;
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--dt-ink);
+  color: var(--dt-ink-heading);
 }
 
 .home-teaser-card p {

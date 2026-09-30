@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight, Download, Terminal } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 import '../styles/navbar.css';
 
 interface NavItem {
@@ -78,6 +79,7 @@ export default function Navbar() {
           </nav>
 
           <div className="dt-navbar__actions">
+            <ThemeToggle />
             <a
               href="/cv.pdf"
               target="_blank"
@@ -94,15 +96,18 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <button
-            type="button"
-            className="dt-navbar__menu-btn"
-            onClick={() => setDrawerOpen(!drawerOpen)}
-            aria-label={drawerOpen ? 'Tutup Menu' : 'Buka Menu'}
-            aria-expanded={drawerOpen}
-          >
-            {drawerOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <div className="dt-navbar__mobile-right">
+            <ThemeToggle />
+            <button
+              type="button"
+              className="dt-navbar__menu-btn"
+              onClick={() => setDrawerOpen(!drawerOpen)}
+              aria-label={drawerOpen ? 'Tutup Menu' : 'Buka Menu'}
+              aria-expanded={drawerOpen}
+            >
+              {drawerOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
       </header>
 

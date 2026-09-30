@@ -1,16 +1,17 @@
 .hero-v2 {
-  --hero-v2-primary: #01498b;
-  --hero-v2-primary-dark: #013a6f;
-  --hero-v2-primary-soft: rgba(1, 73, 139, 0.08);
-  --hero-v2-ink: #111111;
-  --hero-v2-muted: #4b5563;
-  --hero-v2-line: #e5e7eb;
+  --hero-v2-primary: var(--dt-primary);
+  --hero-v2-primary-dark: var(--dt-primary-dark);
+  --hero-v2-primary-soft: var(--dt-primary-soft);
+  --hero-v2-ink: var(--dt-ink);
+  --hero-v2-muted: var(--dt-muted);
+  --hero-v2-line: var(--dt-line);
 
   box-sizing: border-box;
   width: 100%;
-  background: #ffffff;
+  background: var(--dt-surface);
   font-family: var(--font-sans);
   border-bottom: 1px solid var(--dt-line-light);
+  transition: background-color 0.2s ease;
 }
 
 .hero-v2 *,
@@ -79,6 +80,10 @@
   box-decoration-break: clone;
 }
 
+[data-theme="dark"] .hero-v2__title-accent {
+  color: #0b1120;
+}
+
 .hero-v2__description {
   margin: 16px 0 0;
   max-width: 620px;
@@ -122,6 +127,10 @@
   color: #ffffff;
 }
 
+[data-theme="dark"] .hero-v2__button--primary {
+  color: #0b1120;
+}
+
 .hero-v2__button--primary:hover {
   background: var(--hero-v2-primary-dark);
   border-color: var(--hero-v2-primary-dark);
@@ -129,7 +138,7 @@
 
 .hero-v2__button--secondary {
   border: 1px solid var(--hero-v2-line);
-  background: #ffffff;
+  background: var(--dt-surface);
   color: var(--hero-v2-ink);
 }
 
@@ -172,15 +181,16 @@
 .hero-v2__profile-card {
   width: 100%;
   max-width: 380px;
-  background: #ffffff;
+  background: var(--dt-surface-card);
   border: 1px solid var(--hero-v2-line);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.05);
+  box-shadow: var(--dt-shadow-lg);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  transition: all 0.2s ease;
 }
 
 .hero-v2__avatar-wrapper {
@@ -195,8 +205,8 @@
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid #ffffff;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  border: 3px solid var(--dt-surface-card);
+  box-shadow: var(--dt-shadow-sm);
 }
 
 .hero-v2__avatar-badge {
@@ -205,17 +215,17 @@
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--dt-surface-card);
+  border: 1px solid var(--hero-v2-line);
   border-radius: 999px;
   padding: 3px 10px;
   font-size: 0.72rem;
   font-weight: 600;
-  color: #15803d;
+  color: #16a34a;
   display: flex;
   align-items: center;
   gap: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--dt-shadow-sm);
 }
 
 .hero-v2__pulse {

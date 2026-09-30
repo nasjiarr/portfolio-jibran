@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.94);
+  background: var(--dt-navbar-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--dt-line);
@@ -12,7 +12,7 @@
 }
 
 .dt-navbar--scrolled {
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+  box-shadow: var(--dt-shadow-md);
 }
 
 .dt-navbar__inner {
@@ -86,6 +86,36 @@
   gap: 10px;
 }
 
+/* Theme Toggle Button */
+.dt-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--dt-radius-full);
+  background: var(--dt-surface);
+  border: 1px solid var(--dt-line);
+  color: var(--dt-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dt-theme-toggle:hover {
+  border-color: var(--dt-primary);
+  color: var(--dt-primary);
+  background: var(--dt-primary-soft);
+  transform: translateY(-1px);
+}
+
+.dt-theme-icon--sun {
+  color: #f59e0b;
+}
+
+.dt-theme-icon--moon {
+  color: var(--dt-primary);
+}
+
 .dt-navbar__btn-primary {
   display: inline-flex;
   align-items: center;
@@ -117,7 +147,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   border-radius: var(--dt-radius-full);
-  background: #ffffff;
+  background: var(--dt-surface);
   color: var(--dt-muted);
   border: 1px solid var(--dt-line);
   transition: all 0.2s ease;
@@ -130,14 +160,21 @@
   background: var(--dt-primary-soft);
 }
 
-.dt-navbar__menu-btn {
+.dt-navbar__mobile-right {
   display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.dt-navbar__menu-btn {
   background: none;
   border: none;
   cursor: pointer;
   padding: 6px;
   color: var(--dt-ink-heading);
   border-radius: var(--dt-radius-sm);
+  display: flex;
+  align-items: center;
 }
 
 /* Mobile Drawer */
@@ -145,7 +182,7 @@
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.4);
+  background: rgba(15, 23, 42, 0.5);
   backdrop-filter: blur(4px);
   z-index: 1000;
   opacity: 0;
@@ -163,14 +200,15 @@
   right: 0;
   bottom: 0;
   width: min(320px, 85vw);
-  background: #ffffff;
+  background: var(--dt-surface-card);
   z-index: 1001;
   padding: 24px;
   display: flex;
   flex-direction: column;
-  box-shadow: -10px 0 30px rgba(15, 23, 42, 0.08);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
   transform: translateX(100%);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-left: 1px solid var(--dt-line);
 }
 
 .dt-drawer.is-open {
@@ -234,7 +272,7 @@
   .dt-navbar__actions {
     display: none;
   }
-  .dt-navbar__menu-btn {
+  .dt-navbar__mobile-right {
     display: flex;
   }
 }
