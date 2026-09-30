@@ -43,10 +43,10 @@ export default function About() {
 
           <div className="about-v1__narrative about-v1__reveal about-v1__hidden">
             <p>
-              Lulusan S1 Sistem Informasi dari <strong>UPN "Veteran" Yogyakarta</strong> (IPK 3.56/4.00) dengan keahlian utama di bidang rekayasa perangkat lunak web dan perancangan basis data.
+              Saya merupakan lulusan S1 Sistem Informasi yang memiliki minat pada pengembangan website dan teknologi informasi. Saya mempelajari pengembangan web secara full stack menggunakan Laravel, PHP, MySQL, Blade, Tailwind CSS, dan JavaScript, serta memiliki pemahaman dasar mengenai jaringan komputer.
             </p>
             <p>
-              Terbiasa membangun sistem dari perumusan kebutuhan, pemodelan database, implementasi backend Laravel/PHP, hingga antarmuka responsif menggunakan Vue, Inertia, dan Tailwind CSS.
+              Dalam bekerja, saya terbiasa memahami kebutuhan terlebih dahulu, mengembangkan solusi secara bertahap, dan memastikan hasilnya dapat digunakan dengan baik. Saya mampu bekerja secara mandiri maupun dalam tim serta memiliki semangat untuk terus belajar dan mengembangkan kemampuan di bidang teknologi.
             </p>
           </div>
 
