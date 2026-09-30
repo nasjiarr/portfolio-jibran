@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="footer-v1__brand">
             <Link to="/" className="footer-v1__logo">nasywan.dev</Link>
             <p className="footer-v1__tagline">
-              Software Engineer & Web Developer. Berbasis di Kulon Progo, D.I. Yogyakarta.
+              Web Developer. Berbasis di Kulon Progo, D.I. Yogyakarta.
             </p>
           </div>
 

@@ -8,11 +8,32 @@
 
   box-sizing: border-box;
   width: 100%;
-  padding: 48px 0;
-  background: var(--dt-surface-alt);
+  padding: 64px 0 56px;
+  background: var(--dt-surface);
+  color: var(--dt-ink);
   font-family: var(--font-sans);
   border-bottom: 1px solid var(--dt-line-light);
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-v1::before {
+  content: 'ABOUT';
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  font-size: clamp(6rem, 14vw, 11rem);
+  font-weight: 900;
+  color: rgba(15, 23, 42, 0.03);
+  pointer-events: none;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  z-index: 0;
+}
+
+[data-theme="dark"] .about-v1::before {
+  color: rgba(255, 255, 255, 0.02);
 }
 
 .about-v1 *,
@@ -28,6 +49,8 @@
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
   align-items: center;
   gap: clamp(36px, 5vw, 64px);
+  position: relative;
+  z-index: 1;
 }
 
 .about-v1__content {
@@ -128,7 +151,7 @@
 }
 
 .about-v1__button--secondary {
-  background: var(--dt-surface);
+  background: var(--dt-surface-card);
   color: var(--about-v1-ink);
   border: 1px solid var(--about-v1-line);
 }

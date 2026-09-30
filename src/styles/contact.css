@@ -1,4 +1,4 @@
-.contact-fahry {
+.contact-section {
   box-sizing: border-box;
   width: 100%;
   padding: 64px 0 56px;
@@ -11,7 +11,7 @@
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.contact-fahry::before {
+.contact-section::before {
   content: 'CONTACT';
   position: absolute;
   bottom: -20px;
@@ -24,17 +24,17 @@
   letter-spacing: -0.04em;
 }
 
-[data-theme="dark"] .contact-fahry::before {
+[data-theme="dark"] .contact-section::before {
   color: rgba(255, 255, 255, 0.02);
 }
 
-.contact-fahry *,
-.contact-fahry *::before,
-.contact-fahry *::after {
+.contact-section *,
+.contact-section *::before,
+.contact-section *::after {
   box-sizing: border-box;
 }
 
-.contact-fahry__shell {
+.contact-section__shell {
   width: min(1160px, calc(100% - 44px));
   margin: 0 auto;
   position: relative;
@@ -237,26 +237,53 @@
   align-self: flex-start;
 }
 
+.btn-send:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
 [data-theme="dark"] .btn-send {
   color: #0b1120;
 }
 
-.btn-send:hover {
+.btn-send:hover:not(:disabled) {
   background: var(--dt-primary-dark);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px var(--dt-primary-glow);
+}
+
+.spinner {
+  animation: spin 0.85s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .form-status {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 14px;
-  border-radius: 8px;
+  padding: 11px 16px;
+  border-radius: 10px;
   background: var(--dt-success-soft);
   color: var(--dt-success);
-  font-size: 0.8125rem;
+  font-size: 0.84rem;
+  font-weight: 500;
   border: 1px solid rgba(22, 163, 74, 0.25);
+  line-height: 1.5;
+}
+
+.form-status--error {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.25);
 }
 
 /* Animations */
@@ -295,11 +322,11 @@
 }
 
 @media (max-width: 620px) {
-  .contact-fahry {
+  .contact-section {
     padding: 48px 0 40px;
   }
 
-  .contact-fahry__shell {
+  .contact-section__shell {
     width: min(calc(100% - 36px), 1160px);
   }
 

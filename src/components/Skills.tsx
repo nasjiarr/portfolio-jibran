@@ -1,17 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  Code2,
-  Terminal,
-  Cpu,
-  Layers,
-  Database,
-  Globe,
-  GitBranch,
-  Box,
-  Send,
-  Wrench,
-  CheckCircle2,
-} from 'lucide-react';
+import { Code2, Wrench, CheckCircle2 } from 'lucide-react';
 import '../styles/skills.css';
 
 interface CodingSkill {
@@ -20,11 +8,10 @@ interface CodingSkill {
   highlight?: boolean;
 }
 
-interface ToolItem {
+interface ToolBox {
   name: string;
-  category: string;
-  icon: typeof Terminal;
-  badge?: string;
+  abbr: string;
+  colorClass: string;
 }
 
 const codingSkills: CodingSkill[] = [
@@ -38,24 +25,32 @@ const codingSkills: CodingSkill[] = [
   { name: 'React & TypeScript', percent: 80 },
 ];
 
-const softwareTools: ToolItem[] = [
-  { name: 'VS Code', category: 'Code Editor', icon: Terminal },
-  { name: 'Git & GitHub', category: 'Version Control', icon: GitBranch },
-  { name: 'Laragon Server', category: 'Local Stack (Apache/Nginx)', icon: Globe },
-  { name: 'Docker', category: 'Containerization', icon: Box },
-  { name: 'Postman', category: 'API Testing & Docs', icon: Send },
-  { name: 'MySQL Workbench', category: 'Database Management', icon: Database },
-  { name: 'Vite & Composer', category: 'Build & Package Manager', icon: Layers },
-  { name: 'Linux Terminal', category: 'Shell & Server Admin', icon: Cpu },
+const toolBoxes: ToolBox[] = [
+  { name: 'VS Code', abbr: 'VS', colorClass: 'tool-box--dark' },
+  { name: 'Docker', abbr: '🐳', colorClass: 'tool-box--blue' },
+  { name: 'Figma', abbr: 'Fi', colorClass: 'tool-box--purple' },
+  { name: 'Postman', abbr: 'Pm', colorClass: 'tool-box--orange' },
+  { name: 'Git', abbr: 'Git', colorClass: 'tool-box--green' },
+  { name: 'Vercel', abbr: '▲', colorClass: 'tool-box--cyan' },
+];
+
+const toolTags = [
+  'VS Code',
+  'Docker',
+  'Figma',
+  'Postman',
+  'Git & GitHub',
+  'Vercel',
+  'Firebase',
+  'Linux Terminal',
 ];
 
 const softSkills = [
-  '#ProblemSolving',
-  '#AnalyticalThinking',
-  '#DetailOriented',
-  '#CleanArchitecture',
-  '#TeamCollaboration',
+  '#Creativity',
+  '#Communication',
+  '#Detail-oriented',
   '#Adaptability',
+  '#Problem Solving',
 ];
 
 export default function Skills() {
@@ -111,28 +106,31 @@ export default function Skills() {
               <h3>Software & Tools</h3>
             </div>
 
-            <div className="tools-grid">
-              {softwareTools.map((tool) => {
-                const Icon = tool.icon;
-                return (
-                  <div key={tool.name} className="tool-card">
-                    <div className="tool-card__icon-box">
-                      <Icon size={18} strokeWidth={2.2} />
-                    </div>
-                    <div className="tool-card__info">
-                      <span className="tool-card__name">{tool.name}</span>
-                      <span className="tool-card__desc">{tool.category}</span>
-                    </div>
-                  </div>
-                );
-              })}
+            <div className="tool-boxes-grid">
+              {toolBoxes.map((tool) => (
+                <div
+                  key={tool.name}
+                  className={`tool-icon-box ${tool.colorClass}`}
+                  title={tool.name}
+                >
+                  {tool.abbr}
+                </div>
+              ))}
+            </div>
+
+            <div className="tool-tags-cloud">
+              {toolTags.map((tag) => (
+                <span key={tag} className="tool-tag-item">
+                  {tag}
+                </span>
+              ))}
             </div>
 
             {/* Soft Skills Tags */}
             <div className="soft-skills-box">
               <h4 className="soft-skills-title">
                 <CheckCircle2 size={15} className="text-primary" />
-                <span>Core Competencies & Soft Skills</span>
+                <span>Soft Skills</span>
               </h4>
               <div className="soft-skills-tags">
                 {softSkills.map((tag) => (

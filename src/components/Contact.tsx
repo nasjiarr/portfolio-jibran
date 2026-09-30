@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Mail, MapPin, FileText, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Mail, MapPin, FileText, ArrowRight, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import '../styles/contact.css';
 
@@ -11,7 +11,8 @@ export default function Contact() {
     subject: '',
     message: '',
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -34,19 +35,48 @@ export default function Contact() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const mailSubject = encodeURIComponent(formData.subject || `[Portfolio Inquiry] dari ${formData.name}`);
-    const mailBody = encodeURIComponent(
-      `Nama: ${formData.name}\nEmail: ${formData.email}\nSubject: ${formData.subject}\n\nPesan:\n${formData.message}\n`
-    );
-    window.location.href = `mailto:nasywanji@gmail.com?subject=${mailSubject}&body=${mailBody}`;
-    setSubmitted(true);
+    setStatus('loading');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('https://formspree.io/f/mgavdbzl', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || 'Inquiry dari Portfolio',
+          message: formData.message,
+          _subject: `[Portfolio Inquiry] ${formData.subject || 'Pesan Baru'} dari ${formData.name}`,
+        }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        const data = await response.json().catch(() => null);
+        if (data && data.errors && data.errors.length > 0) {
+          setErrorMessage(data.errors.map((err: { message: string }) => err.message).join(', '));
+        } else {
+          setErrorMessage('Gagal mengirim pesan. Silakan coba lagi atau hubungi via email langsung.');
+        }
+        setStatus('error');
+      }
+    } catch {
+      setErrorMessage('Terjadi kendala jaringan saat mengirim. Silakan kirim langsung ke nasywanji@gmail.com');
+      setStatus('error');
+    }
   };
 
   return (
-    <section ref={sectionRef} id="kontak" className="contact-fahry">
-      <div className="contact-fahry__shell">
+    <section ref={sectionRef} id="kontak" className="contact-section">
+      <div className="contact-section__shell">
         <div className="contact-grid">
           {/* Left Column */}
           <div className="contact-left contact-v1__reveal contact-v1__hidden">
@@ -172,15 +202,40 @@ export default function Contact() {
               />
             </div>
 
-            <button type="submit" className="btn-send">
-              <span>Send Message</span>
-              <ArrowRight size={17} strokeWidth={2.4} />
+            <button
+              type="submit"
+              className="btn-send"
+              disabled={status === 'loading'}
+            >
+              {status === 'loading' ? (
+                <>
+                  <Loader2 size={17} className="spinner" />
+                  <span>Mengirim...</span>
+                </>
+              ) : status === 'success' ? (
+                <>
+                  <CheckCircle2 size={17} />
+                  <span>Pesan Terkirim!</span>
+                </>
+              ) : (
+                <>
+                  <span>Send Message</span>
+                  <ArrowRight size={17} strokeWidth={2.4} />
+                </>
+              )}
             </button>
 
-            {submitted && (
+            {status === 'success' && (
               <div className="form-status">
                 <CheckCircle2 size={16} />
-                <span>Klien email Anda telah dibuka. Atau kirim langsung ke nasywanji@gmail.com</span>
+                <span>Terima kasih! Pesan Anda telah berhasil dikirim dan akan segera saya balas.</span>
+              </div>
+            )}
+
+            {status === 'error' && (
+              <div className="form-status form-status--error">
+                <AlertCircle size={16} />
+                <span>{errorMessage}</span>
               </div>
             )}
           </form>

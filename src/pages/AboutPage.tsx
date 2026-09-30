@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import About from '../components/About';
-import Methodology from '../components/Methodology';
 import '../styles/pages.css';
 
 export default function AboutPage() {
   return (
     <div className="page-wrapper" style={{ paddingBottom: 0 }}>
       <About />
-      <Methodology />
 
       <section className="page-cta-banner">
         <div className="page-cta-banner__shell">
