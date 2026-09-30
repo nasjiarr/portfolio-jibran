@@ -34,13 +34,8 @@ export default function Hero() {
         <div className="hero-v2__content">
           <div className="hero-v2__eyebrow hero-v2__reveal hero-v2__hidden">
             <span className="hero-v2__status-dot"></span>
-            PORTFOLIO / SOFTWARE ENGINEER
+            A Computer Enthusiast
           </div>
-
-          <h1 className="hero-v2__title hero-v2__reveal hero-v2__hidden">
-            <span>Membangun Solusi Web dengan</span>{' '}
-            <span className="hero-v2__title-accent">Ketelitian & Skalabilitas</span>
-          </h1>
 
           <p className="hero-v2__description hero-v2__reveal hero-v2__hidden">
             Halo, saya <strong>Nasywan Jibran Aryadi</strong> — Software Engineer & Web Developer
@@ -92,7 +87,7 @@ export default function Hero() {
             </div>
 
             <div className="hero-v2__card-info">
-              <h2 className="hero-v2__name">Nasywan Jibran Aryadi</h2>
+              <h1 className="hero-v2__name">Nasywan Jibran Aryadi</h1>
               <p className="hero-v2__role">Software Engineer & Web Developer</p>
               
               <div className="hero-v2__tags">
