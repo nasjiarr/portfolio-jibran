@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Target, Layers, Rocket, FileText, ArrowRight, BookOpen } from 'lucide-react';
+import { Target, Layers, ShieldCheck, FileText, ArrowRight, User } from 'lucide-react';
 import '../styles/about.css';
 
 export default function About() {
@@ -32,31 +32,21 @@ export default function About() {
       <div className="about-v1__shell">
         <div className="about-v1__content">
           <div className="about-v1__eyebrow about-v1__reveal about-v1__hidden">
-            <BookOpen size={15} strokeWidth={2.4} aria-hidden="true" />
-            ABOUT / TENTANG SAYA
+            <User size={15} strokeWidth={2.4} aria-hidden="true" />
+            TENTANG SAYA
           </div>
 
           <h2 className="about-v1__title about-v1__reveal about-v1__hidden">
-            Memahami Kebutuhan Nyata,{' '}
-            <span className="about-v1__title-accent">Membangun Solusi Tepat</span>
+            Ringkasan Profil &{' '}
+            <span className="about-v1__title-accent">Latar Belakang</span>
           </h2>
 
           <div className="about-v1__narrative about-v1__reveal about-v1__hidden">
             <p>
-              Saya merupakan sarjana <strong>Sistem Informasi</strong> dari{' '}
-              <strong>UPN "Veteran" Yogyakarta</strong> (IPK 3.56/4.00) dengan ketertarikan kuat pada
-              rekayasa perangkat lunak, sistem basis data, dan pengembangan aplikasi web modern.
+              Lulusan S1 Sistem Informasi dari <strong>UPN "Veteran" Yogyakarta</strong> (IPK 3.56/4.00) dengan keahlian utama di bidang rekayasa perangkat lunak web dan perancangan basis data.
             </p>
             <p>
-              Dalam setiap proyek, saya menerapkan pendekatan analitis: membedah kebutuhan pengguna dan
-              alur sistem secara menyeluruh, merancang skema data yang efisien, lalu mengimplementasikan
-              solusi berbasis teknologi yang teruji seperti <strong>Laravel</strong>, <strong>PHP</strong>,{' '}
-              <strong>MySQL</strong>, <strong>Vue/Inertia</strong>, dan <strong>Tailwind CSS</strong>.
-            </p>
-            <p>
-              Saya memiliki pengalaman langsung mengembangkan sistem arsip digital pada industri perbankan
-              (PT. BPR Bank Kulon Progo), sistem pelaporan fasilitas berskala multi-role, hingga sistem reservasi
-              real-time berbasis WebSocket.
+              Terbiasa membangun sistem dari perumusan kebutuhan, pemodelan database, implementasi backend Laravel/PHP, hingga antarmuka responsif menggunakan Vue, Inertia, dan Tailwind CSS.
             </p>
           </div>
 
@@ -68,10 +58,10 @@ export default function About() {
               className="about-v1__button about-v1__button--primary"
             >
               <FileText size={16} strokeWidth={2.2} />
-              <span>Unduh CV Lengkap</span>
+              <span>Unduh CV (PDF)</span>
             </a>
             <Link to="/skills" className="about-v1__button about-v1__button--secondary">
-              <span>Eksplorasi Keahlian</span>
+              <span>Lihat Keahlian</span>
               <ArrowRight size={16} strokeWidth={2.2} />
             </Link>
           </div>
@@ -82,9 +72,9 @@ export default function About() {
             <div className="about-v1__card-icon">
               <Target size={22} strokeWidth={2.2} />
             </div>
-            <h3>Problem-First Mindset</h3>
+            <h3>Fokus Solusi Nyata</h3>
             <p>
-              Fokus utama selalu pada penyelesaian masalah operasional dan efisiensi pengguna, bukan sekadar menulis kode.
+              Mengutamakan efisiensi alur kerja operasional pengguna di atas penulisan kode berlebih.
             </p>
           </div>
 
@@ -92,19 +82,19 @@ export default function About() {
             <div className="about-v1__card-icon">
               <Layers size={22} strokeWidth={2.2} />
             </div>
-            <h3>Struktur Bersih & Teruji</h3>
+            <h3>Struktur Terstandar</h3>
             <p>
-              Menerapkan pola MVC yang rapi, normalisasi skema basis data, pemisahan tanggung jawab komponen, dan penanganan keamanan.
+              Arsitektur MVC rapi, relasi basis data ternormalisasi, dan validasi data berlapis.
             </p>
           </div>
 
           <div className="about-v1__card">
             <div className="about-v1__card-icon">
-              <Rocket size={22} strokeWidth={2.2} />
+              <ShieldCheck size={22} strokeWidth={2.2} />
             </div>
-            <h3>Cepat Beradaptasi</h3>
+            <h3>Disiplin Rekayasa</h3>
             <p>
-              Siap mempelajari dan mengintegrasikan pustaka baru, API pihak ketiga, hingga otomasi deployment dan Docker.
+              Version control git konsisten, automated testing, dan containerization via Docker.
             </p>
           </div>
         </div>

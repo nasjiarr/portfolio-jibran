@@ -14,14 +14,13 @@ export default function Footer() {
           <div className="footer-v1__brand">
             <Link to="/" className="footer-v1__logo">nasywan.dev</Link>
             <p className="footer-v1__tagline">
-              Software Engineer & Web Developer berbasis di D.I. Yogyakarta. Mengembangkan solusi web
-              presisi, terukur, dan berpusat pada nilai guna.
+              Software Engineer & Web Developer. Berbasis di Kulon Progo, D.I. Yogyakarta.
             </p>
           </div>
 
           <div className="footer-v1__nav">
             <div className="footer-v1__links-group">
-              <span className="footer-v1__group-title">Navigasi Halaman</span>
+              <span className="footer-v1__group-title">Halaman</span>
               <Link to="/">Beranda</Link>
               <Link to="/about">Tentang</Link>
               <Link to="/skills">Keahlian</Link>
@@ -43,9 +42,9 @@ export default function Footer() {
                 LinkedIn ↗
               </a>
               <a href="/cv.pdf" target="_blank" rel="noopener noreferrer">
-                Curriculum Vitae ↗
+                CV (PDF) ↗
               </a>
-              <a href="mailto:nasywanji@gmail.com">Email Pribadi ↗</a>
+              <a href="mailto:nasywanji@gmail.com">Email ↗</a>
             </div>
           </div>
         </div>
@@ -63,8 +62,8 @@ export default function Footer() {
             className="footer-v1__back-top"
             aria-label="Kembali ke atas"
           >
-            <span>Kembali ke atas</span>
-            <ArrowUp size={16} />
+            <span>Ke atas</span>
+            <ArrowUp size={15} />
           </button>
         </div>
       </div>

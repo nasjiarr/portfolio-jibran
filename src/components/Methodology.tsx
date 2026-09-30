@@ -14,57 +14,48 @@ interface Step {
   step: string;
   title: string;
   icon: typeof FileSearch;
-  description: string;
   points: string[];
 }
 
 const steps: Step[] = [
   {
-    step: 'TAHAP 01 / ANALISIS',
-    title: 'Analisis Kebutuhan & Proses Bisnis',
+    step: '01 / ANALISIS',
+    title: 'Proses Bisnis & Kebutuhan',
     icon: FileSearch,
-    description:
-      'Membedah alur operasional nyata sebelum menyentuh baris kode. Memastikan setiap rute, peran pengguna, dan proses memiliki tujuan fungsional yang terukur.',
     points: [
-      'Identifikasi stakeholder dan matriks hak akses',
-      'Pemetaan workflow data dari input hingga laporan',
-      'Eliminasi fitur redundan (YAGNI & Lean principle)',
+      'Pemetaan alur kerja dan entitas sistem',
+      'Matriks hak akses dan otorisasi peran (RBAC)',
+      'Eliminasi dependensi atau fitur yang tidak perlu',
     ],
   },
   {
-    step: 'TAHAP 02 / ARSITEKTUR DATA',
-    title: 'Desain Basis Data & Normalisasi',
+    step: '02 / BASIS DATA',
+    title: 'Desain Relasional & Normalisasi',
     icon: Database,
-    description:
-      'Merancang skema database relasional yang bersih, konsisten, dan siap menangani pertumbuhan volume data tanpa mengorbankan integritas.',
     points: [
-      'Normalisasi tabel hingga 3NF mencegah duplikasi',
-      'Integritas referensial foreign key & constraint',
-      'Penerapan transaksi ACID untuk alur finansial/stok',
+      'Normalisasi skema tabel relasional (3NF)',
+      'Integritas data dengan foreign key dan indexing',
+      'Pencegahan inkonsistensi via transaksi ACID',
     ],
   },
   {
-    step: 'TAHAP 03 / IMPLEMENTASI',
-    title: 'Arsitektur Bersih & Validasi Berlapis',
+    step: '03 / IMPLEMENTASI',
+    title: 'Arsitektur Bersih & Keamanan',
     icon: ShieldCheck,
-    description:
-      'Membangun sistem dengan struktur kode modular, separation of concerns (MVC), serta perlindungan keamanan pada setiap titik kontak input.',
     points: [
+      'Pemisahan logika controller, model, dan view (MVC)',
       'Validasi form request ketat dan sanitasi input',
-      'Otorisasi peran berbasis RBAC (Role-Based Access)',
-      'Komponen UI modular yang responsif dan reusable',
+      'Komponen UI modular, responsif, dan konsisten',
     ],
   },
   {
-    step: 'TAHAP 04 / JAMINAN KUALITAS',
-    title: 'Pengujian, Dokumentasi, & Standar',
+    step: '04 / PENGUJIAN',
+    title: 'Jaminan Kualitas & Deployment',
     icon: CheckCircle2,
-    description:
-      'Memastikan aplikasi dapat diandalkan saat beroperasi penuh dan mudah dirawat atau dikembangkan kembali oleh pengembang lain di masa depan.',
     points: [
-      'Automated testing (Pest/PHPUnit) pada alur kritis',
-      'Struktur repositori git dan commit yang teratur',
-      'Pemanfaatan Docker untuk keseragaman environment',
+      'Automated testing (Pest/PHPUnit) pada alur utama',
+      'Disiplin commit Git dan dokumentasi ringkas',
+      'Environment konsisten dengan Docker',
     ],
   },
 ];
@@ -99,15 +90,14 @@ export default function Methodology() {
         <header className="methodology-v1__header methodology-v1__reveal methodology-v1__hidden">
           <div className="methodology-v1__eyebrow">
             <Sparkles size={15} strokeWidth={2.4} aria-hidden="true" />
-            METHODOLOGY / STANDAR REKAYASA
+            STANDAR PENGEMBANGAN
           </div>
           <h2 className="methodology-v1__heading">
-            Metodologi Kerja &{' '}
-            <span className="methodology-v1__heading-accent">Standar Pengembangan</span>
+            Prinsip &{' '}
+            <span className="methodology-v1__heading-accent">Metodologi Kerja</span>
           </h2>
           <p className="methodology-v1__description">
-            Bagi saya, kualitas software tidak hanya diukur dari tampilan akhirnya, melainkan dari seberapa
-            andal logika bisnis di belakangnya, keamanan data pengguna, dan kemudahan pemeliharaannya.
+            Poin inti standar rekayasa perangkat lunak yang saya terapkan di setiap tahap:
           </p>
         </header>
 
@@ -124,7 +114,6 @@ export default function Methodology() {
                 </div>
 
                 <h3 className="methodology-v1__title">{item.title}</h3>
-                <p className="methodology-v1__text">{item.description}</p>
 
                 <ul className="methodology-v1__points">
                   {item.points.map((pt) => (
@@ -139,16 +128,15 @@ export default function Methodology() {
           })}
         </div>
 
-        {/* Secondary Info Highlights */}
         <div className="methodology-v1__highlights methodology-v1__reveal methodology-v1__hidden">
           <div className="methodology-v1__highlight-card">
             <div className="methodology-v1__highlight-icon">
               <Languages size={22} strokeWidth={2.2} />
             </div>
             <div>
-              <h4>Bahasa & Komunikasi Teknis</h4>
+              <h4>Bahasa & Komunikasi</h4>
               <p>
-                <strong>Bahasa Indonesia</strong> (Fasih / Native) & <strong>Bahasa Inggris</strong> (Kemampuan membaca, menelaah dokumentasi teknis, dan komunikasi tertulis secara lancar).
+                <strong>Indonesia</strong> (Fasih) & <strong>Inggris</strong> (Dokumentasi teknis & komunikasi tertulis).
               </p>
             </div>
           </div>
@@ -158,9 +146,9 @@ export default function Methodology() {
               <Clock size={22} strokeWidth={2.2} />
             </div>
             <div>
-              <h4>Ketersediaan & Fleksibilitas</h4>
+              <h4>Ketersediaan</h4>
               <p>
-                Siap berkontribusi untuk posisi <strong>Full-time</strong>, <strong>Kontrak</strong>, maupun proyek kolaborasi sistem informasi web di wilayah D.I. Yogyakarta maupun <strong>Remote</strong>.
+                Terbuka untuk posisi <strong>Full-time</strong>, <strong>Kontrak</strong>, maupun <strong>Remote</strong>.
               </p>
             </div>
           </div>

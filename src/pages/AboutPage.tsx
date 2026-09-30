@@ -11,30 +11,27 @@ export default function AboutPage() {
         <div className="page-header__shell">
           <div className="page-header__eyebrow">
             <User size={14} strokeWidth={2.4} />
-            HALAMAN / TENTANG SAYA
+            TENTANG SAYA
           </div>
           <h1 className="page-header__title">
-            Profil, Filosofi, & <span>Latar Belakang</span>
+            Profil & <span>Latar Belakang</span>
           </h1>
           <p className="page-header__desc">
-            Mengenal lebih dekat Nasywan Jibran Aryadi — cara berpikir, pendekatan rekayasa sistem, dan prinsip
-            profesional dalam membangun produk perangkat lunak.
+            Informasi profil, filosofi penyelesaian masalah, dan standar rekayasa software.
           </p>
         </div>
       </header>
 
       <About />
-
-      {/* Structured DealTech Methodology Section */}
       <Methodology />
 
       <section className="page-cta-banner">
         <div className="page-cta-banner__shell">
           <div className="page-cta-banner__box">
             <div className="page-cta-banner__content">
-              <h3>Ingin Mengetahui Keahlian Teknis Saya?</h3>
+              <h3>Ingin Melihat Keahlian Teknis?</h3>
               <p>
-                Lihat rincian teknologi dan peralatan yang biasa saya gunakan dalam membangun sistem web.
+                Pelajari rincian teknologi dan tools yang saya kuasai.
               </p>
             </div>
             <Link to="/skills" className="page-cta-banner__action">

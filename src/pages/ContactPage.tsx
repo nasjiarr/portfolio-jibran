@@ -9,14 +9,13 @@ export default function ContactPage() {
         <div className="page-header__shell">
           <div className="page-header__eyebrow">
             <Mail size={14} strokeWidth={2.4} />
-            HALAMAN / HUBUNGI SAYA
+            HUBUNGI SAYA
           </div>
           <h1 className="page-header__title">
-            Mari Berdiskusi & <span>Mulai Kolaborasi</span>
+            Kontak & <span>Kolaborasi</span>
           </h1>
           <p className="page-header__desc">
-            Silakan kirimkan pesan melalui formulir di bawah ini atau hubungi langsung melalui email dan kanal
-            media sosial saya. Saya akan merespons secepat mungkin.
+            Kirim pesan langsung melalui form email atau tautan media sosial berikut.
           </p>
         </div>
       </header>

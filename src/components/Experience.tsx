@@ -32,15 +32,14 @@ export default function Experience() {
         <header className="experience-v1__header experience-v1__reveal experience-v1__hidden">
           <div className="experience-v1__eyebrow">
             <Award size={15} strokeWidth={2.4} aria-hidden="true" />
-            EXPERIENCE / RIWAYAT
+            REKAM JEJAK
           </div>
           <h2 className="experience-v1__heading">
-            Pengalaman Praktis &{' '}
-            <span className="experience-v1__heading-accent">Riwayat Pendidikan</span>
+            Pengalaman &{' '}
+            <span className="experience-v1__heading-accent">Pendidikan</span>
           </h2>
           <p className="experience-v1__description">
-            Kombinasi latar belakang akademis Sistem Informasi yang kuat serta pengalaman langsung
-            membangun sistem di instansi operasional.
+            Riwayat kerja magang di bidang IT perbankan dan pencapaian akademik:
           </p>
         </header>
 
@@ -51,7 +50,7 @@ export default function Experience() {
               <span className="experience-v1__column-icon">
                 <Briefcase size={20} strokeWidth={2.2} />
               </span>
-              <h3>Pengalaman Kerja & Magang</h3>
+              <h3>Pengalaman Praktik Kerja</h3>
             </div>
 
             <div className="experience-v1__card">
@@ -69,15 +68,13 @@ export default function Experience() {
 
               <ul className="experience-v1__points">
                 <li>
-                  Mengembangkan aplikasi web manajemen arsip berkas SK & SOP serta modul disposisi untuk
-                  efisiensi digitalisasi dokumen operasional perbankan.
+                  Mengembangkan aplikasi web pengelolaan arsip digital SK dan SOP serta alur disposisi dokumen masuk/keluar.
                 </li>
                 <li>
-                  Melakukan pemeliharaan infrastruktur TI harian, instalasi sistem, perbaikan perangkat keras
-                  (PC, printer, scanner), dan penanganan kendala jaringan lokal.
+                  Menangani pemeliharaan operasional hardware (PC, printer, scanner) dan troubleshooting jaringan LAN.
                 </li>
                 <li>
-                  Mendukung integritas data dan kelancaran alur operasional perbankan harian.
+                  Mendukung kelancaran dan keamanan alur data operasional perbankan harian.
                 </li>
               </ul>
             </div>
@@ -109,15 +106,13 @@ export default function Experience() {
 
               <ul className="experience-v1__points">
                 <li>
-                  Fokus pada Rekayasa Perangkat Lunak, Perancangan Basis Data Relasional, Analisis Proses Bisnis,
-                  dan Pengembangan Aplikasi Berbasis Web.
+                  Fokus pada Rekayasa Perangkat Lunak, Basis Data Relasional, dan Pengembangan Aplikasi Web.
                 </li>
                 <li>
-                  Mengembangkan berbagai proyek berbasis Laravel, RESTful API, dan antarmuka interaktif
-                  sebagai implementasi tugas besar dan riset aplikasi.
+                  Membangun proyek sistem informasi berbasis Laravel, REST API, dan antarmuka reaktif.
                 </li>
                 <li>
-                  Aktif mendalami arsitektur modern (Inertia, Docker, Svelte/React, Tailwind) serta metodologi agile.
+                  Lulus dengan predikat sangat memuaskan (IPK 3.56).
                 </li>
               </ul>
             </div>

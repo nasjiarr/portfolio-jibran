@@ -21,38 +21,38 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Backend Engineering',
     icon: Server,
-    description: 'Arsitektur server-side tangguh dengan performa dan struktur terstandar.',
-    items: ['Laravel (MVC)', 'PHP 8+', 'RESTful API', 'Eloquent ORM', 'RBAC & Middleware', 'Authentication'],
+    description: 'Arsitektur MVC, RESTful API, dan sistem otentikasi/otorisasi.',
+    items: ['Laravel', 'PHP 8+', 'RESTful API', 'Eloquent ORM', 'RBAC & Middleware', 'Authentication'],
   },
   {
     title: 'Database & Data Storage',
     icon: Database,
-    description: 'Perancangan basis data relasional yang efisien, konsisten, dan terstruktur.',
-    items: ['MySQL & MariaDB', 'Database Schema & ERD', 'Indexing & Queries', 'ACID Transactions', 'Data Export / Import'],
+    description: 'Perancangan skema relasional, normalisasi 3NF, dan indexing.',
+    items: ['MySQL', 'MariaDB', 'Schema ERD', 'Indexing & Queries', 'ACID Transactions', 'Data Export / Import'],
   },
   {
-    title: 'Frontend & UI Engineering',
+    title: 'Frontend & UI',
     icon: Layout,
-    description: 'Antarmuka responsif, modern, dan interaktif dengan pengalaman pengguna optimal.',
-    items: ['Blade Components', 'Inertia.js', 'Vue 3 & Svelte', 'React & TypeScript', 'Tailwind CSS', 'Responsive Layout'],
+    description: 'Antarmuka reaktif, terstruktur, responsif, dan mobile-first.',
+    items: ['Blade', 'Inertia.js', 'Vue 3', 'React & TypeScript', 'Tailwind CSS', 'Responsive Layout'],
   },
   {
-    title: 'DevOps & Development Tools',
+    title: 'DevOps & Tooling',
     icon: Cpu,
-    description: 'Lingkungan pengembangan dan versioning kolaboratif yang teratur.',
-    items: ['Git & GitHub', 'Docker Containers', 'Laragon Local Server', 'Composer & NPM', 'Vite Bundler', 'Linux Shell'],
+    description: 'Alur kerja version control dan containerization.',
+    items: ['Git & GitHub', 'Docker Containers', 'Laragon Local Server', 'Composer & NPM', 'Vite', 'Linux Shell'],
   },
   {
-    title: 'Integrations & Real-Time',
+    title: 'Integrasi & Real-Time',
     icon: Radio,
-    description: 'Penyambungan layanan eksternal, visualisasi, dan komunikasi real-time.',
-    items: ['WebSocket (Reverb)', 'Chart.js Visuals', 'PhpSpreadsheet / Excel', 'PDF Generation', 'QR Code Engine'],
+    description: 'Koneksi data real-time, laporan file, dan visualisasi.',
+    items: ['WebSocket (Reverb)', 'Chart.js', 'PhpSpreadsheet / Excel', 'PDF Generation', 'QR Code Engine'],
   },
   {
-    title: 'Engineering Practices',
+    title: 'Standar Kualitas',
     icon: ShieldCheck,
-    description: 'Standar kualitas kode tinggi untuk kemudahan pemeliharaan jangka panjang.',
-    items: ['Clean Code Principles', 'Automated Testing (Pest)', 'Security Best Practices', 'API Documentation', 'Version Control'],
+    description: 'Pengujian otomatis dan sanitasi keamanan data.',
+    items: ['Automated Testing (Pest)', 'Security Best Practices', 'Clean Code', 'API Documentation'],
   },
 ];
 
@@ -86,15 +86,14 @@ export default function Skills() {
         <header className="skills-v1__header skills-v1__reveal skills-v1__hidden">
           <div className="skills-v1__eyebrow">
             <Code2 size={15} strokeWidth={2.4} aria-hidden="true" />
-            SKILLS / KOMPETENSI
+            KOMPETENSI TEKNIS
           </div>
           <h2 className="skills-v1__heading">
-            Keahlian & Disiplin{' '}
-            <span className="skills-v1__heading-accent">Teknologi Modern</span>
+            Keahlian &{' '}
+            <span className="skills-v1__heading-accent">Teknologi</span>
           </h2>
           <p className="skills-v1__description">
-            Peralatan, kerangka kerja, dan standar rekayasa perangkat lunak yang saya terapkan dalam setiap
-            tahap siklus pengembangan aplikasi.
+            Peralatan dan teknologi yang saya gunakan dalam pengembangan perangkat lunak:
           </p>
         </header>
 

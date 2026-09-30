@@ -10,14 +10,13 @@ export default function ExperiencePage() {
         <div className="page-header__shell">
           <div className="page-header__eyebrow">
             <Briefcase size={14} strokeWidth={2.4} />
-            HALAMAN / RIWAYAT KERJA & KULIAH
+            RIWAYAT
           </div>
           <h1 className="page-header__title">
-            Rekam Jejak Profesional & <span>Pendidikan</span>
+            Pengalaman & <span>Pendidikan</span>
           </h1>
           <p className="page-header__desc">
-            Riwayat pengalaman kerja magang di sektor perbankan dan capaian akademis selama menempuh studi
-            S1 Sistem Informasi di UPN "Veteran" Yogyakarta.
+            Riwayat kerja magang di IT perbankan dan jenjang pendidikan formal.
           </p>
         </div>
       </header>
@@ -28,9 +27,9 @@ export default function ExperiencePage() {
         <div className="page-cta-banner__shell">
           <div className="page-cta-banner__box">
             <div className="page-cta-banner__content">
-              <h3>Ingin Mengetahui Lebih Banyak atau Mengundang Wawancara?</h3>
+              <h3>Tertarik Merekrut atau Berkolaborasi?</h3>
               <p>
-                Saya siap dihubungi untuk pembahasan peluang karir, rekrutmen, maupun proyek konsultasi sistem.
+                Silakan hubungi untuk wawancara kerja maupun konsultasi teknis proyek.
               </p>
             </div>
             <Link to="/contact" className="page-cta-banner__action">

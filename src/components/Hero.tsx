@@ -38,9 +38,7 @@ export default function Hero() {
           </div>
 
           <p className="hero-v2__description hero-v2__reveal hero-v2__hidden">
-            Halo, saya <strong>Nasywan Jibran Aryadi</strong> — Software Engineer & Web Developer
-            lulusan S1 Sistem Informasi (IPK 3.56). Berpengalaman merancang sistem aplikasi web
-            berbasis Laravel, PHP, MySQL, Vue/Inertia, serta antarmuka modern yang responsif dan teruji.
+            Software Engineer & Web Developer (S1 Sistem Informasi, IPK 3.56). Fokus pada pengembangan aplikasi web berbasis <strong>Laravel</strong>, <strong>PHP</strong>, <strong>MySQL</strong>, dan <strong>Vue/React</strong>.
           </p>
 
           <div className="hero-v2__actions hero-v2__reveal hero-v2__hidden">
@@ -60,7 +58,7 @@ export default function Hero() {
             </div>
             <div className="hero-v2__trust-item">
               <CheckCircle2 size={16} strokeWidth={2.2} className="text-primary" />
-              <span>Laravel & Fullstack Specialist</span>
+              <span>Fullstack Web Developer</span>
             </div>
             <div className="hero-v2__trust-item">
               <MapPin size={16} strokeWidth={2.2} className="text-primary" />

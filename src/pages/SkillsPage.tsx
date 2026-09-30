@@ -10,14 +10,13 @@ export default function SkillsPage() {
         <div className="page-header__shell">
           <div className="page-header__eyebrow">
             <Code2 size={14} strokeWidth={2.4} />
-            HALAMAN / KEAHLIAN & TEKNOLOGI
+            KEAHLIAN
           </div>
           <h1 className="page-header__title">
-            Teknologi, Alat, & <span>Disiplin Rekayasa</span>
+            Teknologi & <span>Tools</span>
           </h1>
           <p className="page-header__desc">
-            Daftar lengkap kemampuan teknis yang saya kuasai, mulai dari arsitektur backend, basis data, antarmuka
-            pengguna reaktif, hingga peralatan otomasi dan pengujian sistem.
+            Daftar kompetensi teknis untuk pengembangan backend, basis data, dan frontend web.
           </p>
         </div>
       </header>
@@ -28,13 +27,13 @@ export default function SkillsPage() {
         <div className="page-cta-banner__shell">
           <div className="page-cta-banner__box">
             <div className="page-cta-banner__content">
-              <h3>Ingin Melihat Implementasi Nyata dari Keahlian Ini?</h3>
+              <h3>Lihat Implementasi Nyata</h3>
               <p>
-                Kunjungi halaman portofolio proyek untuk melihat bagaimana teknologi di atas diaplikasikan pada sistem nyata.
+                Kunjungi halaman proyek untuk melihat hasil penerapan teknologi di atas.
               </p>
             </div>
             <Link to="/projects" className="page-cta-banner__action">
-              <span>Jelajahi Proyek</span>
+              <span>Buka Halaman Proyek</span>
               <ArrowRight size={16} strokeWidth={2.2} />
             </Link>
           </div>

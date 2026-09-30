@@ -18,45 +18,45 @@ const projects: Project[] = [
     title: 'Sistem Reservasi Ruangan',
     category: 'Fullstack Web Application',
     description:
-      'Sistem reservasi ruang rapat dan aula secara real-time yang memadukan backend tangguh Laravel dengan antarmuka reaktif Vue 3 & Inertia.js. Memiliki pencegah bentrok jadwal otomatis, alur approval manajerial, dan check-in QR Code.',
+      'Aplikasi reservasi ruang rapat dan aula secara real-time. Memiliki deteksi bentrok jadwal otomatis, persetujuan manajerial berjenjang, dan validasi kehadiran via QR Code.',
     image: '/images/projects/reservasi.svg',
     repoUrl: 'https://github.com/nasjiarr/reservasi-ruangan',
     tags: ['Laravel', 'Inertia.js', 'Vue 3', 'Tailwind CSS', 'MySQL', 'WebSocket'],
     highlights: [
-      'Kalender interaktif dengan deteksi bentrok jadwal real-time',
-      'Persetujuan bertingkat manajer & notifikasi instan via WebSocket',
-      'QR Code check-in kehadiran & ekspor laporan Excel/PDF',
-      'Manajemen hak akses role & permission via Spatie',
+      'Kalender interaktif & validasi jadwal bentrok instan',
+      'Pemberitahuan approval real-time via WebSocket',
+      'Check-in kehadiran berbasis QR Code',
+      'Ekspor rekapan data ke format Excel dan PDF',
     ],
   },
   {
     title: 'FRC Reporting System',
     category: 'Fullstack Web Application',
     description:
-      'Platform internal terpadu untuk siklus perbaikan fasilitas gedung: pelaporan kerusakan oleh staf, penugasan teknisi, verifikasi bukti foto sebelum/sesudah, pencatatan utilitas gedung, dan pelaporan berkala.',
+      'Platform terpusat untuk alur penanganan kerusakan fasilitas gedung: pelaporan masalah, penugasan teknisi, verifikasi bukti foto sebelum/sesudah, dan pencatatan konsumsi utilitas.',
     image: '/images/projects/frc.svg',
     repoUrl: 'https://github.com/nasjiarr/frc-reporting-system',
     tags: ['Laravel', 'Chart.js', 'Tailwind CSS', 'MySQL', 'Role-Based Access'],
     highlights: [
-      'Alur kerja 4 peran (Admin, Pelapor, Teknisi, Kepala FRC)',
-      'Verifikasi foto sebelum & sesudah perbaikan fasilitas',
-      'Pencatatan konsumsi utilitas (listrik, air bersih, air hujan)',
-      'Visualisasi tren laporan dengan Chart.js & cetak PDF',
+      'Alur kerja 4 level peran (Admin, Pelapor, Teknisi, Kepala)',
+      'Dokumentasi visual bukti foto perbaikan',
+      'Pencatatan konsumsi utilitas listrik dan air',
+      'Visualisasi tren laporan kerusakan dengan Chart.js',
     ],
   },
   {
     title: 'Arsip Berkas & Disposisi',
     category: 'Web Application',
     description:
-      'Aplikasi digitalisasi arsip dokumen Surat Keputusan (SK) dan SOP perbankan yang menggantikan pencatatan fisik. Dilengkapi modul disposisi keluar/masuk dengan nomor urut unik, pencarian cepat, dan ekspor spreadsheet.',
+      'Sistem digitalisasi arsip dokumen SK dan SOP perbankan. Menggantikan proses fisik dengan modul disposisi masuk/keluar, pencarian cepat, dan ekspor spreadsheet.',
     image: '/images/projects/arsip.svg',
     repoUrl: 'https://github.com/nasjiarr/arsipberkas',
     tags: ['PHP', 'MySQL', 'PhpSpreadsheet', 'PDO', 'JavaScript'],
     highlights: [
-      'Pencarian multi-parameter SK & SOP berbasis nomor, perihal, atau tanggal',
-      'Modul disposisi dokumen masuk dan keluar dengan pencatatan terpisah',
-      'Unduhan aman via controller & integrasi berkas jaringan (network share)',
-      'Ekspor rekapitulasi data arsip ke spreadsheet via PhpSpreadsheet',
+      'Pencarian multi-kriteria berdasarkan nomor, perihal, dan tanggal',
+      'Modul pencatatan disposisi masuk dan keluar dengan nomor unik',
+      'Akses unduhan dokumen terproteksi via controller',
+      'Ekspor rekapitulasi data arsip ke file Excel',
     ],
   },
 ];
@@ -91,15 +91,14 @@ export default function Projects() {
         <header className="projects-v1__header projects-v1__reveal projects-v1__hidden">
           <div className="projects-v1__eyebrow">
             <FolderGit2 size={15} strokeWidth={2.4} aria-hidden="true" />
-            PROJECTS / PORTOFOLIO
+            SHOWCASE PROYEK
           </div>
           <h2 className="projects-v1__heading">
-            Karya Terpilih &{' '}
-            <span className="projects-v1__heading-accent">Sistem yang Telah Dibangun</span>
+            Proyek &{' '}
+            <span className="projects-v1__heading-accent">Karya Pilihan</span>
           </h2>
           <p className="projects-v1__description">
-            Aplikasi web fungsional yang dirancang untuk memecahkan alur kerja nyata: digitalisasi arsip
-            dokumen, penanganan kerusakan fasilitas, hingga pemesanan ruangan terintegrasi.
+            Aplikasi web fungsional yang dibangun untuk memecahkan kebutuhan operasional nyata:
           </p>
         </header>
 
@@ -139,7 +138,7 @@ export default function Projects() {
                 <p className="projects-v1__text">{project.description}</p>
 
                 <div className="projects-v1__highlights">
-                  <span className="projects-v1__highlights-label">Fitur Utama:</span>
+                  <span className="projects-v1__highlights-label">Fitur Kunci:</span>
                   <ul className="projects-v1__highlights-list">
                     {project.highlights.map((h) => (
                       <li key={h}>
@@ -166,7 +165,7 @@ export default function Projects() {
                     className="projects-v1__btn-primary"
                   >
                     <GithubIcon size={16} />
-                    <span>Lihat Repository GitHub</span>
+                    <span>Repository GitHub</span>
                     <ExternalLink size={14} strokeWidth={2} />
                   </a>
                 </div>

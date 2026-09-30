@@ -5,36 +5,36 @@ import '../styles/pages.css';
 
 const sectionsOverview = [
   {
-    title: 'Tentang & Filosofi',
-    description: 'Latar belakang pendidikan S1 Sistem Informasi, mindset problem-first, dan metodologi perancangan aplikasi.',
+    title: 'Tentang',
+    description: 'Profil, filosofi rekayasa, dan pendekatan penyelesaian masalah.',
     icon: User,
     to: '/about',
-    ctaText: 'Pelajari Profil',
+    ctaText: 'Buka Profil',
   },
   {
-    title: 'Keahlian & Teknologi',
-    description: 'Penguasaan stack Laravel, PHP, MySQL, Vue/Inertia, React, Docker, dan standar rekayasa software teruji.',
+    title: 'Keahlian',
+    description: 'Stack backend Laravel, database MySQL, frontend, dan tooling.',
     icon: Code2,
     to: '/skills',
-    ctaText: 'Lihat Keahlian',
+    ctaText: 'Buka Keahlian',
   },
   {
-    title: 'Portofolio Proyek',
-    description: 'Eksplorasi sistem reservasi ruangan, sistem pelaporan fasilitas FRC, dan digitalisasi arsip perbankan.',
+    title: 'Proyek',
+    description: 'Sistem reservasi ruangan, pelaporan FRC, dan sistem arsip dokumen.',
     icon: FolderGit2,
     to: '/projects',
-    ctaText: 'Jelajahi Proyek',
+    ctaText: 'Buka Proyek',
   },
   {
-    title: 'Pengalaman & Pendidikan',
-    description: 'Rekam jejak magang IT di PT. BPR Bank Kulon Progo dan capaian akademik IPK 3.56 di UPN "Veteran" Yogyakarta.',
+    title: 'Riwayat',
+    description: 'Pengalaman magang IT di perbankan dan riwayat akademik S1 Sistem Informasi.',
     icon: Briefcase,
     to: '/experience',
-    ctaText: 'Lihat Riwayat',
+    ctaText: 'Buka Riwayat',
   },
   {
-    title: 'Hubungi & Kolaborasi',
-    description: 'Formulir pesan interaktif, kontak email langsung, serta tautan ke profil GitHub dan LinkedIn profesional.',
+    title: 'Kontak',
+    description: 'Kirim pesan via form email langsung atau terhubung di media sosial.',
     icon: Mail,
     to: '/contact',
     ctaText: 'Kirim Pesan',
@@ -75,8 +75,7 @@ export default function HomePage() {
             <div className="page-cta-banner__content">
               <h3>Tertarik Berdiskusi atau Berkolaborasi?</h3>
               <p>
-                Saya terbuka untuk peluang kerja sama software engineering, pengembangan sistem informasi web,
-                maupun posisi profesional full-time dan kontrak.
+                Terbuka untuk posisi full-time, kontrak, dan proyek pengembangan sistem web.
               </p>
             </div>
             <Link to="/contact" className="page-cta-banner__action">
