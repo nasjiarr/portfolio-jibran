@@ -1,26 +1,11 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Code2 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Skills from '../components/Skills';
 import '../styles/pages.css';
 
 export default function SkillsPage() {
   return (
-    <div className="page-wrapper">
-      <header className="page-header">
-        <div className="page-header__shell">
-          <div className="page-header__eyebrow">
-            <Code2 size={14} strokeWidth={2.4} />
-            KEAHLIAN
-          </div>
-          <h1 className="page-header__title">
-            Teknologi & <span>Tools</span>
-          </h1>
-          <p className="page-header__desc">
-            Daftar kompetensi teknis untuk pengembangan backend, basis data, dan frontend web.
-          </p>
-        </div>
-      </header>
-
+    <div className="page-wrapper" style={{ paddingBottom: 0 }}>
       <Skills />
 
       <section className="page-cta-banner">

@@ -1,26 +1,11 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, FolderGit2 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Projects from '../components/Projects';
 import '../styles/pages.css';
 
 export default function ProjectsPage() {
   return (
-    <div className="page-wrapper">
-      <header className="page-header">
-        <div className="page-header__shell">
-          <div className="page-header__eyebrow">
-            <FolderGit2 size={14} strokeWidth={2.4} />
-            PORTOFOLIO PROYEK
-          </div>
-          <h1 className="page-header__title">
-            Karya & <span>Sistem yang Dibangun</span>
-          </h1>
-          <p className="page-header__desc">
-            Aplikasi web fungsional yang dirancang untuk kebutuhan operasional nyata.
-          </p>
-        </div>
-      </header>
-
+    <div className="page-wrapper" style={{ paddingBottom: 0 }}>
       <Projects />
 
       <section className="page-cta-banner">

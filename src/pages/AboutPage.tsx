@@ -1,27 +1,12 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, User } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import About from '../components/About';
 import Methodology from '../components/Methodology';
 import '../styles/pages.css';
 
 export default function AboutPage() {
   return (
-    <div className="page-wrapper">
-      <header className="page-header">
-        <div className="page-header__shell">
-          <div className="page-header__eyebrow">
-            <User size={14} strokeWidth={2.4} />
-            TENTANG SAYA
-          </div>
-          <h1 className="page-header__title">
-            Profil & <span>Latar Belakang</span>
-          </h1>
-          <p className="page-header__desc">
-            Informasi profil, filosofi penyelesaian masalah, dan standar rekayasa software.
-          </p>
-        </div>
-      </header>
-
+    <div className="page-wrapper" style={{ paddingBottom: 0 }}>
       <About />
       <Methodology />
 
