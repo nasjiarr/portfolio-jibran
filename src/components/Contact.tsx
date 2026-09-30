@@ -1,23 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
-import { Mail, MapPin, MessageCircle, Send, FileText, CheckCircle } from 'lucide-react';
+import { Mail, MapPin, FileText, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import '../styles/contact.css';
-
-const services = [
-  'Fullstack Web App',
-  'Backend & REST API',
-  'Pengembangan Laravel',
-  'UI Implementation',
-  'Database Design',
-  'Peluang Karir / Rekrutmen',
-];
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    service: 'Fullstack Web App',
+    subject: '',
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
@@ -45,160 +36,154 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`[Inquiry] ${formData.service} - ${formData.name}`);
-    const body = encodeURIComponent(
-      `Nama: ${formData.name}\nEmail: ${formData.email}\nTopik: ${formData.service}\n\nPesan:\n${formData.message}\n`
+    const mailSubject = encodeURIComponent(formData.subject || `[Portfolio Inquiry] dari ${formData.name}`);
+    const mailBody = encodeURIComponent(
+      `Nama: ${formData.name}\nEmail: ${formData.email}\nSubject: ${formData.subject}\n\nPesan:\n${formData.message}\n`
     );
-    window.location.href = `mailto:nasywanji@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:nasywanji@gmail.com?subject=${mailSubject}&body=${mailBody}`;
     setSubmitted(true);
   };
 
   return (
-    <section ref={sectionRef} id="kontak" className="contact-v1">
-      <div className="contact-v1__shell">
-        <header className="contact-v1__header contact-v1__reveal contact-v1__hidden">
-          <div className="contact-v1__eyebrow">
-            <MessageCircle size={15} strokeWidth={2.4} aria-hidden="true" />
-            KONTAK
-          </div>
-          <h2 className="contact-v1__heading">
-            Hubungi &{' '}
-            <span className="contact-v1__heading-accent">Mulai Diskusi</span>
-          </h2>
-          <p className="contact-v1__description">
-            Kirim pesan langsung via formulir email atau hubungi melalui kanal di bawah ini:
-          </p>
-        </header>
+    <section ref={sectionRef} id="kontak" className="contact-fahry">
+      <div className="contact-fahry__shell">
+        <div className="contact-grid">
+          {/* Left Column */}
+          <div className="contact-left contact-v1__reveal contact-v1__hidden">
+            <span className="contact-eyebrow">✦ GET IN TOUCH</span>
+            <h2 className="contact-title">
+              Let's build<br />
+              something great<br />
+              together <span className="sparkle">✦</span>
+            </h2>
+            <p className="contact-desc">
+              Punya project atau ide yang ingin diwujudkan? Jangan ragu untuk menghubungi saya.
+              Saya siap membantu mewujudkan website dan aplikasi impian kamu!
+            </p>
 
-        <div className="contact-v1__panel contact-v1__reveal contact-v1__hidden">
-          <form className="contact-v1__form" onSubmit={handleSubmit}>
-            <div className="contact-v1__field-row">
-              <label className="contact-v1__field">
-                <span>Nama Lengkap *</span>
+            <div className="contact-details">
+              <div className="contact-detail-item">
+                <div className="contact-detail-icon">
+                  <Mail size={18} strokeWidth={2.2} />
+                </div>
+                <div>
+                  <h4>Email</h4>
+                  <p>nasywanji@gmail.com</p>
+                </div>
+              </div>
+
+              <div className="contact-detail-item">
+                <div className="contact-detail-icon">
+                  <MapPin size={18} strokeWidth={2.2} />
+                </div>
+                <div>
+                  <h4>Location</h4>
+                  <p>Kulon Progo, D.I. Yogyakarta, Indonesia</p>
+                </div>
+              </div>
+
+              <a
+                href="/cv.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-detail-item contact-detail-link"
+              >
+                <div className="contact-detail-icon">
+                  <FileText size={18} strokeWidth={2.2} />
+                </div>
+                <div>
+                  <h4>Curriculum Vitae</h4>
+                  <p>Unduh Resume (PDF) ↗</p>
+                </div>
+              </a>
+            </div>
+
+            <div className="social-row">
+              <a
+                href="https://github.com/nasjiarr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-circle"
+                aria-label="GitHub"
+                title="GitHub"
+              >
+                <GithubIcon size={18} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/nasywan-jibran-aryadi-7547a8214/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-circle"
+                aria-label="LinkedIn"
+                title="LinkedIn"
+              >
+                <LinkedinIcon size={18} />
+              </a>
+              <a
+                href="mailto:nasywanji@gmail.com"
+                className="social-circle"
+                aria-label="Email"
+                title="Email Langsung"
+              >
+                <Mail size={18} />
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column: Contact Form */}
+          <form className="contact-form contact-v1__reveal contact-v1__hidden" onSubmit={handleSubmit}>
+            <div className="form-row">
+              <div className="form-group">
                 <input
                   type="text"
+                  placeholder="Your name"
                   required
-                  placeholder="Nama Anda"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
-              </label>
-              <label className="contact-v1__field">
-                <span>Email *</span>
+              </div>
+              <div className="form-group">
                 <input
                   type="email"
+                  placeholder="Your email"
                   required
-                  placeholder="nama@email.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
-              </label>
+              </div>
             </div>
 
-            <fieldset className="contact-v1__services">
-              <legend>Topik Kebutuhan</legend>
-              <div className="contact-v1__options">
-                {services.map((item) => (
-                  <label key={item} className="contact-v1__radio-label">
-                    <input
-                      type="radio"
-                      name="service"
-                      value={item}
-                      checked={formData.service === item}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    />
-                    <span>{item}</span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Subject"
+                value={formData.subject}
+                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+              />
+            </div>
 
-            <label className="contact-v1__field">
-              <span>Isi Pesan *</span>
+            <div className="form-group">
               <textarea
+                placeholder="Tell me about your project..."
                 required
-                rows={4}
-                placeholder="Tulis pesan atau kebutuhan Anda di sini..."
+                rows={5}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               />
-            </label>
+            </div>
 
-            <button type="submit" className="contact-v1__submit">
-              <span>Kirim via Email</span>
-              <Send size={16} strokeWidth={2.2} />
+            <button type="submit" className="btn-send">
+              <span>Send Message</span>
+              <ArrowRight size={17} strokeWidth={2.4} />
             </button>
 
             {submitted && (
-              <div className="contact-v1__success">
-                <CheckCircle size={16} />
-                <span>Klien email Anda telah dibuka. Anda juga bisa kirim langsung ke nasywanji@gmail.com</span>
+              <div className="form-status">
+                <CheckCircle2 size={16} />
+                <span>Klien email Anda telah dibuka. Atau kirim langsung ke nasywanji@gmail.com</span>
               </div>
             )}
           </form>
-
-          <aside className="contact-v1__details">
-            <div className="contact-v1__detail">
-              <span className="contact-v1__icon">
-                <Mail size={19} strokeWidth={2} />
-              </span>
-              <div>
-                <h3>Email</h3>
-                <a href="mailto:nasywanji@gmail.com">nasywanji@gmail.com</a>
-              </div>
-            </div>
-
-            <div className="contact-v1__detail">
-              <span className="contact-v1__icon">
-                <MapPin size={19} strokeWidth={2} />
-              </span>
-              <div>
-                <h3>Lokasi</h3>
-                <p>Kulon Progo, D.I. Yogyakarta</p>
-                <span>Indonesia (WIB / UTC+7)</span>
-              </div>
-            </div>
-
-            <div className="contact-v1__detail">
-              <span className="contact-v1__icon">
-                <GithubIcon size={19} />
-              </span>
-              <div>
-                <h3>GitHub</h3>
-                <a href="https://github.com/nasjiarr" target="_blank" rel="noopener noreferrer">
-                  github.com/nasjiarr ↗
-                </a>
-              </div>
-            </div>
-
-            <div className="contact-v1__detail">
-              <span className="contact-v1__icon">
-                <LinkedinIcon size={19} />
-              </span>
-              <div>
-                <h3>LinkedIn</h3>
-                <a
-                  href="https://www.linkedin.com/in/nasywan-jibran-aryadi-7547a8214/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Nasywan Jibran Aryadi ↗
-                </a>
-              </div>
-            </div>
-
-            <div className="contact-v1__detail">
-              <span className="contact-v1__icon">
-                <FileText size={19} strokeWidth={2} />
-              </span>
-              <div>
-                <h3>Curriculum Vitae</h3>
-                <a href="/cv.pdf" target="_blank" rel="noopener noreferrer">
-                  Unduh CV (PDF) ↗
-                </a>
-              </div>
-            </div>
-          </aside>
         </div>
       </div>
     </section>
