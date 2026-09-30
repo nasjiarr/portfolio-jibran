@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" fill="none">
+  <rect width="800" height="500" rx="16" fill="#F4F5F1"/>
+  <rect x="1" y="1" width="798" height="498" rx="15" stroke="#E2E4DC" stroke-width="1"/>
+
+  <!-- Subtle Grid -->
+  <line x1="80" y1="0" x2="80" y2="500" stroke="#E9EBE2" stroke-width="1"/>
+  <line x1="720" y1="0" x2="720" y2="500" stroke="#E9EBE2" stroke-width="1"/>
+
+  <!-- Main Application Frame -->
+  <rect x="120" y="70" width="560" height="360" rx="10" fill="#FFFFFF" stroke="#D9DDD3" stroke-width="1"/>
+
+  <!-- Header Bar -->
+  <line x1="120" y1="115" x2="680" y2="115" stroke="#EBEDE5" stroke-width="1"/>
+  <rect x="144" y="88" width="18" height="18" rx="4" fill="#1B4D3E"/>
+  <rect x="174" y="93" width="130" height="8" rx="4" fill="#0D0D0D"/>
+  <rect x="580" y="88" width="80" height="18" rx="9" fill="#1B4D3E" fill-opacity="0.1"/>
+  <rect x="595" y="94" width="50" height="6" rx="3" fill="#1B4D3E"/>
+
+  <!-- Status Cards -->
+  <g transform="translate(144, 135)">
+    <rect width="160" height="64" rx="6" fill="#F9FAF7" stroke="#E5E8DF" stroke-width="1"/>
+    <rect x="12" y="12" width="64" height="6" rx="2" fill="#888E83"/>
+    <rect x="12" y="26" width="40" height="14" rx="3" fill="#0D0D0D"/>
+    <rect x="12" y="48" width="52" height="6" rx="2" fill="#1B4D3E"/>
+
+    <g transform="translate(176, 0)">
+      <rect width="160" height="64" rx="6" fill="#F9FAF7" stroke="#E5E8DF" stroke-width="1"/>
+      <rect x="12" y="12" width="72" height="6" rx="2" fill="#888E83"/>
+      <rect x="12" y="26" width="34" height="14" rx="3" fill="#0D0D0D"/>
+      <rect x="12" y="48" width="56" height="6" rx="2" fill="#B48C36"/>
+    </g>
+
+    <g transform="translate(352, 0)">
+      <rect width="160" height="64" rx="6" fill="#F9FAF7" stroke="#E5E8DF" stroke-width="1"/>
+      <rect x="12" y="12" width="60" height="6" rx="2" fill="#888E83"/>
+      <rect x="12" y="26" width="46" height="14" rx="3" fill="#0D0D0D"/>
+      <rect x="12" y="48" width="44" height="6" rx="2" fill="#1B4D3E"/>
+    </g>
+  </g>
+
+  <!-- Report List -->
+  <g transform="translate(144, 219)">
+    <rect width="224" height="196" rx="6" fill="#F9FAF7" stroke="#E5E8DF" stroke-width="1"/>
+    <rect x="14" y="14" width="90" height="8" rx="3" fill="#0D0D0D"/>
+    <!-- List Items -->
+    <g transform="translate(14, 36)">
+      <rect width="196" height="28" rx="4" fill="#FFFFFF" stroke="#E5E8DF" stroke-width="1"/>
+      <rect x="8" y="9" width="10" height="10" rx="5" fill="#B48C36"/>
+      <rect x="26" y="10" width="80" height="7" rx="2" fill="#888E83"/>
+      <rect x="120" y="10" width="44" height="7" rx="2" fill="#E2E4DC"/>
+    </g>
+    <g transform="translate(14, 72)">
+      <rect width="196" height="28" rx="4" fill="#FFFFFF" stroke="#E5E8DF" stroke-width="1"/>
+      <rect x="8" y="9" width="10" height="10" rx="5" fill="#1B4D3E"/>
+      <rect x="26" y="10" width="96" height="7" rx="2" fill="#888E83"/>
+      <rect x="136" y="10" width="32" height="7" rx="2" fill="#E2E4DC"/>
+    </g>
+    <g transform="translate(14, 108)">
+      <rect width="196" height="28" rx="4" fill="#FFFFFF" stroke="#E5E8DF" stroke-width="1"/>
+      <rect x="8" y="9" width="10" height="10" rx="5" fill="#888E83"/>
+      <rect x="26" y="10" width="64" height="7" rx="2" fill="#888E83"/>
+      <rect x="104" y="10" width="52" height="7" rx="2" fill="#E2E4DC"/>
+    </g>
+    <g transform="translate(14, 144)">
+      <rect width="196" height="28" rx="4" fill="#FFFFFF" stroke="#E5E8DF" stroke-width="1"/>
+      <rect x="8" y="9" width="10" height="10" rx="5" fill="#1B4D3E"/>
+      <rect x="26" y="10" width="88" height="7" rx="2" fill="#888E83"/>
+      <rect x="128" y="10" width="40" height="7" rx="2" fill="#E2E4DC"/>
+    </g>
+  </g>
+
+  <!-- Chart -->
+  <g transform="translate(384, 219)">
+    <rect width="272" height="196" rx="6" fill="#F9FAF7" stroke="#E5E8DF" stroke-width="1"/>
+    <rect x="14" y="14" width="64" height="8" rx="3" fill="#0D0D0D"/>
+    <!-- Bars -->
+    <rect x="24" y="140" width="24" height="40" rx="3" fill="#1B4D3E" fill-opacity="0.85"/>
+    <rect x="58" y="112" width="24" height="68" rx="3" fill="#1B4D3E" fill-opacity="0.65"/>
+    <rect x="92" y="84" width="24" height="96" rx="3" fill="#1B4D3E"/>
+    <rect x="126" y="128" width="24" height="52" rx="3" fill="#1B4D3E" fill-opacity="0.65"/>
+    <rect x="160" y="96" width="24" height="84" rx="3" fill="#1B4D3E" fill-opacity="0.85"/>
+    <rect x="194" y="120" width="24" height="60" rx="3" fill="#B48C36"/>
+    <!-- Axis -->
+    <line x1="18" y1="180" x2="232" y2="180" stroke="#E2E4DC" stroke-width="1"/>
+  </g>
+</svg>

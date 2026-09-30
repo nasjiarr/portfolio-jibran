@@ -1,0 +1,14 @@
+# Immutable static assets with content hashes
+/_app/immutable/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Static optimized images
+/images/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+# HTML documents and fallbacks
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

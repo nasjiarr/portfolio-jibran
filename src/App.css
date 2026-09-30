@@ -1,0 +1,11 @@
+.dt-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--dt-surface);
+  color: var(--dt-ink);
+}
+
+main {
+  flex: 1 0 auto;
+}
