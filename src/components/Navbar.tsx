@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight, Download, Terminal } from 'lucide-react';
 import '../styles/navbar.css';
 
@@ -8,18 +9,19 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: 'Beranda', href: '#home' },
-  { label: 'Tentang', href: '#tentang' },
-  { label: 'Keahlian', href: '#keahlian' },
-  { label: 'Proyek', href: '#proyek' },
-  { label: 'Riwayat', href: '#riwayat' },
-  { label: 'Kontak', href: '#kontak' },
+  { label: 'Beranda', href: '/' },
+  { label: 'Tentang', href: '/about' },
+  { label: 'Keahlian', href: '/skills' },
+  { label: 'Proyek', href: '/projects' },
+  { label: 'Riwayat', href: '/experience' },
+  { label: 'Kontak', href: '/contact' },
 ];
 
 export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +30,10 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    setDrawerOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (drawerOpen) {
@@ -47,20 +53,27 @@ export default function Navbar() {
         className={`dt-navbar ${scrolled ? 'dt-navbar--scrolled' : ''}`}
       >
         <div className="dt-navbar__inner">
-          <a href="#home" className="dt-navbar__brand">
+          <Link to="/" className="dt-navbar__brand">
             <span className="dt-navbar__logo-box">
               <Terminal size={18} strokeWidth={2.4} />
             </span>
             <span className="dt-navbar__brand-text">
               <strong>nasywan</strong>.dev
             </span>
-          </a>
+          </Link>
 
           <nav className="dt-navbar__nav" aria-label="Menu Utama">
             {navItems.map((item) => (
-              <a key={item.label} href={item.href} className="dt-navbar__nav-link">
+              <NavLink
+                key={item.label}
+                to={item.href}
+                className={({ isActive }) =>
+                  `dt-navbar__nav-link ${isActive ? 'is-active' : ''}`
+                }
+                end={item.href === '/'}
+              >
                 {item.label}
-              </a>
+              </NavLink>
             ))}
           </nav>
 
@@ -75,10 +88,10 @@ export default function Navbar() {
               <Download size={15} strokeWidth={2.2} />
               <span>CV</span>
             </a>
-            <a href="#kontak" className="dt-navbar__btn-primary">
+            <Link to="/contact" className="dt-navbar__btn-primary">
               <span>Hubungi</span>
               <ArrowRight size={15} strokeWidth={2.2} />
-            </a>
+            </Link>
           </div>
 
           <button
@@ -121,14 +134,17 @@ export default function Navbar() {
 
         <nav className="dt-drawer__nav">
           {navItems.map((item) => (
-            <a
+            <NavLink
               key={item.label}
-              href={item.href}
-              className="dt-drawer__link"
+              to={item.href}
+              className={({ isActive }) =>
+                `dt-drawer__link ${isActive ? 'is-active' : ''}`
+              }
+              end={item.href === '/'}
               onClick={() => setDrawerOpen(false)}
             >
               {item.label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
@@ -143,14 +159,14 @@ export default function Navbar() {
             <Download size={16} />
             <span>Unduh CV (PDF)</span>
           </a>
-          <a
-            href="#kontak"
+          <Link
+            to="/contact"
             className="dt-navbar__btn-primary w-full"
             onClick={() => setDrawerOpen(false)}
           >
             <span>Hubungi Saya</span>
             <ArrowRight size={16} />
-          </a>
+          </Link>
         </div>
       </aside>
     </>

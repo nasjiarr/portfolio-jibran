@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--dt-line);
@@ -72,6 +72,12 @@
 .dt-navbar__nav-link:hover {
   color: var(--dt-primary);
   background: var(--dt-primary-soft);
+}
+
+.dt-navbar__nav-link.is-active {
+  color: var(--dt-primary);
+  background: var(--dt-primary-soft);
+  font-weight: 600;
 }
 
 .dt-navbar__actions {
@@ -203,9 +209,11 @@
   transition: all 0.15s ease;
 }
 
-.dt-drawer__link:hover {
+.dt-drawer__link:hover,
+.dt-drawer__link.is-active {
   background: var(--dt-primary-soft);
   color: var(--dt-primary);
+  font-weight: 600;
 }
 
 .dt-drawer__actions {

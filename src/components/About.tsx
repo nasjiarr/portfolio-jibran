@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { Target, Layers, Rocket, FileText, ArrowRight, BookOpen } from 'lucide-react';
 import '../styles/about.css';
 
@@ -69,10 +70,10 @@ export default function About() {
               <FileText size={16} strokeWidth={2.2} />
               <span>Unduh CV Lengkap</span>
             </a>
-            <a href="#keahlian" className="about-v1__button about-v1__button--secondary">
+            <Link to="/skills" className="about-v1__button about-v1__button--secondary">
               <span>Eksplorasi Keahlian</span>
               <ArrowRight size={16} strokeWidth={2.2} />
-            </a>
+            </Link>
           </div>
         </div>
 

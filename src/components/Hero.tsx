@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, GraduationCap, CheckCircle2, Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import '../styles/hero.css';
@@ -48,13 +49,13 @@ export default function Hero() {
           </p>
 
           <div className="hero-v2__actions hero-v2__reveal hero-v2__hidden">
-            <a className="hero-v2__button hero-v2__button--primary" href="#proyek">
+            <Link className="hero-v2__button hero-v2__button--primary" to="/projects">
               <span>Jelajahi Proyek</span>
               <ArrowRight size={17} strokeWidth={2.2} />
-            </a>
-            <a className="hero-v2__button hero-v2__button--secondary" href="#kontak">
+            </Link>
+            <Link className="hero-v2__button hero-v2__button--secondary" to="/contact">
               <span>Hubungi Saya</span>
-            </a>
+            </Link>
           </div>
 
           <div className="hero-v2__trust hero-v2__reveal hero-v2__hidden">

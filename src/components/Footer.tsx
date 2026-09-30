@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
 import '../styles/footer.css';
 
@@ -11,7 +12,7 @@ export default function Footer() {
       <div className="footer-v1__shell">
         <div className="footer-v1__top">
           <div className="footer-v1__brand">
-            <span className="footer-v1__logo">nasywan.dev</span>
+            <Link to="/" className="footer-v1__logo">nasywan.dev</Link>
             <p className="footer-v1__tagline">
               Software Engineer & Web Developer berbasis di D.I. Yogyakarta. Mengembangkan solusi web
               presisi, terukur, dan berpusat pada nilai guna.
@@ -20,13 +21,13 @@ export default function Footer() {
 
           <div className="footer-v1__nav">
             <div className="footer-v1__links-group">
-              <span className="footer-v1__group-title">Navigasi</span>
-              <a href="#home">Beranda</a>
-              <a href="#tentang">Tentang</a>
-              <a href="#keahlian">Keahlian</a>
-              <a href="#proyek">Proyek</a>
-              <a href="#riwayat">Riwayat</a>
-              <a href="#kontak">Kontak</a>
+              <span className="footer-v1__group-title">Navigasi Halaman</span>
+              <Link to="/">Beranda</Link>
+              <Link to="/about">Tentang</Link>
+              <Link to="/skills">Keahlian</Link>
+              <Link to="/projects">Proyek</Link>
+              <Link to="/experience">Riwayat</Link>
+              <Link to="/contact">Kontak</Link>
             </div>
 
             <div className="footer-v1__links-group">

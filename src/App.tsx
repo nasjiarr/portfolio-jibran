@@ -1,28 +1,37 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import SkillsPage from './pages/SkillsPage';
+import ProjectsPage from './pages/ProjectsPage';
+import ExperiencePage from './pages/ExperiencePage';
+import ContactPage from './pages/ContactPage';
 
 import './styles/dealtech-tokens.css';
 import './App.css';
 
 export default function App() {
   return (
-    <div className="dt-app">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="dt-app">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/skills" element={<SkillsPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/experience" element={<ExperiencePage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
