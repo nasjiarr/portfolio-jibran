@@ -38,7 +38,7 @@ export default function About() {
 
           <h2 className="about-v1__title about-v1__reveal about-v1__hidden">
             Ringkasan Profil &{' '}
-            <span className="about-v1__title-accent">Latar Belakang</span>
+            <span className="about-v1__title-accent">Latar Belakang</span> <span className="sparkle">✦</span>
           </h2>
 
           <div className="about-v1__narrative about-v1__reveal about-v1__hidden">

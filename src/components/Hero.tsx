@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import AmbientGlow from './AmbientGlow';
+import FloatingParticlesBackground from './FloatingParticlesBackground';
+import FluidTypography from './FluidTypography';
 import '../styles/hero.css';
 
 const marqueeItems = [
@@ -73,13 +76,23 @@ export default function Hero() {
   return (
     <>
       <section ref={heroRef} id="home" className="hero-main">
-        {/* Repeating Giant Background Text */}
-        <div className="hero-main__bg-text" aria-hidden="true">
-          <div className="hero-main__bg-line">PORTFOLIO</div>
-          <div className="hero-main__bg-line">PORTFOLIO</div>
-          <div className="hero-main__bg-line">PORTFOLIO</div>
-          <div className="hero-main__bg-line">PORTFOLIO</div>
-        </div>
+        {/* Ambient Aurora Glow & Mesh Gradient Background (Linear & Vercel Aesthetic) */}
+        <AmbientGlow enableMouseFollow={true} />
+
+        {/* Floating Dust / Stardust Particles Background (Framer Module) */}
+        <FloatingParticlesBackground
+          particleCount={60}
+          particleSize={2.4}
+          particleOpacity={0.65}
+          glowIntensity={12}
+          glowAnimation="spring"
+          movementSpeed={0.5}
+          mouseInfluence={135}
+          mouseGravity="attract"
+          gravityStrength={60}
+          particleInteraction={true}
+          interactionType="bounce"
+        />
 
         {/* Decorative Stars */}
         <span className="hero-main__star hero-main__star--1" aria-hidden="true">✦</span>
@@ -87,9 +100,10 @@ export default function Hero() {
 
         <div className="hero-main__shell">
           <div className="hero-main__grid">
-            {/* Left Column: Image Wrapper + Quote Box */}
+            {/* Left Column: Profile Photo Card */}
             <div className="hero-main__left hero-main__reveal hero-main__hidden">
               <div className="hero-main__image-wrapper">
+                <div className="hero-main__image-glow" aria-hidden="true"></div>
                 <div className="hero-main__image-frame" aria-hidden="true"></div>
                 <img
                   src="/images/profile-800.webp"
@@ -99,8 +113,9 @@ export default function Hero() {
                   height={420}
                   loading="eager"
                 />
-                <div className="hero-main__quote">
-                  "I love building things that live on the internet. I approach problems in a rational, pragmatic way and build functional, clean, and reliable web applications."
+                <div className="hero-main__photo-badge">
+                  <span className="hero-main__badge-dot"></span>
+                  <span>Terbuka untuk Kolaborasi & Kerja</span>
                 </div>
               </div>
             </div>
@@ -112,12 +127,26 @@ export default function Hero() {
                 <span>A Computer Enthusiast</span>
               </div>
 
-              <h1 className="hero-main__title">
-                <span className="hero-main__title-main">PORTFOLIO</span>
-              </h1>
+              <div className="hero-main__heading-group">
+                <FluidTypography
+                  text="PORTFOLIO"
+                  as="span"
+                  className="hero-main__title-portfolio"
+                  influenceRadius={140}
+                  maxLift={14}
+                  maxScale={0.18}
+                />
+                <FluidTypography
+                  text="NASYWAN JIBRAN ARYADI"
+                  as="h1"
+                  className="hero-main__name"
+                  influenceRadius={150}
+                  maxLift={11}
+                  maxScale={0.15}
+                />
+              </div>
 
               <div className="hero-main__bio">
-                <h2 className="hero-main__name">Nasywan Jibran Aryadi</h2>
                 <p className="hero-main__role">
                   Web Developer • S1 Sistem Informasi UPN "Veteran" Yogyakarta • 2022-2026
                 </p>
@@ -128,49 +157,6 @@ export default function Hero() {
                   <span className="hero-main__typing-text">{displayText}</span>
                   <span className="hero-main__typing-cursor"></span>
                 </div>
-              </div>
-
-              <div className="hero-main__socials">
-                <a
-                  href="https://github.com/nasjiarr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hero-main__social-link"
-                >
-                  <span className="hero-main__social-tag">GH</span>
-                  <span className="hero-main__social-text">nasjiarr</span>
-                  <ExternalLink size={13} className="hero-main__social-icon" />
-                </a>
-
-                <a
-                  href="https://www.linkedin.com/in/nasywan-jibran-aryadi-7547a8214/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hero-main__social-link"
-                >
-                  <span className="hero-main__social-tag">LI</span>
-                  <span className="hero-main__social-text">Nasywan Jibran Aryadi</span>
-                  <ExternalLink size={13} className="hero-main__social-icon" />
-                </a>
-
-                <a
-                  href="mailto:nasywanji@gmail.com"
-                  className="hero-main__social-link"
-                >
-                  <span className="hero-main__social-tag">EM</span>
-                  <span className="hero-main__social-text">nasywanji@gmail.com</span>
-                </a>
-
-                <a
-                  href="/cv.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hero-main__social-link"
-                >
-                  <span className="hero-main__social-tag">CV</span>
-                  <span className="hero-main__social-text">Curriculum Vitae (PDF)</span>
-                  <ExternalLink size={13} className="hero-main__social-icon" />
-                </a>
               </div>
 
               <div className="hero-main__actions">

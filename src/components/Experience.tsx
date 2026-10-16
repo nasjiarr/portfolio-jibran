@@ -36,10 +36,10 @@ export default function Experience() {
           </div>
           <h2 className="experience-v1__heading">
             Pengalaman &{' '}
-            <span className="experience-v1__heading-accent">Pendidikan</span>
+            <span className="experience-v1__heading-accent">Pendidikan</span> <span className="sparkle">✦</span>
           </h2>
           <p className="experience-v1__description">
-            Riwayat kerja magang di bidang IT perbankan dan pencapaian akademik:
+            Riwayat kerja magang di bidang IT dan pencapaian akademik:
           </p>
         </header>
 
@@ -107,9 +107,6 @@ export default function Experience() {
               <ul className="experience-v1__points">
                 <li>
                   Fokus pada Rekayasa Perangkat Lunak, Basis Data Relasional, dan Pengembangan Aplikasi Web.
-                </li>
-                <li>
-                  Membangun proyek sistem informasi berbasis Laravel, REST API, dan antarmuka reaktif.
                 </li>
                 <li>
                   Lulus dengan predikat sangat memuaskan (IPK 3.56).

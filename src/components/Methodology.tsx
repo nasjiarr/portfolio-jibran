@@ -94,7 +94,7 @@ export default function Methodology() {
           </div>
           <h2 className="methodology-v1__heading">
             Prinsip &{' '}
-            <span className="methodology-v1__heading-accent">Metodologi Kerja</span>
+            <span className="methodology-v1__heading-accent">Metodologi Kerja</span> <span className="sparkle">✦</span>
           </h2>
           <p className="methodology-v1__description">
             Poin inti standar rekayasa perangkat lunak yang saya terapkan di setiap tahap:

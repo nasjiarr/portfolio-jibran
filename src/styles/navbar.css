@@ -268,6 +268,9 @@
 }
 
 @media (max-width: 860px) {
+  .dt-navbar__inner {
+    height: 58px;
+  }
   .dt-navbar__nav,
   .dt-navbar__actions {
     display: none;

@@ -1,0 +1,214 @@
+/* Ambient Glow & Mesh Gradient (Linear & Vercel Aesthetic) */
+.ambient-glow-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  background: #080c14;
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="light"] .ambient-glow-wrapper {
+  background: #f8fafc;
+}
+
+/* Ambient Aurora Orbs */
+.ambient-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(95px);
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Cyan / Electric Sky Orb */
+.ambient-glow-orb--cyan {
+  width: min(580px, 50vw);
+  height: min(580px, 50vw);
+  background: radial-gradient(
+    circle,
+    rgba(0, 242, 254, 0.42) 0%,
+    rgba(14, 165, 233, 0.22) 50%,
+    transparent 72%
+  );
+  top: 8%;
+  right: 8%;
+  opacity: 0.75;
+  animation: auroraDrift1 22s ease-in-out infinite alternate;
+}
+
+[data-theme="light"] .ambient-glow-orb--cyan {
+  background: radial-gradient(
+    circle,
+    rgba(2, 132, 199, 0.2) 0%,
+    rgba(56, 189, 248, 0.1) 50%,
+    transparent 70%
+  );
+  opacity: 0.6;
+}
+
+/* Deep Indigo / Violet Orb */
+.ambient-glow-orb--indigo {
+  width: min(650px, 55vw);
+  height: min(650px, 55vw);
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.38) 0%,
+    rgba(79, 70, 229, 0.18) 50%,
+    transparent 72%
+  );
+  bottom: 8%;
+  left: 4%;
+  opacity: 0.7;
+  animation: auroraDrift2 26s ease-in-out infinite alternate;
+}
+
+[data-theme="light"] .ambient-glow-orb--indigo {
+  background: radial-gradient(
+    circle,
+    rgba(129, 140, 248, 0.18) 0%,
+    rgba(99, 102, 241, 0.08) 50%,
+    transparent 70%
+  );
+  opacity: 0.5;
+}
+
+/* Subtle Teal / Emerald Accent Orb */
+.ambient-glow-orb--teal {
+  width: min(440px, 42vw);
+  height: min(440px, 42vw);
+  background: radial-gradient(
+    circle,
+    rgba(20, 184, 166, 0.28) 0%,
+    rgba(13, 148, 136, 0.12) 50%,
+    transparent 70%
+  );
+  top: 35%;
+  left: 32%;
+  opacity: 0.65;
+  animation: auroraDrift3 28s ease-in-out infinite alternate;
+}
+
+[data-theme="light"] .ambient-glow-orb--teal {
+  background: radial-gradient(
+    circle,
+    rgba(13, 148, 136, 0.12) 0%,
+    transparent 65%
+  );
+  opacity: 0.4;
+}
+
+/* Central Stage Spotlight */
+.ambient-glow-spotlight {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1000px, 92vw);
+  height: 580px;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(56, 189, 248, 0.2) 0%,
+    rgba(99, 102, 241, 0.1) 45%,
+    transparent 75%
+  );
+  filter: blur(65px);
+  opacity: 0.85;
+}
+
+[data-theme="light"] .ambient-glow-spotlight {
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(2, 132, 199, 0.12) 0%,
+    rgba(99, 102, 241, 0.05) 45%,
+    transparent 75%
+  );
+  opacity: 0.6;
+}
+
+/* Interactive Cursor Spotlight Glow */
+.ambient-glow-cursor {
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(56, 189, 248, 0.14) 0%,
+    rgba(99, 102, 241, 0.05) 45%,
+    transparent 70%
+  );
+  filter: blur(55px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  will-change: left, top;
+}
+
+[data-theme="light"] .ambient-glow-cursor {
+  background: radial-gradient(
+    circle,
+    rgba(2, 132, 199, 0.08) 0%,
+    transparent 65%
+  );
+}
+
+/* Vignette Edge Falloff */
+.ambient-glow-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    transparent 35%,
+    rgba(8, 12, 20, 0.5) 75%,
+    rgba(8, 12, 20, 0.95) 100%
+  );
+  pointer-events: none;
+}
+
+[data-theme="light"] .ambient-glow-vignette {
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    transparent 50%,
+    rgba(248, 250, 252, 0.4) 80%,
+    rgba(248, 250, 252, 0.85) 100%
+  );
+}
+
+/* Smooth organic floating keyframes */
+@keyframes auroraDrift1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-45px, 40px) scale(1.08);
+  }
+  100% {
+    transform: translate(35px, -30px) scale(0.96);
+  }
+}
+
+@keyframes auroraDrift2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -35px) scale(1.06);
+  }
+  100% {
+    transform: translate(-30px, 45px) scale(0.94);
+  }
+}
+
+@keyframes auroraDrift3 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-35px, -30px) scale(1.1);
+  }
+  100% {
+    transform: translate(45px, 25px) scale(0.92);
+  }
+}

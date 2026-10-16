@@ -48,24 +48,22 @@
 
 .methodology-v1__heading {
   margin: 0;
-  color: var(--methodology-v1-ink);
-  font-size: clamp(1.5rem, 3.1vw, 2.1rem);
-  line-height: 1.28;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  color: var(--dt-ink-heading);
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.035em;
 }
 
 .methodology-v1__heading-accent {
-  color: #ffffff;
-  background: var(--methodology-v1-primary);
-  padding: 2px 10px;
-  border-radius: 6px;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+  color: var(--methodology-v1-primary);
+  background: transparent;
+  padding: 0;
 }
 
-[data-theme="dark"] .methodology-v1__heading-accent {
-  color: #0b1120;
+.methodology-v1 .sparkle {
+  color: var(--methodology-v1-primary);
+  display: inline-block;
 }
 
 .methodology-v1__description {

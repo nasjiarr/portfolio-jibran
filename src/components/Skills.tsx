@@ -1,61 +1,78 @@
-import { useEffect, useRef, useState } from 'react';
-import { Code2, Wrench, CheckCircle2 } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { Code2, Database, Layout, Terminal, Server } from 'lucide-react';
+import {
+  LaravelIcon,
+  PhpIcon,
+  MysqlIcon,
+  VueIcon,
+  ReactIcon,
+  TailwindIcon,
+  JavascriptIcon,
+  DockerIcon,
+  GitIcon,
+  PostmanIcon,
+  FigmaIcon,
+  TerminalIcon,
+} from './Icons';
 import '../styles/skills.css';
 
-interface CodingSkill {
+interface SkillItem {
   name: string;
-  percent: number;
-  highlight?: boolean;
+  role: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  accentColor: string;
 }
 
-interface ToolBox {
-  name: string;
-  abbr: string;
-  colorClass: string;
+interface SkillGroup {
+  id: string;
+  title: string;
+  badge?: string;
+  icon: React.ComponentType<{ size?: number; className?: string; strokeWidth?: number }>;
+  items: SkillItem[];
 }
 
-const codingSkills: CodingSkill[] = [
-  { name: 'PHP & Laravel', percent: 90, highlight: true },
-  { name: 'MySQL & Database Relasional', percent: 88, highlight: true },
-  { name: 'JavaScript (ES6+)', percent: 85 },
-  { name: 'Tailwind CSS & Responsive UI', percent: 90 },
-  { name: 'Vue.js & Inertia.js', percent: 82 },
-  { name: 'HTML5 & Semantic CSS', percent: 92 },
-  { name: 'RESTful API & Backend Architecture', percent: 86 },
-  { name: 'React & TypeScript', percent: 80 },
-];
-
-const toolBoxes: ToolBox[] = [
-  { name: 'VS Code', abbr: 'VS', colorClass: 'tool-box--dark' },
-  { name: 'Docker', abbr: '🐳', colorClass: 'tool-box--blue' },
-  { name: 'Figma', abbr: 'Fi', colorClass: 'tool-box--purple' },
-  { name: 'Postman', abbr: 'Pm', colorClass: 'tool-box--orange' },
-  { name: 'Git', abbr: 'Git', colorClass: 'tool-box--green' },
-  { name: 'Vercel', abbr: '▲', colorClass: 'tool-box--cyan' },
-];
-
-const toolTags = [
-  'VS Code',
-  'Docker',
-  'Figma',
-  'Postman',
-  'Git & GitHub',
-  'Vercel',
-  'Firebase',
-  'Linux Terminal',
-];
-
-const softSkills = [
-  '#Creativity',
-  '#Communication',
-  '#Detail-oriented',
-  '#Adaptability',
-  '#Problem Solving',
+const skillGroups: SkillGroup[] = [
+  {
+    id: 'backend',
+    title: 'Backend & Database',
+    badge: 'Fokus Utama',
+    icon: Database,
+    items: [
+      { name: 'Laravel', role: 'PHP MVC Framework', icon: LaravelIcon, accentColor: '#FF2D20' },
+      { name: 'PHP 8+', role: 'Server Language & OOP', icon: PhpIcon, accentColor: '#777BB4' },
+      { name: 'MySQL', role: 'Relational Database', icon: MysqlIcon, accentColor: '#00758F' },
+      { name: 'RESTful API', role: 'Web Architecture & JSON', icon: Server, accentColor: '#0284c7' },
+    ],
+  },
+  {
+    id: 'frontend',
+    title: 'Frontend & UI',
+    badge: 'Reaktif & Modern',
+    icon: Layout,
+    items: [
+      { name: 'Vue.js 3', role: 'Reactive SPA Framework', icon: VueIcon, accentColor: '#41B883' },
+      { name: 'Tailwind CSS', role: 'Utility-First Styling', icon: TailwindIcon, accentColor: '#38BDF8' },
+      { name: 'JavaScript', role: 'Modern ES6+ Syntax', icon: JavascriptIcon, accentColor: '#F7DF1E' },
+      { name: 'React', role: 'Component UI Library', icon: ReactIcon, accentColor: '#61DAFB' },
+    ],
+  },
+  {
+    id: 'tools',
+    title: 'Tools & DevOps',
+    badge: 'Workflow Disiplin',
+    icon: Terminal,
+    items: [
+      { name: 'Git & GitHub', role: 'Version Control & Collab', icon: GitIcon, accentColor: '#F05032' },
+      { name: 'Docker', role: 'Containerization Basics', icon: DockerIcon, accentColor: '#2496ED' },
+      { name: 'Postman', role: 'API Testing & Endpoint Docs', icon: PostmanIcon, accentColor: '#FF6C37' },
+      { name: 'Linux / CLI', role: 'Terminal & Command Line', icon: TerminalIcon, accentColor: '#4EAA25' },
+      { name: 'Figma', role: 'UI/UX Design Translation', icon: FigmaIcon, accentColor: '#A259FF' },
+    ],
+  },
 ];
 
 export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -67,12 +84,11 @@ export default function Skills() {
           if (entry.isIntersecting) {
             entry.target.classList.add('skills-v1__visible');
             entry.target.classList.remove('skills-v1__hidden');
-            setInView(true);
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
     );
 
     section.querySelectorAll('.skills-v1__reveal').forEach((el) => observer.observe(el));
@@ -82,97 +98,67 @@ export default function Skills() {
   return (
     <section ref={sectionRef} id="keahlian" className="skills-v1">
       <div className="skills-v1__shell">
+        {/* Header Section */}
         <header className="skills-v1__header skills-v1__reveal skills-v1__hidden">
           <div className="skills-v1__eyebrow">
             <Code2 size={15} strokeWidth={2.4} aria-hidden="true" />
-            TECHNICAL SKILLS
+            KEAHLIAN & TEKNOLOGI
           </div>
           <h2 className="skills-v1__heading">
-            Technical Skills &{' '}
-            <span className="skills-v1__heading-accent">Kompetensi</span>
+            Stack Teknologi &{' '}
+            <span className="skills-v1__heading-accent">Kompetensi</span> <span className="sparkle">✦</span>
           </h2>
           <p className="skills-v1__description">
-            Tools dan teknologi yang saya kuasai untuk pengembangan perangkat lunak:
+            Alat, bahasa, dan ekosistem modern yang saya gunakan untuk merancang dan membangun sistem web fungsional yang andal:
           </p>
         </header>
 
-        <div className="skills-grid skills-v1__reveal skills-v1__hidden">
-          {/* Software & Tools Column */}
-          <div className="skills-col">
-            <div className="skills-col__head">
-              <span className="skills-col__icon">
-                <Wrench size={19} strokeWidth={2.2} />
-              </span>
-              <h3>Software & Tools</h3>
-            </div>
-
-            <div className="tool-boxes-grid">
-              {toolBoxes.map((tool) => (
-                <div
-                  key={tool.name}
-                  className={`tool-icon-box ${tool.colorClass}`}
-                  title={tool.name}
-                >
-                  {tool.abbr}
-                </div>
-              ))}
-            </div>
-
-            <div className="tool-tags-cloud">
-              {toolTags.map((tag) => (
-                <span key={tag} className="tool-tag-item">
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Soft Skills Tags */}
-            <div className="soft-skills-box">
-              <h4 className="soft-skills-title">
-                <CheckCircle2 size={15} className="text-primary" />
-                <span>Soft Skills</span>
-              </h4>
-              <div className="soft-skills-tags">
-                {softSkills.map((tag) => (
-                  <span key={tag} className="soft-skill-tag">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Coding Skills Progress Bars Column */}
-          <div className="skills-col">
-            <div className="skills-col__head">
-              <span className="skills-col__icon">
-                <Code2 size={19} strokeWidth={2.2} />
-              </span>
-              <h3>Coding Skills</h3>
-            </div>
-
-            <div className="coding-list">
-              {codingSkills.map((skill) => (
-                <div key={skill.name} className="coding-item">
-                  <div className="coding-header">
-                    <span className="coding-label">
-                      {skill.name}
-                      {skill.highlight && <span className="coding-badge">Fokus Utama</span>}
+        {/* 3 Clean Categorized Bento Panels */}
+        <div className="skills-v1__groups skills-v1__reveal skills-v1__hidden">
+          {skillGroups.map((group) => {
+            const GroupIcon = group.icon;
+            return (
+              <div key={group.id} className="skills-group">
+                <div className="skills-group__top">
+                  <div className="skills-group__title-row">
+                    <span className="skills-group__icon">
+                      <GroupIcon size={18} strokeWidth={2.2} />
                     </span>
-                    <span className="coding-percent">{skill.percent}%</span>
+                    <h3 className="skills-group__title">{group.title}</h3>
                   </div>
-                  <div className="coding-bar-track">
-                    <div
-                      className={`coding-bar-fill ${skill.highlight ? 'coding-bar-fill--accent' : ''}`}
-                      style={{
-                        width: inView ? `${skill.percent}%` : '0%',
-                      }}
-                    />
-                  </div>
+                  {group.badge && (
+                    <span
+                      className={`skills-group__badge ${
+                        group.id === 'backend' ? 'skills-group__badge--highlight' : ''
+                      }`}
+                    >
+                      {group.badge}
+                    </span>
+                  )}
                 </div>
-              ))}
-            </div>
-          </div>
+
+                <div className="skills-group__items">
+                  {group.items.map((item) => {
+                    const ItemIcon = item.icon;
+                    return (
+                      <div key={item.name} className="skills-pill">
+                        <div
+                          className="skills-pill__icon"
+                          style={{ borderColor: item.accentColor }}
+                        >
+                          <ItemIcon size={20} />
+                        </div>
+                        <div className="skills-pill__content">
+                          <span className="skills-pill__name">{item.name}</span>
+                          <span className="skills-pill__role">{item.role}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
