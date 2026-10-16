@@ -1,0 +1,229 @@
+/* ==========================================================================
+   Bloop Preloader Styles
+   Inspired by Framer Bloop Preloader:
+   https://framer.com/m/Bloop-Preloader-9iJh.js@WpvYgsXMugkgWqZSHTcv
+   ========================================================================== */
+
+.bloop-preloader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bloop-bg, #030014);
+  overflow: hidden;
+  pointer-events: auto;
+  user-select: none;
+  transition: opacity 0.7s cubic-bezier(0.44, 0, 0.56, 1),
+              background-color 0.6s cubic-bezier(0.44, 0, 0.56, 1);
+  will-change: opacity, background-color;
+}
+
+.bloop-preloader--bg-transparent {
+  background-color: transparent !important;
+}
+
+.bloop-preloader--transparent {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Background Atmospheric Aura */
+.bloop-preloader__aurora {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(99, 102, 241, 0.06) 45%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  animation: bloopPulse 3s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes bloopPulse {
+  0% { transform: scale(0.9) translate(-50%, -50%); opacity: 0.5; }
+  100% { transform: scale(1.15) translate(-50%, -50%); opacity: 0.85; }
+}
+
+/* Content Container */
+.bloop-preloader__content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1.5rem;
+  max-width: 90vw;
+}
+
+/* Title Styling */
+.bloop-preloader__title-wrap {
+  overflow: hidden;
+  padding: 0.5rem 1rem;
+}
+
+.bloop-preloader__title {
+  margin: 0;
+  font-family: var(--font-heading, 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif);
+  font-size: clamp(2.5rem, 7.5vw, 6.5rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: var(--bloop-font-color, #ffffff);
+  transform: translateX(-240px);
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.44, 0, 0.56, 1),
+              opacity 0.65s cubic-bezier(0.44, 0, 0.56, 1);
+  will-change: transform, opacity;
+}
+
+.bloop-preloader__title.is-visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.bloop-preloader__title.is-exiting {
+  transform: scale(1.05);
+  opacity: 0;
+}
+
+.bloop-accent-glow {
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #00f2fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.35));
+}
+
+/* Sub-title Styling */
+.bloop-preloader__sub-wrap {
+  overflow: hidden;
+  margin-top: 1rem;
+  padding: 0.25rem 1rem;
+}
+
+.bloop-preloader__subtitle {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-body, 'Inter', system-ui, sans-serif);
+  font-size: clamp(0.8rem, 1.8vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  transform: translateX(240px);
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.44, 0, 0.56, 1),
+              opacity 0.65s cubic-bezier(0.44, 0, 0.56, 1);
+  will-change: transform, opacity;
+}
+
+.bloop-preloader__subtitle.is-visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.bloop-preloader__subtitle.is-exiting {
+  transform: scale(0.95);
+  opacity: 0;
+}
+
+.bloop-preloader__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8, 0 0 20px #00f2fe;
+  animation: bloopDotPulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes bloopDotPulse {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(1.25); opacity: 1; }
+}
+
+/* Progress bar pill */
+.bloop-preloader__bar {
+  margin-top: 1.75rem;
+  width: 140px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.bloop-preloader__bar.is-visible {
+  opacity: 1;
+}
+
+.bloop-preloader__bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8, #818cf8, #00f2fe);
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+  transition: width 1.2s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+/* ==========================================================================
+   Transitional Figure (The Organic Bloop Shape)
+   ========================================================================== */
+
+.bloop-preloader__figure-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+  overflow: visible;
+}
+
+.bloop-preloader__svg {
+  width: 2022px;
+  height: 1751px;
+  transform-origin: center center;
+  transform: scale(0.007);
+  opacity: 0;
+  transition: transform 0.65s cubic-bezier(0.44, 0, 0.56, 1),
+              opacity 0.4s ease;
+  will-change: transform, opacity;
+  overflow: visible;
+}
+
+/* Step 1: Droplet appears at center */
+.bloop-preloader__svg.is-droplet {
+  transform: scale(0.012) rotate(0deg);
+  opacity: 1;
+}
+
+/* Step 2: Explosive Bloop expansion to cover full viewport */
+.bloop-preloader__svg.is-expanded {
+  transform: scale(2.8) rotate(12deg);
+  opacity: 1;
+  transition: transform 0.7s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+/* Step 3: Transparent fade out */
+.bloop-preloader__svg.is-transparent {
+  transform: scale(3.2) rotate(18deg);
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.44, 0, 0.56, 1),
+              opacity 0.7s cubic-bezier(0.44, 0, 0.56, 1);
+}

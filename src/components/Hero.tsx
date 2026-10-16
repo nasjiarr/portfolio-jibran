@@ -77,7 +77,7 @@ export default function Hero() {
     <>
       <section ref={heroRef} id="home" className="hero-main">
         {/* Ambient Aurora Glow & Mesh Gradient Background (Linear & Vercel Aesthetic) */}
-        <AmbientGlow enableMouseFollow={true} />
+        <AmbientGlow />
 
         {/* Floating Dust / Stardust Particles Background (Framer Module) */}
         <FloatingParticlesBackground
