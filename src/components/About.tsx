@@ -1,11 +1,55 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Target, Layers, ShieldCheck, FileText, ArrowRight, User } from 'lucide-react';
+import {
+  FileText,
+  ArrowRight,
+  User,
+  GraduationCap,
+  MapPin,
+  Clock,
+  FolderGit2,
+  Code,
+} from 'lucide-react';
 import '../styles/about.css';
+
+const coreSkills = [
+  { name: 'Laravel', color: '#f43f5e' },
+  { name: 'PHP', color: '#818cf8' },
+  { name: 'MySQL', color: '#0ea5e9' },
+  { name: 'Vue.js', color: '#10b981' },
+  { name: 'React', color: '#38bdf8' },
+  { name: 'Tailwind CSS', color: '#06b6d4' },
+  { name: 'RESTful API', color: '#a855f7' },
+  { name: 'Docker & Git', color: '#3b82f6' },
+];
+
+function getWIBTime() {
+  if (typeof window === 'undefined') return '';
+  try {
+    return new Intl.DateTimeFormat('id-ID', {
+      timeZone: 'Asia/Jakarta',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    }).format(new Date());
+  } catch {
+    return '';
+  }
+}
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [currentTime, setCurrentTime] = useState<string>(getWIBTime);
 
+  // Live WIB Clock
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setCurrentTime(getWIBTime());
+    }, 10000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Reveal animation
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -30,6 +74,7 @@ export default function About() {
   return (
     <section ref={sectionRef} id="tentang" className="about-v1">
       <div className="about-v1__shell">
+        {/* Left Column: Narrative & Biography */}
         <div className="about-v1__content">
           <div className="about-v1__eyebrow about-v1__reveal about-v1__hidden">
             <User size={15} strokeWidth={2.4} aria-hidden="true" />
@@ -60,42 +105,82 @@ export default function About() {
               <FileText size={16} strokeWidth={2.2} />
               <span>Unduh CV (PDF)</span>
             </a>
-            <Link to="/skills" className="about-v1__button about-v1__button--secondary">
-              <span>Lihat Keahlian</span>
+            <Link to="/projects" className="about-v1__button about-v1__button--secondary">
+              <span>Lihat Proyek</span>
               <ArrowRight size={16} strokeWidth={2.2} />
             </Link>
           </div>
         </div>
 
-        <div className="about-v1__cards about-v1__reveal about-v1__hidden">
-          <div className="about-v1__card">
-            <div className="about-v1__card-icon">
-              <Target size={22} strokeWidth={2.2} />
+        {/* Right Column: Interactive Bento Grid */}
+        <div className="about-v1__bento about-v1__reveal about-v1__hidden">
+          {/* Card 1: Status & Lokasi (Span 2) */}
+          <div className="about-bento-card about-bento-card--span-2 about-bento-card--status">
+            <div className="about-bento-card__badge-row">
+              <span className="about-bento-status-pill">
+                <span className="about-bento-status-dot" />
+                <span>Open for Work & Freelance</span>
+              </span>
+              {currentTime && (
+                <span className="about-bento-time-pill" title="Waktu Lokal (WIB / UTC+7)">
+                  <Clock size={12} strokeWidth={2.4} />
+                  <span>{currentTime} WIB</span>
+                </span>
+              )}
             </div>
-            <h3>Fokus Solusi Nyata</h3>
-            <p>
-              Mengutamakan efisiensi alur kerja operasional pengguna di atas penulisan kode berlebih.
-            </p>
+            <div className="about-bento-card__location">
+              <MapPin size={15} strokeWidth={2.2} />
+              <span>D.I. Yogyakarta, Indonesia (UTC+7)</span>
+            </div>
           </div>
 
-          <div className="about-v1__card">
-            <div className="about-v1__card-icon">
-              <Layers size={22} strokeWidth={2.2} />
+          {/* Card 2: Pendidikan & Universitas */}
+          <div className="about-bento-card about-bento-card--edu">
+            <div className="about-bento-card__icon about-bento-card__icon--blue">
+              <GraduationCap size={20} strokeWidth={2.2} />
             </div>
-            <h3>Struktur Terstandar</h3>
-            <p>
-              Arsitektur MVC rapi, relasi basis data ternormalisasi, dan validasi data berlapis.
-            </p>
+            <div className="about-bento-card__meta">
+              <span className="about-bento-card__label">Pendidikan</span>
+              <h4 className="about-bento-card__title">S1 Sistem Informasi</h4>
+              <p className="about-bento-card__sub">UPN "Veteran" Yogyakarta</p>
+              <span className="about-bento-card__tag">2022 — 2026</span>
+            </div>
           </div>
 
-          <div className="about-v1__card">
-            <div className="about-v1__card-icon">
-              <ShieldCheck size={22} strokeWidth={2.2} />
+          {/* Card 3: Metrik / Proyek Selesai */}
+          <div className="about-bento-card about-bento-card--metrics">
+            <div className="about-bento-card__icon about-bento-card__icon--cyan">
+              <FolderGit2 size={20} strokeWidth={2.2} />
             </div>
-            <h3>Disiplin Rekayasa</h3>
-            <p>
-              Version control git konsisten, automated testing, dan containerization via Docker.
-            </p>
+            <div className="about-bento-card__meta">
+              <span className="about-bento-card__label">Portfolio Track</span>
+              <div className="about-bento-card__stat">
+                <span className="about-bento-card__stat-num">10+</span>
+                <span className="about-bento-card__stat-plus">Proyek Web</span>
+              </div>
+              <p className="about-bento-card__sub">Fullstack, API & Basis Data</p>
+            </div>
+          </div>
+
+          {/* Card 4: Tech Stack Utama (Span 2) */}
+          <div className="about-bento-card about-bento-card--span-2 about-bento-card--stack">
+            <div className="about-bento-card__stack-head">
+              <div className="about-bento-card__icon about-bento-card__icon--indigo">
+                <Code size={16} strokeWidth={2.2} />
+              </div>
+              <span className="about-bento-card__label">Core Tech Stack</span>
+            </div>
+            <div className="about-bento-stack-pills">
+              {coreSkills.map((skill) => (
+                <span
+                  key={skill.name}
+                  className="about-bento-pill"
+                  style={{ ['--pill-accent' as string]: skill.color }}
+                >
+                  {skill.name}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

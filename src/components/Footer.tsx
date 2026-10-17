@@ -12,9 +12,14 @@ export default function Footer() {
       <div className="footer-v1__shell">
         <div className="footer-v1__top">
           <div className="footer-v1__brand">
-            <Link to="/" className="footer-v1__logo">nasywan.dev</Link>
+            <Link to="/" className="footer-v1__logo">
+              <span className="footer-v1__logo-box">
+                <img src="/logo.png?v=3" alt="Logo" className="footer-v1__logo-img" />
+              </span>
+              <span>nasywan.dev</span>
+            </Link>
             <p className="footer-v1__tagline">
-              Web Developer. Berbasis di Kulon Progo, D.I. Yogyakarta.
+              Fullstack Developer. Berbasis di Kulon Progo, D.I. Yogyakarta.
             </p>
           </div>
 
@@ -23,7 +28,6 @@ export default function Footer() {
               <span className="footer-v1__group-title">Halaman</span>
               <Link to="/">Beranda</Link>
               <Link to="/about">Tentang</Link>
-              <Link to="/skills">Keahlian</Link>
               <Link to="/projects">Proyek</Link>
               <Link to="/experience">Riwayat</Link>
               <Link to="/contact">Kontak</Link>

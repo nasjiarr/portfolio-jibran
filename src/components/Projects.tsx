@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { FolderGit2, ExternalLink, Check, Images, Maximize2 } from 'lucide-react';
+import { FolderGit2, ExternalLink, Check, Images, Maximize2, Code2 } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import ProjectLightbox, { type ProjectScreenshot } from './ProjectLightbox';
 import '../styles/projects.css';
@@ -239,12 +239,18 @@ export default function Projects() {
                     </ul>
                   </div>
 
-                  <div className="projects-v1__tags">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="projects-v1__tag">
-                        {tag}
-                      </span>
-                    ))}
+                  <div className="projects-v1__tags-wrap">
+                    <span className="projects-v1__tags-label">
+                      <Code2 size={13} strokeWidth={2.4} />
+                      <span>Teknologi Digunakan:</span>
+                    </span>
+                    <div className="projects-v1__tags">
+                      {project.tags.map((tag) => (
+                        <span key={tag} className="projects-v1__tag">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="projects-v1__actions">

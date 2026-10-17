@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import AmbientGlow from './AmbientGlow';
 import FloatingParticlesBackground from './FloatingParticlesBackground';
 import FluidTypography from './FluidTypography';
+import TerminalConsole from './TerminalConsole';
 import '../styles/hero.css';
 
 const marqueeItems = [
@@ -17,39 +18,8 @@ const marqueeItems = [
   'Full Stack Development',
 ];
 
-const typingWords = [
-  'web developer',
-  'app developer',
-  'problem solver',
-];
-
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
-  const [displayText, setDisplayText] = useState('');
-  const [wordIndex, setWordIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  // Typing animation
-  useEffect(() => {
-    const currentWord = typingWords[wordIndex];
-    let timer: number;
-
-    if (!isDeleting && displayText === currentWord) {
-      timer = window.setTimeout(() => setIsDeleting(true), 2000);
-    } else if (isDeleting && displayText === '') {
-      setIsDeleting(false);
-      setWordIndex((prev) => (prev + 1) % typingWords.length);
-      timer = window.setTimeout(() => {}, 400);
-    } else {
-      const nextLength = isDeleting ? displayText.length - 1 : displayText.length + 1;
-      const speed = isDeleting ? 40 : 80;
-      timer = window.setTimeout(() => {
-        setDisplayText(currentWord.slice(0, nextLength));
-      }, speed);
-    }
-
-    return () => clearTimeout(timer);
-  }, [displayText, isDeleting, wordIndex]);
 
   // Reveal animation
   useEffect(() => {
@@ -148,15 +118,11 @@ export default function Hero() {
 
               <div className="hero-main__bio">
                 <p className="hero-main__role">
-                  Web Developer • S1 Sistem Informasi UPN "Veteran" Yogyakarta • 2022-2026
+                  Fullstack Developer • S1 Sistem Informasi UPN "Veteran" Yogyakarta • 2022-2026
                 </p>
 
-                {/* Terminal Typing Console Box */}
-                <div className="hero-main__typing-box" aria-live="polite">
-                  <span className="hero-main__typing-prefix">&gt; </span>
-                  <span className="hero-main__typing-text">{displayText}</span>
-                  <span className="hero-main__typing-cursor"></span>
-                </div>
+                {/* Sleek macOS Terminal Console Box */}
+                <TerminalConsole />
               </div>
 
               <div className="hero-main__actions">

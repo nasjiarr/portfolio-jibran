@@ -9,7 +9,6 @@ import BloopPreloader from './components/BloopPreloader';
 
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
-import SkillsPage from './pages/SkillsPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ExperiencePage from './pages/ExperiencePage';
 import ContactPage from './pages/ContactPage';
@@ -30,7 +29,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
-              <Route path="/skills" element={<SkillsPage />} />
+              <Route path="/skills" element={<Navigate to="/projects" replace />} />
               <Route path="/projects" element={<ProjectsPage />} />
               <Route path="/experience" element={<ExperiencePage />} />
               <Route path="/contact" element={<ContactPage />} />

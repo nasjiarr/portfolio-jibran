@@ -12,13 +12,13 @@ export default function AboutPage() {
         <div className="page-cta-banner__shell">
           <div className="page-cta-banner__box">
             <div className="page-cta-banner__content">
-              <h3>Ingin Melihat Keahlian Teknis?</h3>
+              <h3>Ingin Melihat Portofolio Proyek?</h3>
               <p>
-                Pelajari rincian teknologi dan tools yang saya kuasai.
+                Jelajahi karya dan aplikasi web nyata yang telah saya bangun.
               </p>
             </div>
-            <Link to="/skills" className="page-cta-banner__action">
-              <span>Lihat Keahlian</span>
+            <Link to="/projects" className="page-cta-banner__action">
+              <span>Buka Halaman Proyek</span>
               <ArrowRight size={16} strokeWidth={2.2} />
             </Link>
           </div>

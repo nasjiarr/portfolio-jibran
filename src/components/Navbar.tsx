@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight, Download, Terminal } from 'lucide-react';
+import { Menu, X, ArrowRight, Download } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import '../styles/navbar.css';
 
@@ -12,7 +12,6 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: 'Beranda', href: '/' },
   { label: 'Tentang', href: '/about' },
-  { label: 'Keahlian', href: '/skills' },
   { label: 'Proyek', href: '/projects' },
   { label: 'Riwayat', href: '/experience' },
   { label: 'Kontak', href: '/contact' },
@@ -56,7 +55,7 @@ export default function Navbar() {
         <div className="dt-navbar__inner">
           <Link to="/" className="dt-navbar__brand">
             <span className="dt-navbar__logo-box">
-              <Terminal size={18} strokeWidth={2.4} />
+              <img src="/logo.png?v=3" alt="Logo Nasywan" className="dt-navbar__logo-img" />
             </span>
             <span className="dt-navbar__brand-text">
               <strong>nasywan</strong>.dev
@@ -90,10 +89,6 @@ export default function Navbar() {
               <Download size={15} strokeWidth={2.2} />
               <span>CV</span>
             </a>
-            <Link to="/contact" className="dt-navbar__btn-primary">
-              <span>Hubungi</span>
-              <ArrowRight size={15} strokeWidth={2.2} />
-            </Link>
           </div>
 
           <div className="dt-navbar__mobile-right">
@@ -121,7 +116,7 @@ export default function Navbar() {
         <div className="dt-drawer__head">
           <div className="dt-navbar__brand">
             <span className="dt-navbar__logo-box">
-              <Terminal size={18} strokeWidth={2.4} />
+              <img src="/logo.png?v=3" alt="Logo Nasywan" className="dt-navbar__logo-img" />
             </span>
             <span className="dt-navbar__brand-text">
               <strong>nasywan</strong>.dev

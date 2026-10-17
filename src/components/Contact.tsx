@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { Mail, MapPin, FileText, ArrowRight, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from './Icons';
+import { GithubIcon, LinkedinIcon, WhatsAppIcon } from './Icons';
 import '../styles/contact.css';
 
 export default function Contact() {
-  const sectionRef = useRef<HTMLElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,27 +12,6 @@ export default function Contact() {
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('contact-v1__visible');
-            entry.target.classList.remove('contact-v1__hidden');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
-    );
-
-    section.querySelectorAll('.contact-v1__reveal').forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,15 +22,15 @@ export default function Contact() {
       const response = await fetch('https://formspree.io/f/mgavdbzl', {
         method: 'POST',
         headers: {
-          'Accept': 'application/json',
+          Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          subject: formData.subject || 'Inquiry dari Portfolio',
+          subject: formData.subject || 'Pesan dari Portfolio',
           message: formData.message,
-          _subject: `[Portfolio Inquiry] ${formData.subject || 'Pesan Baru'} dari ${formData.name}`,
+          _subject: `[Portfolio] ${formData.subject || 'Pesan Baru'} dari ${formData.name}`,
         }),
       });
 
@@ -64,51 +42,47 @@ export default function Contact() {
         if (data && data.errors && data.errors.length > 0) {
           setErrorMessage(data.errors.map((err: { message: string }) => err.message).join(', '));
         } else {
-          setErrorMessage('Gagal mengirim pesan. Silakan coba lagi atau hubungi via email langsung.');
+          setErrorMessage('Gagal mengirim pesan. Silakan coba lagi.');
         }
         setStatus('error');
       }
     } catch {
-      setErrorMessage('Terjadi kendala jaringan saat mengirim. Silakan kirim langsung ke nasywanji@gmail.com');
+      setErrorMessage('Terjadi kendala jaringan. Silakan hubungi nasywanji@gmail.com');
       setStatus('error');
     }
   };
 
   return (
-    <section ref={sectionRef} id="kontak" className="contact-section">
-      <div className="contact-section__shell">
+    <section id="kontak" className="contact-section">
+      <div className="contact-shell">
         <div className="contact-grid">
-          {/* Left Column */}
-          <div className="contact-left contact-v1__reveal contact-v1__hidden">
-            <span className="contact-eyebrow">✦ GET IN TOUCH</span>
-            <h2 className="contact-title">
-              Let's build<br />
-              something great<br />
-              together <span className="sparkle">✦</span>
-            </h2>
+          {/* Kolom Kiri: Informasi Kontak Langsung */}
+          <div className="contact-left">
+            <span className="contact-eyebrow">KONTAK</span>
+            <h2 className="contact-title">Hubungi Saya</h2>
             <p className="contact-desc">
-              Punya project atau ide yang ingin diwujudkan? Jangan ragu untuk menghubungi saya.
-              Saya siap membantu mewujudkan website dan aplikasi impian kamu!
+              Punya pertanyaan, tawaran proyek, atau sekadar ingin berdiskusi? 
+              Silakan isi formulir atau hubungi saya langsung melalui kontak di bawah ini.
             </p>
 
-            <div className="contact-details">
-              <div className="contact-detail-item">
-                <div className="contact-detail-icon">
-                  <Mail size={18} strokeWidth={2.2} />
+            <div className="contact-list">
+              <a href="mailto:nasywanji@gmail.com" className="contact-item">
+                <div className="contact-icon">
+                  <Mail size={18} />
                 </div>
-                <div>
-                  <h4>Email</h4>
-                  <p>nasywanji@gmail.com</p>
+                <div className="contact-info">
+                  <span className="contact-label">Email</span>
+                  <p className="contact-value">nasywanji@gmail.com</p>
                 </div>
-              </div>
+              </a>
 
-              <div className="contact-detail-item">
-                <div className="contact-detail-icon">
-                  <MapPin size={18} strokeWidth={2.2} />
+              <div className="contact-item">
+                <div className="contact-icon">
+                  <MapPin size={18} />
                 </div>
-                <div>
-                  <h4>Location</h4>
-                  <p>Kulon Progo, D.I. Yogyakarta, Indonesia</p>
+                <div className="contact-info">
+                  <span className="contact-label">Lokasi</span>
+                  <p className="contact-value">Kulon Progo, D.I. Yogyakarta</p>
                 </div>
               </div>
 
@@ -116,24 +90,24 @@ export default function Contact() {
                 href="/cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="contact-detail-item contact-detail-link"
+                className="contact-item"
               >
-                <div className="contact-detail-icon">
-                  <FileText size={18} strokeWidth={2.2} />
+                <div className="contact-icon">
+                  <FileText size={18} />
                 </div>
-                <div>
-                  <h4>Curriculum Vitae</h4>
-                  <p>Unduh Resume (PDF) ↗</p>
+                <div className="contact-info">
+                  <span className="contact-label">Resume / CV</span>
+                  <p className="contact-value">Unduh CV (PDF) ↗</p>
                 </div>
               </a>
             </div>
 
-            <div className="social-row">
+            <div className="contact-socials">
               <a
                 href="https://github.com/nasjiarr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-circle"
+                className="contact-social-btn"
                 aria-label="GitHub"
                 title="GitHub"
               >
@@ -143,102 +117,108 @@ export default function Contact() {
                 href="https://www.linkedin.com/in/nasywan-jibran-aryadi-7547a8214/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-circle"
+                className="contact-social-btn"
                 aria-label="LinkedIn"
                 title="LinkedIn"
               >
                 <LinkedinIcon size={18} />
               </a>
               <a
-                href="mailto:nasywanji@gmail.com"
-                className="social-circle"
-                aria-label="Email"
-                title="Email Langsung"
+                href="https://wa.me/6289653404050"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-social-btn"
+                aria-label="WhatsApp"
+                title="WhatsApp"
               >
-                <Mail size={18} />
+                <WhatsAppIcon size={18} />
               </a>
             </div>
           </div>
 
-          {/* Right Column: Contact Form */}
-          <form className="contact-form contact-v1__reveal contact-v1__hidden" onSubmit={handleSubmit}>
-            <div className="form-row">
+          {/* Kolom Kanan: Form Bersih & Simpel */}
+          <div className="contact-right">
+            <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
+                <label htmlFor="contact-name">Nama Lengkap</label>
                 <input
+                  id="contact-name"
                   type="text"
-                  placeholder="Your name"
+                  placeholder="Nama Anda"
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
               </div>
+
               <div className="form-group">
+                <label htmlFor="contact-email">Alamat Email</label>
                 <input
+                  id="contact-email"
                   type="email"
-                  placeholder="Your email"
+                  placeholder="email@contoh.com"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
               </div>
-            </div>
 
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Subject"
-                value={formData.subject}
-                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="contact-subject">Subjek (Opsional)</label>
+                <input
+                  id="contact-subject"
+                  type="text"
+                  placeholder="Subjek pesan"
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                />
+              </div>
 
-            <div className="form-group">
-              <textarea
-                placeholder="Tell me about your project..."
-                required
-                rows={5}
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="contact-message">Pesan</label>
+                <textarea
+                  id="contact-message"
+                  placeholder="Tulis pesan Anda di sini..."
+                  rows={5}
+                  required
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                />
+              </div>
 
-            <button
-              type="submit"
-              className="btn-send"
-              disabled={status === 'loading'}
-            >
-              {status === 'loading' ? (
-                <>
-                  <Loader2 size={17} className="spinner" />
-                  <span>Mengirim...</span>
-                </>
-              ) : status === 'success' ? (
-                <>
-                  <CheckCircle2 size={17} />
-                  <span>Pesan Terkirim!</span>
-                </>
-              ) : (
-                <>
-                  <span>Send Message</span>
-                  <ArrowRight size={17} strokeWidth={2.4} />
-                </>
+              {status === 'success' && (
+                <div className="contact-alert contact-alert--success">
+                  <CheckCircle2 size={18} />
+                  <span>Pesan berhasil dikirim! Terima kasih, saya akan segera membalasnya.</span>
+                </div>
               )}
-            </button>
 
-            {status === 'success' && (
-              <div className="form-status">
-                <CheckCircle2 size={16} />
-                <span>Terima kasih! Pesan Anda telah berhasil dikirim dan akan segera saya balas.</span>
-              </div>
-            )}
+              {status === 'error' && (
+                <div className="contact-alert contact-alert--error">
+                  <AlertCircle size={18} />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
 
-            {status === 'error' && (
-              <div className="form-status form-status--error">
-                <AlertCircle size={16} />
-                <span>{errorMessage}</span>
-              </div>
-            )}
-          </form>
+              <button
+                type="submit"
+                className="contact-submit-btn"
+                disabled={status === 'loading'}
+              >
+                {status === 'loading' ? (
+                  <>
+                    <Loader2 size={16} className="contact-spinner" />
+                    <span>Mengirim...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Kirim Pesan</span>
+                    <ArrowRight size={16} />
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
