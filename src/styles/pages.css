@@ -64,13 +64,20 @@
 .page-cta-banner__box {
   padding: clamp(28px, 4vw, 44px);
   border-radius: 20px;
-  background: var(--dt-cta-box-bg);
+  background: var(--dt-surface-card);
   border: 1px solid var(--dt-line);
+  box-shadow: var(--dt-shadow-md);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .page-cta-banner__box {
+  background: var(--dt-cta-box-bg);
 }
 
 .page-cta-banner__content h3 {
@@ -99,10 +106,12 @@
   font-size: 0.9rem;
   transition: all 0.2s ease;
   white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
 }
 
 [data-theme="dark"] .page-cta-banner__action {
   color: #0b1120;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
 }
 
 .page-cta-banner__action:hover {

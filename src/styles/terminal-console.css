@@ -21,10 +21,10 @@
 }
 
 [data-theme="light"] .macos-terminal {
-  background: rgba(255, 255, 255, 0.88);
-  border-color: rgba(2, 132, 199, 0.24);
-  box-shadow: 0 16px 36px -12px rgba(2, 132, 199, 0.12),
-              0 2px 8px rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(2, 132, 199, 0.28);
+  box-shadow: 0 14px 34px -10px rgba(15, 23, 42, 0.08),
+              0 0 20px -4px rgba(2, 132, 199, 0.12);
 }
 
 .macos-terminal:hover {
@@ -34,8 +34,9 @@
 }
 
 [data-theme="light"] .macos-terminal:hover {
-  border-color: rgba(2, 132, 199, 0.45);
-  box-shadow: 0 20px 40px -12px rgba(2, 132, 199, 0.18);
+  border-color: rgba(2, 132, 199, 0.5);
+  box-shadow: 0 18px 38px -10px rgba(15, 23, 42, 0.12),
+              0 0 28px -4px rgba(2, 132, 199, 0.2);
 }
 
 /* --------------------------------------------------------------------------

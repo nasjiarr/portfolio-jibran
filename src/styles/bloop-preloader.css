@@ -94,6 +94,13 @@
 }
 
 .bloop-accent-glow {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(2, 132, 199, 0.25));
+}
+
+[data-theme="dark"] .bloop-accent-glow {
   background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #00f2fe 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

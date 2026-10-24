@@ -57,19 +57,22 @@ export default function FloatingParticlesBackground({
   const animationRef = useRef<number | null>(null);
   const mouseRef = useRef<{ x: number; y: number }>({ x: -9999, y: -9999 });
   const particlesRef = useRef<Particle[]>([]);
+  const isDarkRef = useRef(true);
   const [canvasSize, setCanvasSize] = useState({ width: 800, height: 600 });
   const [resolvedColor, setResolvedColor] = useState('#38bdf8');
 
   // Detect theme (dark or light)
   const updateColor = useCallback(() => {
-    if (particleColor !== 'auto') {
-      setResolvedColor(particleColor);
-      return;
-    }
     const isDark =
       document.documentElement.getAttribute('data-theme') === 'dark' ||
       document.documentElement.classList.contains('dark') ||
       window.matchMedia('(prefers-color-scheme: dark)').matches;
+    isDarkRef.current = isDark;
+
+    if (particleColor !== 'auto') {
+      setResolvedColor(particleColor);
+      return;
+    }
     setResolvedColor(isDark ? '#38bdf8' : '#0284c7');
   }, [particleColor]);
 
@@ -156,7 +159,10 @@ export default function FloatingParticlesBackground({
             particle.glowMultiplier = currentGlow + particle.glowVelocity;
           }
         } else {
-          particle.opacity = Math.max(particle.baseOpacity * 0.35, particle.opacity - 0.02);
+          const minOpacity = isDarkRef.current
+            ? particle.baseOpacity * 0.35
+            : Math.max(0.62, particle.baseOpacity * 0.9);
+          particle.opacity = Math.max(minOpacity, particle.opacity - 0.02);
           const targetGlow = 1;
           const currentGlow = particle.glowMultiplier || 1;
 
@@ -244,17 +250,32 @@ export default function FloatingParticlesBackground({
   const drawParticles = useCallback(
     (ctx: CanvasRenderingContext2D) => {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      const isDark = isDarkRef.current;
 
       particlesRef.current.forEach((particle) => {
         ctx.save();
         const currentGlowMultiplier = particle.glowMultiplier || 1;
-        ctx.shadowColor = resolvedColor;
-        ctx.shadowBlur = glowIntensity * currentGlowMultiplier * 2;
-        ctx.globalAlpha = particle.opacity;
-        ctx.fillStyle = resolvedColor;
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fill();
+
+        if (isDark) {
+          ctx.shadowColor = resolvedColor;
+          ctx.shadowBlur = glowIntensity * currentGlowMultiplier * 2;
+          ctx.globalAlpha = particle.opacity;
+          ctx.fillStyle = resolvedColor;
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          // Light Mode: crisp, defined particles with tight ambient halo
+          const effectiveSize = particle.size * 1.25;
+          ctx.shadowColor = 'rgba(2, 132, 199, 0.4)';
+          ctx.shadowBlur = Math.min(6, glowIntensity * currentGlowMultiplier * 0.5);
+          ctx.globalAlpha = Math.max(0.62, particle.opacity);
+          ctx.fillStyle = resolvedColor;
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, effectiveSize, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
         ctx.restore();
       });
     },

@@ -51,9 +51,9 @@ export default function Hero() {
 
         {/* Floating Dust / Stardust Particles Background (Framer Module) */}
         <FloatingParticlesBackground
-          particleCount={60}
-          particleSize={2.4}
-          particleOpacity={0.65}
+          particleCount={65}
+          particleSize={2.6}
+          particleOpacity={0.72}
           glowIntensity={12}
           glowAnimation="spring"
           movementSpeed={0.5}
@@ -117,10 +117,6 @@ export default function Hero() {
               </div>
 
               <div className="hero-main__bio">
-                <p className="hero-main__role">
-                  Fullstack Developer • S1 Sistem Informasi UPN "Veteran" Yogyakarta • 2022-2026
-                </p>
-
                 {/* Sleek macOS Terminal Console Box */}
                 <TerminalConsole />
               </div>

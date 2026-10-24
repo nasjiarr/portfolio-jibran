@@ -49,15 +49,20 @@
 }
 
 [data-theme="light"] .dt-navbar__logo-box {
-  background: #090d16;
-  border-color: rgba(2, 132, 199, 0.3);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background: #0f172a;
+  border-color: rgba(2, 132, 199, 0.4);
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.2);
 }
 
 .dt-navbar__brand:hover .dt-navbar__logo-box {
   border-color: rgba(56, 189, 248, 0.6);
   box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
   transform: scale(1.05);
+}
+
+[data-theme="light"] .dt-navbar__brand:hover .dt-navbar__logo-box {
+  border-color: rgba(2, 132, 199, 0.7);
+  box-shadow: 0 0 16px rgba(2, 132, 199, 0.3);
 }
 
 .dt-navbar__logo-img {

@@ -36,7 +36,7 @@
   font-size: clamp(4.5rem, 11vw, 11rem);
   font-weight: 900;
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(1, 73, 139, 0.07);
+  -webkit-text-stroke: 1.5px rgba(2, 132, 199, 0.12);
   white-space: nowrap;
   line-height: 0.95;
   letter-spacing: 0.06em;
@@ -113,12 +113,12 @@
 .hero-main__image-glow {
   position: absolute;
   inset: -14px;
-  background: radial-gradient(circle at 50% 50%, var(--dt-primary-glow) 0%, transparent 72%);
+  background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.28) 0%, rgba(99, 102, 241, 0.16) 50%, transparent 72%);
   border-radius: 30px;
   filter: blur(24px);
   z-index: 1;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 [data-theme="dark"] .hero-main__image-glow {
@@ -299,36 +299,16 @@
 }
 
 .hero-main__title-portfolio .fluid-char {
-  background: linear-gradient(
-    90deg,
-    var(--dt-ink-heading) 0%,
-    var(--dt-primary) 28%,
-    #0284c7 50%,
-    var(--dt-primary) 72%,
-    var(--dt-ink-heading) 100%
-  );
-  background-size: 260% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: textFlowPortfolio 7s linear infinite;
-  animation-delay: calc(var(--i, 0) * -0.22s);
+  color: #0f172a;
+  -webkit-text-fill-color: #0f172a;
+  filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.08));
+  transition: transform 0.22s ease, filter 0.22s ease, color 0.2s ease;
 }
 
 [data-theme="dark"] .hero-main__title-portfolio .fluid-char {
-  background: linear-gradient(
-    90deg,
-    #f8fafc 0%,
-    #38bdf8 28%,
-    #818cf8 50%,
-    #38bdf8 72%,
-    #f8fafc 100%
-  );
-  background-size: 260% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 2px 14px rgba(56, 189, 248, 0.2));
+  color: #f8fafc;
+  -webkit-text-fill-color: #f8fafc;
+  filter: drop-shadow(0 2px 14px rgba(255, 255, 255, 0.12));
 }
 
 /* Fluid Typography: NASYWAN JIBRAN ARYADI */
@@ -345,17 +325,16 @@
 .hero-main__name .fluid-char {
   background: linear-gradient(
     90deg,
-    var(--dt-primary) 0%,
-    #0284c7 25%,
-    #0d9488 50%,
-    #0284c7 75%,
-    var(--dt-primary) 100%
+    #0284c7 0%,
+    #2563eb 50%,
+    #4f46e5 100%
   );
   background-size: 260% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: textFlowName 6s linear infinite reverse;
+  filter: drop-shadow(0 2px 14px rgba(2, 132, 199, 0.22));
+  animation: textFlowName 7s linear infinite reverse;
   animation-delay: calc(var(--i, 0) * -0.18s);
 }
 
@@ -363,16 +342,14 @@
   background: linear-gradient(
     90deg,
     #38bdf8 0%,
-    #60a5fa 25%,
-    #34d399 50%,
-    #818cf8 75%,
-    #38bdf8 100%
+    #818cf8 50%,
+    #c084fc 100%
   );
   background-size: 260% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 2px 16px rgba(56, 189, 248, 0.25));
+  filter: drop-shadow(0 2px 18px rgba(56, 189, 248, 0.3));
 }
 
 /* Micro-interaction Hover Brightness & Bloom */
@@ -404,12 +381,7 @@
   margin-bottom: 28px;
 }
 
-.hero-main__role {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--dt-muted);
-  margin: 0 0 12px;
-}
+
 
 /* Typing Box */
 .hero-main__typing-box {
@@ -483,7 +455,7 @@
 .hero-main__btn--primary {
   background: var(--dt-primary);
   color: #ffffff;
-  box-shadow: var(--dt-shadow-sm);
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
 }
 
 [data-theme="dark"] .hero-main__btn--primary {
@@ -516,12 +488,12 @@
 
 /* Marquee Section */
 .marquee-section {
-  background: var(--dt-primary);
+  background: linear-gradient(90deg, #0284c7 0%, #2563eb 50%, #0284c7 100%);
   color: #ffffff;
   padding: 14px 0;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.25);
 }
 
 [data-theme="dark"] .marquee-section {
@@ -747,12 +719,7 @@
     width: 100%;
   }
 
-  .hero-main__role {
-    font-size: 0.82rem;
-    line-height: 1.45;
-    margin: 0 0 8px;
-    max-width: 330px;
-  }
+
 
   .hero-main__typing-box {
     font-size: 0.8rem;

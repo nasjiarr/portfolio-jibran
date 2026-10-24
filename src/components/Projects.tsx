@@ -17,24 +17,167 @@ export interface Project {
 
 const projects: Project[] = [
   {
-    title: 'Sistem Reservasi Ruangan',
+    title: 'Presensio: Sistem Absensi & HR Management',
+    category: 'Enterprise Web Application',
+    description:
+      'Platform presensi terpadu dan manajemen operasional SDM berbasis Next.js 15. Dilengkapi validasi lokasi GPS (geofencing), verifikasi selfie anti-fraud, manajemen shift dinamis, pengajuan cuti, serta kalkulasi payroll otomatis.',
+    image: '/images/projects/sistem-absensi/02-dashboard-admin.png',
+    repoUrl: 'https://github.com/nasjiarr/sistem-absensi',
+    tags: [
+      'Next.js 15',
+      'TypeScript',
+      'Tailwind CSS',
+      'PostgreSQL',
+      'Drizzle ORM',
+      'Better Auth',
+    ],
+    highlights: [
+      'Presensi real-time via GPS geofencing & kamera selfie anti-fraud',
+      'Penguncian perangkat (device binding) & deteksi anomali absensi',
+      'Manajemen shift & roster kerja fleksibel per cabang/departemen',
+      'Siklus pengajuan & approval cuti/izin terintegrasi saldo kuota',
+      'Kalkulasi penggajian otomatis (payroll) & cetak slip gaji bulanan',
+      'Panel audit log & rekapitulasi data kehadiran karyawan',
+    ],
+    screenshots: [
+      {
+        url: '/images/projects/sistem-absensi/01-login-portal.png',
+        title: 'Portal Login & Otentikasi Terintegrasi',
+        description:
+          'Halaman autentikasi sistem dengan desain split-pane responsif: verifikasi sesi aman, indikator waktu server lokal real-time (WIB), serta informasi proteksi radius geofencing dan enkripsi kredensial.',
+      },
+      {
+        url: '/images/projects/sistem-absensi/02-dashboard-admin.png',
+        title: 'Dashboard Administrator & Ringkasan Kehadiran',
+        description:
+          'Pusat kendali kehadiran dan operasional SDM: metrik live kehadiran tim, status clock-in hari berjalan, monitoring shift kerja aktif, integrasi kebijakan jam kantor, serta akses unduh rekap data.',
+      },
+      {
+        url: '/images/projects/sistem-absensi/03-portal-absensi.png',
+        title: 'Portal Absensi Harian & Validasi Radius GPS',
+        description:
+          'Antarmuka clock-in mandiri pegawai dengan validasi geofencing GPS radius kantor (150m), jam digital presisi, deteksi perangkat terikat (device binding), dan input catatan tugas kerja.',
+      },
+      {
+        url: '/images/projects/sistem-absensi/04-manajemen-cuti.png',
+        title: 'Modul Manajemen Saldo Cuti & Riwayat Izin',
+        description:
+          'Pelacakan kuota cuti tahunan terintegrasi dengan kalkulasi sisa saldo bersih, visualisasi progress bar penggunaan kuota, dan tabel riwayat permohonan lengkap dengan filter status approval.',
+      },
+      {
+        url: '/images/projects/sistem-absensi/05-form-pengajuan-cuti.png',
+        title: 'Formulir Interaktif Pengajuan Cuti & Pengecekan Kuota',
+        description:
+          'Modal dialog pengajuan permohonan (cuti, sakit, izin, dinas luar) yang secara otomatis menghitung durasi kalender, memvalidasi kecukupan sisa kuota secara real-time, serta unggah dokumen bukti pendukung.',
+      },
+    ],
+  },
+  {
+    title: 'TEPOKIN: Badminton Court Booking & Management',
+    category: 'Real-Time Web Application',
+    description:
+      'Platform reservasi lapangan badminton real-time dengan tema Athletic High-Contrast, proteksi anti-bentrok jadwal, sinkronisasi slot via WebSocket, sistem loyalitas member, dan simulasi pembayaran terintegrasi.',
+    image: '/images/projects/badminton-booking/03-booking-lapangan.png',
+    repoUrl: 'https://github.com/nasjiarr/badminton-booking',
+    tags: [
+      'Laravel 12',
+      'Inertia.js v2',
+      'Vue 3.5',
+      'Tailwind CSS v4',
+      'Laravel Reverb',
+      'MySQL',
+    ],
+    highlights: [
+      'Proteksi anti-bentrok jadwal dengan DB pessimistic lock',
+      'Sinkronisasi ketersediaan slot real-time via WebSocket',
+      'Pemesanan rutin mingguan & diskon loyalitas otomatis',
+      'Simulasi pembayaran QRIS & VA serta rekapitulasi data',
+    ],
+    screenshots: [
+      {
+        url: '/images/projects/badminton-booking/01-login-portal.png',
+        title: 'Portal Login & Otentikasi Member',
+        description:
+          'Antarmuka masuk akun dengan tema Athletic High-Contrast, otentikasi kredensial aman, dan navigasi pendaftaran member baru.',
+      },
+      {
+        url: '/images/projects/badminton-booking/02-dashboard-member.png',
+        title: 'Dashboard Member Area & Status Loyalitas',
+        description:
+          'Pusat kendali akun member: status tingkatan Sobat Tepok, perolehan poin loyalitas, serta menu cepat reservasi dan riwayat booking.',
+      },
+      {
+        url: '/images/projects/badminton-booking/03-booking-lapangan.png',
+        title: 'Katalog Reservasi Lapangan & Tarif BWF',
+        description:
+          'Pilihan 4 lapangan karpet vinyl standar BWF dengan tarif transparan, pemilihan slot real-time, dan proteksi anti-bentrok otomatis.',
+      },
+      {
+        url: '/images/projects/badminton-booking/04-riwayat-booking.png',
+        title: 'Riwayat Booking & Status Reservasi',
+        description:
+          'Pelacakan seluruh status pemesanan (menunggu bayar, dikonfirmasi, selesai, dibatalkan) dengan ringkasan total tagihan dan jadwal sewa.',
+      },
+      {
+        url: '/images/projects/badminton-booking/05-cari-lapangan.png',
+        title: 'Athletic Matchday Hub & Sesi Favorit',
+        description:
+          'Pencarian lapangan cepat dengan horizontal date strip 14 hari, shortcut sesi favorit badminton 1-tap, dan filter durasi main.',
+      },
+    ],
+  },
+  {
+    title: 'Ruaka: Sistem Reservasi Ruangan',
     category: 'Fullstack Web Application',
     description:
-      'Aplikasi reservasi ruang rapat dan aula secara real-time. Memiliki deteksi bentrok jadwal otomatis, persetujuan manajerial berjenjang, dan validasi kehadiran via QR Code.',
-    image: '/images/projects/reservasi.svg',
+      'Platform terpadu manajemen dan peminjaman ruang rapat secara real-time. Dilengkapi deteksi bentrok jadwal otomatis, persetujuan manajerial berjenjang, analitik utilisasi fasilitas, dan validasi kehadiran via QR Code.',
+    image: '/images/projects/reservasi-ruangan/02-dashboard-admin.png',
     repoUrl: 'https://github.com/nasjiarr/reservasi-ruangan',
-    tags: ['Laravel', 'Inertia.js', 'Vue 3', 'Tailwind CSS', 'MySQL', 'WebSocket'],
+    tags: [
+      'Laravel 12',
+      'Inertia.js',
+      'Vue 3',
+      'Tailwind CSS',
+      'Laravel Reverb',
+      'MySQL',
+    ],
     highlights: [
       'Kalender interaktif & validasi jadwal bentrok instan',
       'Pemberitahuan approval real-time via WebSocket',
-      'Check-in kehadiran berbasis QR Code',
+      'Check-in kehadiran mandiri berbasis QR Code',
+      'Monitoring status live & analitik utilisasi ruangan',
       'Ekspor rekapan data ke format Excel dan PDF',
     ],
     screenshots: [
       {
-        url: '/images/projects/reservasi.svg',
-        title: 'Kalender Interaktif & Penjadwalan Ruang',
-        description: 'Tampilan antarmuka pemesanan ruang rapat dengan indikator ketersediaan dan validasi bentrok jadwal instan.',
+        url: '/images/projects/reservasi-ruangan/01-login-portal.png',
+        title: 'Portal Login & Akses Cepat Akun Demo',
+        description:
+          'Halaman masuk Ruaka dengan proteksi kredensial, navigasi modern, dan opsi pengisian 1-klik akun demo untuk role Admin, Manager, dan Staff.',
+      },
+      {
+        url: '/images/projects/reservasi-ruangan/02-dashboard-admin.png',
+        title: 'Command Center & Monitoring Ruangan Live',
+        description:
+          'Dashboard operasional untuk memantau metrik okupansi harian, traffic ruangan, permohonan tertunda, agenda rapat aktif, dan status live ruangan.',
+      },
+      {
+        url: '/images/projects/reservasi-ruangan/03-daftar-reservasi.png',
+        title: 'Manajemen Reservasi & Filter Status Terpadu',
+        description:
+          'Daftar pengajuan peminjaman ruangan dengan tab filter status (Menunggu, Disetujui, Selesai, Dibatalkan), pencarian instan, dan detail kegiatan.',
+      },
+      {
+        url: '/images/projects/reservasi-ruangan/04-kalender-jadwal.png',
+        title: 'Kalender Jadwal Interaktif & Deteksi Bentrok',
+        description:
+          'Visualisasi ketersediaan seluruh ruangan dalam mode kalender (Bulan, Minggu, Hari) dengan pencegahan reservasi bentrok otomatis.',
+      },
+      {
+        url: '/images/projects/reservasi-ruangan/05-analytics-utilisasi.png',
+        title: 'Analytics & Utilisasi Fasilitas Rapat',
+        description:
+          'Grafik analitik tren peminjaman harian, metrik approval rate, rata-rata durasi penggunaan, dan daftar ruangan paling sering digunakan.',
       },
     ],
   },
@@ -43,7 +186,7 @@ const projects: Project[] = [
     category: 'Fullstack Web Application',
     description:
       'Platform terpusat untuk alur penanganan kerusakan fasilitas gedung: pelaporan masalah, penugasan teknisi, verifikasi bukti foto sebelum/sesudah, dan pencatatan konsumsi utilitas.',
-    image: '/images/projects/frc.webp',
+    image: '/images/projects/frc/01-dashboard-admin.png',
     repoUrl: 'https://github.com/nasjiarr/frc-reporting-system',
     tags: ['Laravel', 'Chart.js', 'Tailwind CSS', 'MySQL', 'Role-Based Access'],
     highlights: [
@@ -54,9 +197,34 @@ const projects: Project[] = [
     ],
     screenshots: [
       {
-        url: '/images/projects/frc.webp',
-        title: 'Dashboard Manajemen Kerusakan Fasilitas',
-        description: 'Pemantauan tiket kerusakan aktif, status perbaikan teknisi, dan rekap utilisasi utilitas gedung.',
+        url: '/images/projects/frc/01-dashboard-admin.png',
+        title: 'Dashboard Admin & Ringkasan Operasional',
+        description:
+          'Pusat kendali operasional fasilitas FRC: metrik laporan baru, penugasan aktif, status penyelesaian bulanan, peringatan pencatatan utilitas, dan pintasan aksi cepat.',
+      },
+      {
+        url: '/images/projects/frc/02-manajemen-penugasan.png',
+        title: 'Manajemen & Alokasi Penugasan Teknisi',
+        description:
+          'Panel alokasi tugas teknisi lapangan dengan pelacakan SLA responsivitas (>24 jam), status ketersediaan teknisi siaga, dan verifikasi disposisi tiket kerusakan.',
+      },
+      {
+        url: '/images/projects/frc/03-form-pelaporan.png',
+        title: 'Form Pelaporan Kerusakan & Kendala Fasilitas',
+        description:
+          'Antarmuka pelaporan kerusakan interaktif dengan rekomendasi masalah umum instan, pemilihan lokasi ruangan gedung FRC, unggah foto bukti, dan panduan pelaporan efektif.',
+      },
+      {
+        url: '/images/projects/frc/04-utilitas-gedung.png',
+        title: 'Manajemen & Monitoring Utilitas Gedung',
+        description:
+          'Sistem pemantauan konsumsi energi dan air gedung FRC UGM: pencatatan stand meter berkala untuk listrik MDP, panel distribusi SDP, air bersih PDAM, dan pemanfaatan air hujan.',
+      },
+      {
+        url: '/images/projects/frc/05-detail-grafik-utilitas.png',
+        title: 'Analisis Grafik Tren Konsumsi Utilitas',
+        description:
+          'Visualisasi analitik konsumsi utilitas bulanan berbasis Chart.js dengan indikator nilai akumulasi, rata-rata, puncak konsumsi tertinggi, serta ekspor laporan ke format PDF.',
       },
     ],
   },

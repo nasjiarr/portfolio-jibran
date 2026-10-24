@@ -96,7 +96,7 @@
 
 .projects-v1__item:hover {
   transform: translateY(-2px);
-  box-shadow: var(--dt-shadow-lg);
+  box-shadow: var(--dt-shadow-lg), 0 0 24px -4px rgba(2, 132, 199, 0.12);
   border-color: var(--projects-v1-primary);
 }
 

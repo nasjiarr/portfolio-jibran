@@ -97,7 +97,7 @@
 
 .skills-group:hover {
   border-color: var(--skills-v1-primary);
-  box-shadow: var(--dt-shadow-md);
+  box-shadow: var(--dt-shadow-md), 0 0 20px -4px rgba(2, 132, 199, 0.12);
   transform: translateY(-2px);
 }
 

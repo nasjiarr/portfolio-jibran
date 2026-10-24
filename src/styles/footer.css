@@ -64,10 +64,21 @@
   transition: all 0.25s ease;
 }
 
+[data-theme="light"] .footer-v1__logo-box {
+  background: #0f172a;
+  border-color: rgba(2, 132, 199, 0.4);
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.15);
+}
+
 .footer-v1__logo:hover .footer-v1__logo-box {
   border-color: rgba(56, 189, 248, 0.6);
   box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
   transform: scale(1.05);
+}
+
+[data-theme="light"] .footer-v1__logo:hover .footer-v1__logo-box {
+  border-color: rgba(2, 132, 199, 0.7);
+  box-shadow: 0 0 14px rgba(2, 132, 199, 0.3);
 }
 
 .footer-v1__logo-img {
