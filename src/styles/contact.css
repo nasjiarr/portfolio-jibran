@@ -149,7 +149,7 @@
 }
 
 [data-theme="dark"] .contact-social-btn:hover {
-  color: #0b1120;
+  color: #ffffff;
 }
 
 /* ================= Right Column: Form ================= */
@@ -258,7 +258,7 @@
 }
 
 [data-theme="dark"] .contact-submit-btn {
-  color: #0b1120;
+  color: #ffffff;
 }
 
 .contact-submit-btn:disabled {

@@ -59,7 +59,7 @@ export default function FloatingParticlesBackground({
   const particlesRef = useRef<Particle[]>([]);
   const isDarkRef = useRef(true);
   const [canvasSize, setCanvasSize] = useState({ width: 800, height: 600 });
-  const [resolvedColor, setResolvedColor] = useState('#38bdf8');
+  const [resolvedColor, setResolvedColor] = useState('#3b82f6');
 
   // Detect theme (dark or light)
   const updateColor = useCallback(() => {
@@ -73,7 +73,7 @@ export default function FloatingParticlesBackground({
       setResolvedColor(particleColor);
       return;
     }
-    setResolvedColor(isDark ? '#38bdf8' : '#0284c7');
+    setResolvedColor('#3b82f6');
   }, [particleColor]);
 
   useEffect(() => {

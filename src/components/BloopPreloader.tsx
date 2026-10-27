@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
-import { useTheme } from '../context/ThemeContext';
 import '../styles/bloop-preloader.css';
 
 export interface BloopPreloaderProps {
@@ -40,19 +39,16 @@ type Stage =
 export default function BloopPreloader({
   mainTitle = 'Nasywan Jibran',
   subTitle = 'Full Stack Web Developer',
-  backgroundColor = '#030014',
-  fontColor = '#ffffff',
-  accentColor = '#38bdf8',
+  backgroundColor = '#0a0c13',
+  fontColor = '#f8faff',
+  accentColor = '#3b82f6',
   bloopColor = 'url(#bloop-cosmic-gradient)',
   onComplete,
   oncePerSession = false,
 }: BloopPreloaderProps) {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
-
-  const resolvedBg = backgroundColor !== '#030014' ? backgroundColor : (isLight ? '#f8fafc' : '#030014');
-  const resolvedFont = fontColor !== '#ffffff' ? fontColor : (isLight ? '#0f172a' : '#ffffff');
-  const resolvedAccent = accentColor !== '#38bdf8' ? accentColor : (isLight ? '#0284c7' : '#38bdf8');
+  const resolvedBg = backgroundColor !== '#0a0c13' ? backgroundColor : '#0a0c13';
+  const resolvedFont = fontColor !== '#f8faff' ? fontColor : '#f8faff';
+  const resolvedAccent = accentColor !== '#3b82f6' ? accentColor : '#3b82f6';
 
   const [stage, setStage] = useState<Stage>(() => {
     if (typeof window !== 'undefined' && oncePerSession) {
@@ -243,10 +239,10 @@ export default function BloopPreloader({
         >
           <defs>
             <linearGradient id="bloop-cosmic-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor={isLight ? '#0284c7' : '#38bdf8'} />
-              <stop offset="45%" stopColor={isLight ? '#2563eb' : '#6366f1'} />
-              <stop offset="85%" stopColor={isLight ? '#38bdf8' : '#00f2fe'} />
-              <stop offset="100%" stopColor={isLight ? '#0284c7' : '#38bdf8'} />
+              <stop offset="0%" stopColor="#1d4ed8" />
+              <stop offset="45%" stopColor="#2563eb" />
+              <stop offset="85%" stopColor="#3b82f6" />
+              <stop offset="100%" stopColor="#60a5fa" />
             </linearGradient>
             <filter id="bloop-glow-filter" x="-20%" y="-20%" width="140%" height="140%">
               <feGaussianBlur stdDeviation="30" result="blur" />
@@ -256,7 +252,7 @@ export default function BloopPreloader({
           <path
             d="M 11.605 1198.824 C 117.81 2048.365 715.599 1194.746 966.065 1533.064 C 1216.53 1871.381 1493.524 1794.135 1781.626 1451.023 C 2069.727 1107.911 2087.799 844.701 1896.563 817.836 C 1705.326 790.972 2032.184 57.703 1287.972 4.679 C 543.76 -48.345 -94.6 349.283 11.605 1198.824 Z"
             fill={bloopColor}
-            stroke={isLight ? '#0284c7' : '#00f2fe'}
+            stroke="#3b82f6"
             strokeWidth="3"
             filter="url(#bloop-glow-filter)"
           />

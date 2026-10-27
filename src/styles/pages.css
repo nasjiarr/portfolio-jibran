@@ -106,12 +106,12 @@
   font-size: 0.9rem;
   transition: all 0.2s ease;
   white-space: nowrap;
-  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
 }
 
 [data-theme="dark"] .page-cta-banner__action {
-  color: #0b1120;
-  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
 }
 
 .page-cta-banner__action:hover {

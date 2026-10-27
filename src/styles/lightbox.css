@@ -78,16 +78,16 @@
   gap: 6px;
   font-size: 0.88rem;
   font-weight: 700;
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--dt-primary);
+  background: var(--dt-primary-soft);
+  border: 1px solid var(--dt-line);
   padding: 4px 12px;
   border-radius: 999px;
   letter-spacing: -0.01em;
 }
 
 .dt-lightbox__sparkle {
-  color: #38bdf8;
+  color: var(--dt-primary);
 }
 
 .dt-lightbox__counter {
@@ -156,11 +156,11 @@
 }
 
 .dt-lightbox__nav-btn:hover {
-  background: #0284c7;
+  background: var(--dt-primary);
   color: #ffffff;
-  border-color: #38bdf8;
+  border-color: var(--dt-primary);
   transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 20px var(--dt-primary-glow);
 }
 
 .dt-lightbox__nav-btn--prev {
@@ -276,8 +276,8 @@
 
 .dt-lightbox__thumb-btn.is-active {
   opacity: 1;
-  border-color: #38bdf8;
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+  border-color: var(--dt-primary);
+  box-shadow: 0 0 12px var(--dt-primary-glow);
   transform: translateY(-2px);
 }
 

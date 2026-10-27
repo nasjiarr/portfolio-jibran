@@ -56,29 +56,28 @@
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  background: #0e1526;
-  border: 1px solid rgba(56, 189, 248, 0.28);
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.15);
+  background: #121622;
+  border: 1px solid #21293d;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   flex-shrink: 0;
   transition: all 0.25s ease;
 }
 
 [data-theme="light"] .footer-v1__logo-box {
-  background: #0f172a;
-  border-color: rgba(2, 132, 199, 0.4);
-  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.15);
+  background: #121622;
+  border-color: #21293d;
 }
 
 .footer-v1__logo:hover .footer-v1__logo-box {
-  border-color: rgba(56, 189, 248, 0.6);
-  box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+  border-color: var(--dt-primary);
+  box-shadow: 0 0 14px var(--dt-primary-glow);
   transform: scale(1.05);
 }
 
 [data-theme="light"] .footer-v1__logo:hover .footer-v1__logo-box {
-  border-color: rgba(2, 132, 199, 0.7);
-  box-shadow: 0 0 14px rgba(2, 132, 199, 0.3);
+  border-color: var(--dt-primary);
+  box-shadow: 0 0 14px var(--dt-primary-glow);
 }
 
 .footer-v1__logo-img {

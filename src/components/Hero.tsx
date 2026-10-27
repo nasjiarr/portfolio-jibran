@@ -70,19 +70,31 @@ export default function Hero() {
 
         <div className="hero-main__shell">
           <div className="hero-main__grid">
-            {/* Left Column: Profile Photo Card */}
+            {/* Left Column: Profile Photo Card (Gaya Pop-out / 3D Silhouette Bento) */}
             <div className="hero-main__left hero-main__reveal hero-main__hidden">
-              <div className="hero-main__image-wrapper">
-                <div className="hero-main__image-glow" aria-hidden="true"></div>
-                <div className="hero-main__image-frame" aria-hidden="true"></div>
-                <img
-                  src="/images/profile-800.webp"
-                  alt="Nasywan Jibran Aryadi"
-                  className="hero-main__img"
-                  width={420}
-                  height={420}
-                  loading="eager"
-                />
+              <div className="hero-main__popout-wrapper">
+                {/* Ambient backlighting aura */}
+                <div className="hero-main__popout-glow" aria-hidden="true"></div>
+
+                {/* The Bento Architectural Backdrop Card */}
+                <div className="hero-main__popout-card">
+                  <div className="hero-main__popout-arch" aria-hidden="true"></div>
+                  <div className="hero-main__popout-grid-lines" aria-hidden="true"></div>
+                </div>
+
+                {/* The 3D Pop-Out Cutout Figure (Head breaks top boundary) */}
+                <div className="hero-main__popout-figure">
+                  <img
+                    src="/images/profile-transparent-800.webp"
+                    alt="Nasywan Jibran Aryadi"
+                    className="hero-main__popout-img"
+                    width={420}
+                    height={420}
+                    loading="eager"
+                  />
+                </div>
+
+                {/* Anchored Status Pill */}
                 <div className="hero-main__photo-badge">
                   <span className="hero-main__badge-dot"></span>
                   <span>Terbuka untuk Kolaborasi & Kerja</span>

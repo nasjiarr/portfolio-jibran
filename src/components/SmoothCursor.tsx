@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useTheme } from '../context/ThemeContext';
 
 export interface SmoothCursorProps {
   /** Size of cursor bounding box in px (default 40) */
@@ -150,9 +149,6 @@ export default function SmoothCursor({
 }: SmoothCursorProps) {
   const isMounted = typeof window !== 'undefined';
   const [isVisible, setIsVisible] = useState(true);
-
-  const { theme } = useTheme();
-  const activeTheme = theme;
 
   // References for spring physics
   const cursorRef = useRef<HTMLDivElement | null>(null);
@@ -414,13 +410,10 @@ export default function SmoothCursor({
   }
 
   // Resolve inner and outer colors based on theme or explicit override
-  const isDark = activeTheme === 'dark';
-  const shouldInvert = invertIconColors !== undefined ? invertIconColors : isDark;
-
   const resolvedInnerColor =
-    customInnerColor || (shouldInvert ? '#ffffff' : '#09090b');
+    customInnerColor || (invertIconColors ? '#0a0c13' : '#3b82f6');
   const resolvedOuterColor =
-    customOuterColor || (shouldInvert ? '#000000' : '#ffffff');
+    customOuterColor || (invertIconColors ? '#3b82f6' : '#0a0c13');
 
   return createPortal(
     <>

@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight, Download } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
 import '../styles/navbar.css';
 
 interface NavItem {
@@ -78,7 +77,6 @@ export default function Navbar() {
           </nav>
 
           <div className="dt-navbar__actions">
-            <ThemeToggle />
             <a
               href="/cv.pdf"
               target="_blank"
@@ -92,7 +90,6 @@ export default function Navbar() {
           </div>
 
           <div className="dt-navbar__mobile-right">
-            <ThemeToggle />
             <button
               type="button"
               className="dt-navbar__menu-btn"

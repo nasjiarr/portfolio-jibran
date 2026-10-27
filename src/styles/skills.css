@@ -97,7 +97,7 @@
 
 .skills-group:hover {
   border-color: var(--skills-v1-primary);
-  box-shadow: var(--dt-shadow-md), 0 0 20px -4px rgba(2, 132, 199, 0.12);
+  box-shadow: var(--dt-shadow-md), 0 0 20px -4px var(--dt-primary-glow);
   transform: translateY(-2px);
 }
 
@@ -151,11 +151,11 @@
 .skills-group__badge--highlight {
   background: var(--skills-v1-primary-soft);
   color: var(--skills-v1-primary);
-  border-color: rgba(1, 73, 139, 0.25);
+  border-color: var(--dt-primary-glow);
 }
 
 [data-theme="dark"] .skills-group__badge--highlight {
-  border-color: rgba(56, 189, 248, 0.3);
+  border-color: var(--dt-primary-glow);
 }
 
 /* Skills Items List */

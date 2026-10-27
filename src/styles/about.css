@@ -18,24 +18,6 @@
   overflow: hidden;
 }
 
-.about-v1::before {
-  content: 'ABOUT';
-  position: absolute;
-  bottom: -20px;
-  right: -20px;
-  font-size: clamp(6rem, 14vw, 11rem);
-  font-weight: 900;
-  color: rgba(15, 23, 42, 0.03);
-  pointer-events: none;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  z-index: 0;
-}
-
-[data-theme="dark"] .about-v1::before {
-  color: rgba(255, 255, 255, 0.02);
-}
-
 .about-v1 *,
 .about-v1 *::before,
 .about-v1 *::after {
@@ -104,6 +86,14 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.about-v1__narrative p {
+  margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .about-v1__narrative strong {
@@ -139,7 +129,7 @@
 }
 
 [data-theme="dark"] .about-v1__button--primary {
-  color: #0b1120;
+  color: #ffffff;
 }
 
 .about-v1__button--primary:hover {
@@ -186,23 +176,21 @@
 }
 
 [data-theme="dark"] .about-bento-card {
-  background: rgba(13, 19, 33, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-color: rgba(255, 255, 255, 0.08);
+  background: #121622;
+  border-color: #21293d;
 }
 
 .about-bento-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(56, 189, 248, 0.4);
-  box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.3),
-              0 0 20px -4px rgba(56, 189, 248, 0.15);
+  border-color: var(--dt-primary);
+  box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.45),
+              0 0 20px -4px var(--dt-primary-glow);
 }
 
 [data-theme="light"] .about-bento-card:hover {
-  border-color: rgba(2, 132, 199, 0.45);
-  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.08),
-              0 0 20px -4px rgba(2, 132, 199, 0.14);
+  border-color: var(--dt-primary);
+  box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.45),
+              0 0 20px -4px var(--dt-primary-glow);
 }
 
 /* Card Spans */
@@ -214,11 +202,11 @@
 .about-bento-card--status {
   padding: 16px 20px;
   gap: 12px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, rgba(56, 189, 248, 0.04) 100%), var(--dt-surface-card);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(18, 22, 34, 0.7) 100%), var(--dt-surface-card);
 }
 
 [data-theme="dark"] .about-bento-card--status {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(56, 189, 248, 0.05) 100%), rgba(13, 19, 33, 0.7);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(18, 22, 34, 0.7) 100%), var(--dt-surface-card);
 }
 
 .about-bento-card__badge-row {
@@ -373,13 +361,13 @@
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 1;
-  background: linear-gradient(135deg, #0284c7 0%, #2563eb 55%, #4f46e5 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 [data-theme="dark"] .about-bento-card__stat-num {
-  background: linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #818cf8 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -415,32 +403,31 @@
   font-weight: 600;
   padding: 5px 11px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--about-v1-line);
+  background: #181e2e;
+  border: 1px solid #21293d;
   color: var(--about-v1-ink);
   transition: all 0.2s ease;
   user-select: none;
 }
 
 [data-theme="light"] .about-bento-pill {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  color: #334155;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  background: #181e2e;
+  border-color: #21293d;
+  color: var(--dt-ink);
 }
 
 .about-bento-pill:hover {
-  border-color: var(--pill-accent, #38bdf8);
-  color: var(--pill-accent, #38bdf8);
-  background: rgba(56, 189, 248, 0.08);
+  border-color: var(--pill-accent, var(--dt-primary));
+  color: var(--pill-accent, var(--dt-primary));
+  background: var(--dt-primary-soft);
   transform: translateY(-1px);
 }
 
 [data-theme="light"] .about-bento-pill:hover {
-  border-color: #0284c7;
-  color: #0284c7;
-  background: rgba(2, 132, 199, 0.06);
-  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.12);
+  border-color: var(--dt-primary);
+  color: var(--dt-primary);
+  background: var(--dt-primary-soft);
+  box-shadow: 0 2px 8px var(--dt-primary-glow);
 }
 
 /* Reveal */

@@ -36,14 +36,14 @@
   font-size: clamp(4.5rem, 11vw, 11rem);
   font-weight: 900;
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(2, 132, 199, 0.12);
+  -webkit-text-stroke: 1.5px rgba(59, 130, 246, 0.12);
   white-space: nowrap;
   line-height: 0.95;
   letter-spacing: 0.06em;
 }
 
 [data-theme="dark"] .hero-main__bg-line {
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.04);
+  -webkit-text-stroke: 1.5px rgba(59, 130, 246, 0.12);
 }
 
 /* Floating Stars */
@@ -91,9 +91,9 @@
 
 .hero-main__grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.08fr);
   gap: clamp(36px, 5.5vw, 68px);
-  align-items: center;
+  align-items: flex-start;
 }
 
 /* Left: Profile Photo Card */
@@ -101,78 +101,155 @@
   position: relative;
   display: flex;
   justify-content: center;
+  align-self: flex-start;
+  margin-top: -38px;
 }
 
-.hero-main__image-wrapper {
+/* ==========================================================================
+   Gaya Pop-out / 3D Silhouette Bento (Apple / Modern Bento Architecture)
+   ========================================================================== */
+
+.hero-main__popout-wrapper {
   position: relative;
   width: 100%;
-  max-width: 360px;
+  max-width: 410px;
+  height: 490px;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
-.hero-main__image-glow {
+/* Ambient Backlighting Glow */
+.hero-main__popout-glow {
   position: absolute;
-  inset: -14px;
-  background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.28) 0%, rgba(99, 102, 241, 0.16) 50%, transparent 72%);
-  border-radius: 30px;
-  filter: blur(24px);
-  z-index: 1;
+  width: 380px;
+  height: 380px;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.22) 0%, rgba(18, 22, 34, 0.28) 40%, transparent 72%);
+  border-radius: 50%;
+  filter: blur(48px);
+  z-index: 0;
   pointer-events: none;
   opacity: 0.85;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-[data-theme="dark"] .hero-main__image-glow {
-  background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.28) 0%, transparent 72%);
-  filter: blur(28px);
+[data-theme="dark"] .hero-main__popout-glow {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, rgba(18, 22, 34, 0.45) 45%, transparent 72%);
+  filter: blur(56px);
 }
 
-.hero-main__image-frame {
+.hero-main__popout-wrapper:hover .hero-main__popout-glow {
+  transform: translate(-50%, -50%) scale(1.12);
+  opacity: 1;
+}
+
+/* The Bento Architectural Backdrop Card */
+.hero-main__popout-card {
   position: absolute;
-  inset: -8px;
-  border: 1.5px solid var(--dt-primary);
-  border-radius: 26px;
-  opacity: 0.35;
+  bottom: 0;
+  width: 365px;
+  height: 405px; /* leaves ~85px headroom for head to break out! */
+  border-radius: 40px 40px 30px 30px;
+  background: linear-gradient(180deg, #edf0f7 0%, #dfe4f0 100%);
+  border: 1.5px solid #c2ccdf;
+  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.85);
   z-index: 1;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] .hero-main__popout-card {
+  background: linear-gradient(180deg, #edf0f7 0%, #dfe4f0 100%);
+  border: 1.5px solid #c2ccdf;
+  box-shadow: 0 22px 50px -10px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.hero-main__popout-wrapper:hover .hero-main__popout-card {
+  transform: translateY(-4px);
+  border-color: var(--dt-primary);
+  box-shadow: 0 26px 54px -10px rgba(0, 0, 0, 0.4), 0 0 24px -4px var(--dt-primary-glow);
+}
+
+/* Inner Radial Arch Halo */
+.hero-main__popout-arch {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 28%, rgba(59, 130, 246, 0.16) 0%, transparent 68%);
   pointer-events: none;
-  transition: all 0.3s ease;
 }
 
-[data-theme="dark"] .hero-main__image-frame {
-  border-color: #38bdf8;
-  opacity: 0.45;
+[data-theme="dark"] .hero-main__popout-arch {
+  background: radial-gradient(ellipse at 50% 28%, rgba(59, 130, 246, 0.16) 0%, transparent 68%);
 }
 
-.hero-main__image-wrapper:hover .hero-main__image-frame {
-  inset: -12px;
-  opacity: 0.7;
+/* Subtle Architectural Grid Lines inside Card */
+.hero-main__popout-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(circle at 50% 40%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, black 20%, transparent 80%);
+  pointer-events: none;
 }
 
-.hero-main__img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 22px;
-  position: relative;
+[data-theme="dark"] .hero-main__popout-grid-lines {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* The 3D Pop-Out Cutout Figure (Head pops over top boundary) */
+.hero-main__popout-figure {
+  position: absolute;
+  bottom: 0;
+  width: 420px;
+  height: 485px; /* Stands ~80px taller than 405px card! */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  pointer-events: none;
   z-index: 2;
-  box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.12), 0 0 0 1px var(--dt-line);
+}
+
+.hero-main__popout-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
   display: block;
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+  /* Silhouette drop shadow giving realistic depth between person & card */
+  filter: drop-shadow(0 16px 22px rgba(10, 12, 19, 0.35));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
-[data-theme="dark"] .hero-main__img {
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--dt-line);
+[data-theme="dark"] .hero-main__popout-img {
+  filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.7)) drop-shadow(0 -4px 18px rgba(59, 130, 246, 0.16));
 }
 
-.hero-main__image-wrapper:hover .hero-main__img {
-  transform: translateY(-4px) scale(1.015);
-  box-shadow: 0 24px 48px -12px var(--dt-primary-glow), 0 0 0 1px var(--dt-primary);
+/* 3D Parallax lift on hover */
+.hero-main__popout-wrapper:hover .hero-main__popout-img {
+  transform: translateY(-8px) scale(1.03);
+  filter: drop-shadow(0 26px 42px rgba(10, 12, 19, 0.45)) drop-shadow(0 -6px 24px rgba(59, 130, 246, 0.28));
 }
 
-/* Floating Status Pill */
+[data-theme="dark"] .hero-main__popout-wrapper:hover .hero-main__popout-img {
+  transform: translateY(-8px) scale(1.03);
+  filter: drop-shadow(0 28px 46px rgba(0, 0, 0, 0.85)) drop-shadow(0 -6px 28px rgba(59, 130, 246, 0.32));
+}
+
+/* Anchored Status Pill */
 .hero-main__photo-badge {
   position: absolute;
-  bottom: -16px;
+  bottom: -14px;
   left: 50%;
   transform: translateX(-50%);
   display: inline-flex;
@@ -188,10 +265,12 @@
   white-space: nowrap;
   box-shadow: var(--dt-shadow-md);
   z-index: 3;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.hero-main__image-wrapper:hover .hero-main__photo-badge {
+.hero-main__popout-wrapper:hover .hero-main__photo-badge {
   transform: translateX(-50%) translateY(-2px);
   border-color: var(--dt-primary);
   box-shadow: var(--dt-shadow-lg);
@@ -299,16 +378,16 @@
 }
 
 .hero-main__title-portfolio .fluid-char {
-  color: #0f172a;
-  -webkit-text-fill-color: #0f172a;
-  filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.08));
+  color: #f8faff;
+  -webkit-text-fill-color: #f8faff;
+  filter: drop-shadow(0 2px 14px rgba(248, 250, 255, 0.12));
   transition: transform 0.22s ease, filter 0.22s ease, color 0.2s ease;
 }
 
 [data-theme="dark"] .hero-main__title-portfolio .fluid-char {
-  color: #f8fafc;
-  -webkit-text-fill-color: #f8fafc;
-  filter: drop-shadow(0 2px 14px rgba(255, 255, 255, 0.12));
+  color: #f8faff;
+  -webkit-text-fill-color: #f8faff;
+  filter: drop-shadow(0 2px 14px rgba(248, 250, 255, 0.12));
 }
 
 /* Fluid Typography: NASYWAN JIBRAN ARYADI */
@@ -325,15 +404,15 @@
 .hero-main__name .fluid-char {
   background: linear-gradient(
     90deg,
-    #0284c7 0%,
-    #2563eb 50%,
-    #4f46e5 100%
+    #3b82f6 0%,
+    #60a5fa 50%,
+    #93c5fd 100%
   );
   background-size: 260% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 2px 14px rgba(2, 132, 199, 0.22));
+  filter: drop-shadow(0 2px 14px rgba(59, 130, 246, 0.35));
   animation: textFlowName 7s linear infinite reverse;
   animation-delay: calc(var(--i, 0) * -0.18s);
 }
@@ -341,15 +420,15 @@
 [data-theme="dark"] .hero-main__name .fluid-char {
   background: linear-gradient(
     90deg,
-    #38bdf8 0%,
-    #818cf8 50%,
-    #c084fc 100%
+    #3b82f6 0%,
+    #60a5fa 50%,
+    #93c5fd 100%
   );
   background-size: 260% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 2px 18px rgba(56, 189, 248, 0.3));
+  filter: drop-shadow(0 2px 18px rgba(59, 130, 246, 0.4));
 }
 
 /* Micro-interaction Hover Brightness & Bloom */
@@ -455,12 +534,13 @@
 .hero-main__btn--primary {
   background: var(--dt-primary);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
 }
 
 [data-theme="dark"] .hero-main__btn--primary {
-  background: #38bdf8;
-  color: #0b1120;
+  background: var(--dt-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
 }
 
 .hero-main__btn--primary:hover {
@@ -470,7 +550,7 @@
 }
 
 [data-theme="dark"] .hero-main__btn--primary:hover {
-  background: #7dd3fc;
+  background: var(--dt-primary-dark);
 }
 
 .hero-main__btn--secondary {
@@ -488,17 +568,17 @@
 
 /* Marquee Section */
 .marquee-section {
-  background: linear-gradient(90deg, #0284c7 0%, #2563eb 50%, #0284c7 100%);
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #2563eb 100%);
   color: #ffffff;
   padding: 14px 0;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.25);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.25);
 }
 
 [data-theme="dark"] .marquee-section {
-  background: #38bdf8;
-  color: #0b1120;
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #2563eb 100%);
+  color: #ffffff;
 }
 
 .marquee-track {
@@ -627,33 +707,36 @@
     width: 100%;
   }
 
-  /* Natural, handsome portrait photo */
+  /* Natural, handsome Pop-out 3D portrait */
   .hero-main__left {
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-top: 0;
     margin-bottom: 2px;
   }
 
-  .hero-main__image-wrapper {
-    width: clamp(150px, 40vw, 185px);
-    max-width: 185px;
+  .hero-main__popout-wrapper {
+    max-width: 260px;
+    height: 290px;
     margin: 0 auto;
   }
 
-  .hero-main__img {
-    border-radius: 20px;
-    box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.16), 0 0 0 1px var(--dt-line);
+  .hero-main__popout-card {
+    width: 220px;
+    height: 240px;
+    border-radius: 28px 28px 22px 22px;
   }
 
-  .hero-main__image-frame {
-    inset: -6px;
-    border-radius: 24px;
+  .hero-main__popout-figure {
+    width: 250px;
+    height: 285px;
   }
 
-  .hero-main__image-glow {
-    inset: -10px;
-    filter: blur(18px);
+  .hero-main__popout-glow {
+    width: 220px;
+    height: 220px;
+    filter: blur(28px);
     opacity: 0.8;
   }
 
@@ -759,9 +842,18 @@
   .hero-main__grid {
     gap: 10px;
   }
-  .hero-main__image-wrapper {
-    width: clamp(110px, 28vw, 130px);
-    max-width: 130px;
+  .hero-main__popout-wrapper {
+    max-width: 190px;
+    height: 210px;
+  }
+  .hero-main__popout-card {
+    width: 160px;
+    height: 175px;
+    border-radius: 20px 20px 16px 16px;
+  }
+  .hero-main__popout-figure {
+    width: 180px;
+    height: 205px;
   }
   .hero-main__bio {
     margin-bottom: 10px;

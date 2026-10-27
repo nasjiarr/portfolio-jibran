@@ -8,23 +8,12 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: 'light',
+  theme: 'dark',
   toggleTheme: () => {},
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('portfolio-theme') as Theme | null;
-      if (saved === 'light' || saved === 'dark') {
-        return saved;
-      }
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-      }
-    }
-    return 'light';
-  });
+  const [theme, setTheme] = useState<Theme>('dark');
 
   useEffect(() => {
     const root = document.documentElement;
