@@ -422,4 +422,26 @@
   .projects-v1__shell {
     width: min(calc(100% - 36px), 1160px);
   }
+
+  .projects-v1__badge-count {
+    top: 8px;
+    right: 8px;
+    font-size: 0.68rem;
+    padding: 3px 8px;
+  }
+
+  .projects-v1__actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .projects-v1__btn-gallery,
+  .projects-v1__btn-github {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px 16px;
+  }
 }
