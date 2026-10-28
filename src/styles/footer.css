@@ -1,195 +1,316 @@
-.footer-v1 {
-  --footer-v1-primary: var(--dt-primary);
-  --footer-v1-ink: var(--dt-ink);
-  --footer-v1-muted: var(--dt-muted);
-  --footer-v1-line: var(--dt-line);
+/* ==========================================================================
+   Footer Component - Option C: The Micro-Dock Bar
+   Theme: Deep Cobalt & Titanium Silver (Ultra-Compact Floating Dock Island)
+   ========================================================================== */
 
+.footer-v3 {
+  position: relative;
   box-sizing: border-box;
   width: 100%;
-  background: var(--dt-surface);
-  font-family: var(--font-sans);
-  border-top: 1px solid var(--footer-v1-line);
-  padding: 48px 0 28px;
-  transition: background-color 0.2s ease;
+  background: var(--dt-surface, #0a0c13);
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  border-top: 1px solid var(--dt-line, rgba(255, 255, 255, 0.08));
+  padding: 40px 0 26px;
+  transition: background-color 0.25s ease;
 }
 
-.footer-v1 *,
-.footer-v1 *::before,
-.footer-v1 *::after {
+.footer-v3 *,
+.footer-v3 *::before,
+.footer-v3 *::after {
   box-sizing: border-box;
 }
 
-.footer-v1__shell {
-  width: min(1160px, calc(100% - 44px));
+.footer-v3__shell {
+  width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
 }
 
-.footer-v1__top {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: 40px;
-  padding-bottom: 36px;
-  border-bottom: 1px solid var(--footer-v1-line);
-}
-
-.footer-v1__brand {
-  max-width: 440px;
-}
-
-.footer-v1__logo {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--dt-ink-heading);
-  letter-spacing: -0.02em;
+/* --------------------------------------------------------------------------
+   1. The Floating Micro-Dock Island
+   -------------------------------------------------------------------------- */
+.footer-v3__dock {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
-  margin-bottom: 10px;
-  transition: all 0.2s ease;
+  padding: 6px 10px 6px 8px;
+  border-radius: 999px;
+  background: rgba(14, 18, 28, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6), 0 0 24px -6px rgba(59, 130, 246, 0.15);
+  max-width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.footer-v1__logo-box {
+.footer-v3__dock:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 18px 40px -8px rgba(0, 0, 0, 0.7), 0 0 28px -4px rgba(59, 130, 246, 0.22);
+}
+
+/* Segment 1: Identity */
+.footer-v3__identity {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 4px;
+}
+
+.footer-v3__brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.footer-v3__brand-link:hover {
+  opacity: 0.88;
+}
+
+.footer-v3__avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #121622;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: #121622;
-  border: 1px solid #21293d;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
-  flex-shrink: 0;
-  transition: all 0.25s ease;
+  transition: transform 0.2s ease;
 }
 
-[data-theme="light"] .footer-v1__logo-box {
-  background: #121622;
-  border-color: #21293d;
+.footer-v3__brand-link:hover .footer-v3__avatar {
+  transform: scale(1.06);
 }
 
-.footer-v1__logo:hover .footer-v1__logo-box {
-  border-color: var(--dt-primary);
-  box-shadow: 0 0 14px var(--dt-primary-glow);
-  transform: scale(1.05);
-}
-
-[data-theme="light"] .footer-v1__logo:hover .footer-v1__logo-box {
-  border-color: var(--dt-primary);
-  box-shadow: 0 0 14px var(--dt-primary-glow);
-}
-
-.footer-v1__logo-img {
+.footer-v3__avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-.footer-v1__tagline {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--footer-v1-muted);
-  line-height: 1.6;
-}
-
-.footer-v1__nav {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.footer-v1__links-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-v1__group-title {
-  font-size: 0.8125rem;
+.footer-v3__brand-name {
+  font-size: 0.84rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--dt-ink-heading);
-  margin-bottom: 4px;
+  color: #f8fafc;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
-.footer-v1__links-group a {
-  font-size: 0.875rem;
-  color: var(--footer-v1-muted);
-  transition: color 0.15s ease;
+/* Vertical Separator */
+.footer-v3__sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
 }
 
-.footer-v1__links-group a:hover {
-  color: var(--footer-v1-primary);
-}
-
-.footer-v1__bottom {
-  padding-top: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.footer-v1__copyright p {
-  margin: 0;
-  font-size: 0.8125rem;
-  color: var(--footer-v1-muted);
-  line-height: 1.5;
-}
-
-.footer-v1__copyright strong {
-  color: var(--dt-ink-heading);
-}
-
-.footer-v1__philosophy {
-  margin-top: 4px !important;
-  font-size: 0.75rem !important;
-  color: var(--dt-muted-light) !important;
-}
-
-.footer-v1__back-top {
+/* Segment 2: Quick Nav */
+.footer-v3__nav {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--footer-v1-line);
-  background: var(--dt-surface-card);
-  color: var(--footer-v1-muted);
-  font-size: 0.8125rem;
+  gap: 2px;
+}
+
+.footer-v3__nav-btn {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
   font-weight: 500;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.footer-v3__nav-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Segment 3: Social & Resume */
+.footer-v3__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.footer-v3__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  color: #94a3b8;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.footer-v3__icon-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.footer-v3__cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  color: var(--dt-primary, #3b82f6);
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.footer-v3__cv-btn:hover {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: var(--dt-primary, #3b82f6);
+  color: #60a5fa;
+  transform: translateY(-1px);
+}
+
+.footer-v3__cv-arrow {
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.footer-v3__cv-btn:hover .footer-v3__cv-arrow {
+  transform: translate(1px, -1px);
+  opacity: 1;
+}
+
+/* Segment 4: Scroll to Top */
+.footer-v3__top-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
-.footer-v1__back-top:hover {
-  border-color: var(--footer-v1-primary);
-  color: var(--footer-v1-primary);
-  background: var(--dt-primary-soft);
+.footer-v3__top-btn:hover {
+  background: var(--dt-primary, #3b82f6);
+  color: #ffffff;
+  border-color: var(--dt-primary, #3b82f6);
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px var(--dt-primary-glow, rgba(59, 130, 246, 0.4));
 }
 
-@media (max-width: 768px) {
-  .footer-v1__top {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
+/* --------------------------------------------------------------------------
+   2. Minimalist Baseline
+   -------------------------------------------------------------------------- */
+.footer-v3__baseline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.76rem;
+  color: #64748b;
+  letter-spacing: -0.01em;
+}
 
-  .footer-v1__bottom {
+.footer-v3__copyright {
+  margin: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+.footer-v3__copyright strong {
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.footer-v3__dot {
+  color: rgba(255, 255, 255, 0.18);
+  font-size: 0.7rem;
+  user-select: none;
+}
+
+.footer-v3__location,
+.footer-v3__rights {
+  color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   3. Responsive Mobile Dock
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .footer-v3__dock {
+    border-radius: 20px;
+    padding: 12px 14px;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .footer-v3__sep {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-v3__identity {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer-v3__nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+  }
+
+  .footer-v3__social {
+    width: 100%;
+    justify-content: center;
+    gap: 6px;
   }
 }
 
-@media (max-width: 640px) {
-  .footer-v1 {
-    padding-top: 36px;
+@media (max-width: 480px) {
+  .footer-v3 {
+    padding: 32px 0 24px;
   }
 
-  .footer-v1__shell {
-    width: min(calc(100% - 36px), 1160px);
+  .footer-v3__shell {
+    width: min(calc(100% - 28px), 1180px);
+  }
+
+  .footer-v3__baseline {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .footer-v3__dot {
+    display: none;
   }
 }

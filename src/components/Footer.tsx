@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, Mail, FileText, ExternalLink } from 'lucide-react';
+import { GithubIcon, LinkedinIcon, WhatsAppIcon } from './Icons';
 import '../styles/footer.css';
 
 export default function Footer() {
@@ -7,68 +8,119 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const waUrl =
+    'https://wa.me/6289653404050?text=' +
+    encodeURIComponent('Halo Nasywan, saya tertarik untuk berdiskusi mengenai proyek / peluang kerja sama.');
+
   return (
-    <footer className="footer-v1">
-      <div className="footer-v1__shell">
-        <div className="footer-v1__top">
-          <div className="footer-v1__brand">
-            <Link to="/" className="footer-v1__logo">
-              <span className="footer-v1__logo-box">
-                <img src="/logo.png?v=3" alt="Logo" className="footer-v1__logo-img" />
+    <footer className="footer-v3" role="contentinfo">
+      <div className="footer-v3__shell">
+        {/* Micro-Dock Island */}
+        <div className="footer-v3__dock" aria-label="Footer micro-dock">
+          {/* Identity */}
+          <div className="footer-v3__identity">
+            <Link to="/" className="footer-v3__brand-link" aria-label="Ke beranda nasywan.dev">
+              <span className="footer-v3__avatar">
+                <img src="/logo.png?v=3" alt="Logo" className="footer-v3__avatar-img" />
               </span>
-              <span>nasywan.dev</span>
+              <span className="footer-v3__brand-name">nasywan.dev</span>
             </Link>
-            <p className="footer-v1__tagline">
-              Fullstack Developer. Berbasis di Kulon Progo, D.I. Yogyakarta.
-            </p>
           </div>
 
-          <div className="footer-v1__nav">
-            <div className="footer-v1__links-group">
-              <span className="footer-v1__group-title">Halaman</span>
-              <Link to="/">Beranda</Link>
-              <Link to="/about">Tentang</Link>
-              <Link to="/projects">Proyek</Link>
-              <Link to="/experience">Riwayat</Link>
-              <Link to="/contact">Kontak</Link>
-            </div>
+          <div className="footer-v3__sep" aria-hidden="true" />
 
-            <div className="footer-v1__links-group">
-              <span className="footer-v1__group-title">Tautan</span>
-              <a href="https://github.com/nasjiarr" target="_blank" rel="noopener noreferrer">
-                GitHub ↗
-              </a>
-              <a
-                href="https://www.linkedin.com/in/nasywan-jibran-aryadi-7547a8214/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn ↗
-              </a>
-              <a href="/cv.pdf" target="_blank" rel="noopener noreferrer">
-                CV (PDF) ↗
-              </a>
-              <a href="mailto:nasywanji@gmail.com">Email ↗</a>
-            </div>
+          {/* Quick Nav Items */}
+          <nav className="footer-v3__nav" aria-label="Navigasi cepat dock">
+            <Link to="/" className="footer-v3__nav-btn">Beranda</Link>
+            <Link to="/about" className="footer-v3__nav-btn">Tentang</Link>
+            <Link to="/projects" className="footer-v3__nav-btn">Proyek</Link>
+            <Link to="/experience" className="footer-v3__nav-btn">Riwayat</Link>
+            <Link to="/contact" className="footer-v3__nav-btn">Kontak</Link>
+          </nav>
+
+          <div className="footer-v3__sep" aria-hidden="true" />
+
+          {/* Social Channels */}
+          <div className="footer-v3__social" aria-label="Tautan media sosial">
+            <a
+              href="https://github.com/nasjiarr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-v3__icon-btn"
+              aria-label="GitHub @nasjiarr"
+              title="GitHub"
+            >
+              <GithubIcon size={15} />
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/nasywan-jibran-aryadi-7547a8214/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-v3__icon-btn"
+              aria-label="LinkedIn Nasywan"
+              title="LinkedIn"
+            >
+              <LinkedinIcon size={15} />
+            </a>
+
+            <a
+              href={waUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-v3__icon-btn"
+              aria-label="WhatsApp Nasywan"
+              title="WhatsApp"
+            >
+              <WhatsAppIcon size={15} />
+            </a>
+
+            <a
+              href="mailto:nasywanji@gmail.com"
+              className="footer-v3__icon-btn"
+              aria-label="Email Nasywan"
+              title="Email"
+            >
+              <Mail size={15} />
+            </a>
+
+            <a
+              href="/cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-v3__cv-btn"
+              aria-label="Unduh Resume PDF"
+              title="Resume (PDF)"
+            >
+              <FileText size={13} />
+              <span>CV</span>
+              <ExternalLink size={10} className="footer-v3__cv-arrow" />
+            </a>
           </div>
-        </div>
 
-        <div className="footer-v1__bottom">
-          <div className="footer-v1__copyright">
-            <p>
-              &copy; {new Date().getFullYear()} <strong>Nasywan Jibran Aryadi</strong>. All Rights Reserved.
-            </p>
-          </div>
+          <div className="footer-v3__sep" aria-hidden="true" />
 
+          {/* Smooth Scroll-to-Top Button */}
           <button
             type="button"
             onClick={scrollToTop}
-            className="footer-v1__back-top"
+            className="footer-v3__top-btn"
             aria-label="Kembali ke atas"
+            title="Ke atas"
           >
-            <span>Ke atas</span>
-            <ArrowUp size={15} />
+            <ArrowUp size={14} strokeWidth={2.4} />
           </button>
+        </div>
+
+        {/* Minimalist Baseline Copyright & Tag */}
+        <div className="footer-v3__baseline">
+          <p className="footer-v3__copyright">
+            &copy; {new Date().getFullYear()} <strong>Nasywan Jibran Aryadi</strong>
+          </p>
+          <span className="footer-v3__dot" aria-hidden="true">•</span>
+          <span className="footer-v3__location">Kulon Progo, D.I. Yogyakarta</span>
+          <span className="footer-v3__dot" aria-hidden="true">•</span>
+          <span className="footer-v3__rights">All rights reserved</span>
         </div>
       </div>
     </footer>

@@ -21,7 +21,7 @@ export default function App() {
     <ThemeProvider>
       <BrowserRouter>
         <ScrollToTop />
-        <SmoothCursor />
+        <SmoothCursor innerColor="#ffffff" outerColor="#3b82f6" />
         <BloopPreloader />
         <div className="dt-app">
           <Navbar />

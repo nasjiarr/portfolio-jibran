@@ -7,17 +7,6 @@ import FluidTypography from './FluidTypography';
 import TerminalConsole from './TerminalConsole';
 import '../styles/hero.css';
 
-const marqueeItems = [
-  'Web Development',
-  'Laravel & PHP',
-  'MySQL Database',
-  'RESTful API',
-  'Vue.js & Inertia',
-  'Tailwind CSS',
-  'Docker & Git',
-  'Full Stack Development',
-];
-
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
 
@@ -44,8 +33,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <>
-      <section ref={heroRef} id="home" className="hero-main">
+    <section ref={heroRef} id="home" className="hero-main">
         {/* Ambient Aurora Glow & Mesh Gradient Background (Linear & Vercel Aesthetic) */}
         <AmbientGlow />
 
@@ -146,18 +134,5 @@ export default function Hero() {
           </div>
         </div>
       </section>
-
-      {/* Marquee Ticker Section */}
-      <div className="marquee-section" aria-label="Keahlian Utama">
-        <div className="marquee-track">
-          {[...marqueeItems, ...marqueeItems].map((item, idx) => (
-            <div key={idx} className="marquee-item">
-              <span className="marquee-dot">✦</span>
-              <span>{item}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
   );
 }
