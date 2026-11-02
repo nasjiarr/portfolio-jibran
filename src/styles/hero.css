@@ -566,9 +566,10 @@
   transform: translateY(-2px);
 }
 
-/* Reveal Animations */
+/* Reveal Animations - Orchestrated Entrance */
 .hero-main__hidden {
-  opacity: 0;
+  opacity: 0 !important;
+  pointer-events: none;
 }
 
 .hero-main__reveal {
@@ -576,15 +577,64 @@
 }
 
 .hero-main__visible {
-  animation: heroFadeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  pointer-events: auto;
 }
 
-@keyframes heroFadeIn {
-  from {
+/* Staggered entrance: Left Photo Bento Card */
+.hero-main__left.hero-main__visible {
+  animation: heroCardEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered entrance: Right Column Content */
+.hero-main__right.hero-main__visible {
+  animation: heroTextEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes heroCardEntrance {
+  0% {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(32px) scale(0.96);
   }
-  to {
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroTextEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Internal cascading stagger for sub-items */
+.hero-main__right.hero-main__visible .hero-main__eyebrow {
+  animation: heroSubItemFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.hero-main__right.hero-main__visible .hero-main__heading-group {
+  animation: heroSubItemFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+}
+
+.hero-main__right.hero-main__visible .hero-main__bio {
+  animation: heroSubItemFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.30s both;
+}
+
+.hero-main__right.hero-main__visible .hero-main__actions {
+  animation: heroSubItemFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both;
+}
+
+@keyframes heroSubItemFade {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
     opacity: 1;
     transform: translateY(0);
   }

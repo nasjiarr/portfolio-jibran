@@ -17,7 +17,116 @@ export interface Project {
 
 const projects: Project[] = [
   {
-    title: 'Presensio: Sistem Absensi & HR Management',
+    title: 'BATHI POS',
+    category: 'Cross-Platform POS System',
+    description:
+      'Sistem kasir dan manajemen bisnis modern offline-first. Terintegrasi antara aplikasi kasir mobile (Flutter) dengan printer thermal bluetooth dan web dashboard owner (Laravel 13 & React) untuk analitik laba bersih.',
+    image: '/images/projects/bathi-pos/02-dashboard-analitik.png',
+    repoUrl: 'https://github.com/nasjiarr/bathi',
+    tags: [
+      'Laravel 13',
+      'Flutter',
+      'React 18',
+      'Inertia.js',
+      'Tailwind CSS',
+      'MySQL',
+    ],
+    highlights: [
+      'Aplikasi kasir mobile offline-first dengan auto-sync',
+      'Cetak struk Bluetooth thermal (ESC/POS) & struk WhatsApp',
+      'Analitik laba bersih, HPP/COGS, dan rekapan penjualan',
+      'Manajemen shift kasir, kas keluar, dan kasbon pelanggan',
+      'Manajemen denah meja resto & kustomisasi varian menu',
+    ],
+    screenshots: [
+      {
+        url: '/images/projects/bathi-pos/01-login-portal.png',
+        title: 'Portal Login & Akses Cepat Akun',
+        description:
+          'Halaman masuk BATHI POS dengan proteksi kredensial aman, desain clean, dan autentikasi sesi terenkripsi untuk owner toko.',
+        platform: 'web',
+      },
+      {
+        url: '/images/projects/bathi-pos/02-dashboard-analitik.png',
+        title: 'Dashboard Utama & Analitik Profitabilitas',
+        description:
+          'Pusat kendali performa bisnis: monitoring live Laba Bersih, Laba Kotor, HPP (COGS), beban kas operasional, tren finansial harian, serta top 5 produk paling menguntungkan.',
+        platform: 'web',
+      },
+      {
+        url: '/images/projects/bathi-pos/03-katalog-produk.png',
+        title: 'Manajemen Katalog, Stok & Margin HPP',
+        description:
+          'Daftar inventaris produk lengkap dengan pelacakan stok real-time, alert stok menipis, konfigurasi harga jual vs HPP modal, kode barcode/SKU, dan aksi restock instan.',
+        platform: 'web',
+      },
+      {
+        url: '/images/projects/bathi-pos/04-riwayat-transaksi.png',
+        title: 'Riwayat Transaksi & Filter Laporan Omzet',
+        description:
+          'Rekapitulasi seluruh transaksi penjualan kasir: filter periode (Hari ini, 7 hari, bulanan, kustom), metode bayar (Tunai & QRIS), invoice unik, serta ekspor data ke Excel.',
+        platform: 'web',
+      },
+      {
+        url: '/images/projects/bathi-pos/05-kas-keluar-operasional.png',
+        title: 'Pencatatan Kas Keluar Operasional (Petty Cash)',
+        description:
+          'Pencatatan pengeluaran operasional toko dari laci kasir (pembelian bahan baku, operasional darurat) dengan tracking pencatat dan sinkronisasi ke laporan shift.',
+        platform: 'web',
+      },
+      {
+        url: '/images/projects/bathi-pos/mobile-01-login.png',
+        title: 'Portal Login Kasir & Konfigurasi Server',
+        description:
+          'Otentikasi cepat untuk staf kasir dengan konfigurasi IP server backend fleksibel untuk sinkronisasi data transaksi lokal maupun cloud.',
+        platform: 'mobile',
+      },
+      {
+        url: '/images/projects/bathi-pos/mobile-02-pos-katalog.png',
+        title: 'Antarmuka Kasir Mobile & Monitoring Kas Laci',
+        description:
+          'Grid katalog menu interaktif dengan status koneksi printer Bluetooth, indikator meja aktif, filter kategori cepat, dan saldo kas laci shift berjalan.',
+        platform: 'mobile',
+      },
+      {
+        url: '/images/projects/bathi-pos/mobile-03-keranjang.png',
+        title: 'Keranjang Belanja & Opsi Dine-In / Takeaway',
+        description:
+          'Kelola item pesanan pelanggan, pemilihan mode Makan di Tempat (Dine-in) atau Bungkus (Takeaway), diskon, serta fitur tahan pesanan sementara.',
+        platform: 'mobile',
+      },
+      {
+        url: '/images/projects/bathi-pos/mobile-04-pembayaran.png',
+        title: 'Modal Pembayaran Kasir Multimetode',
+        description:
+          'Dukungan pembayaran Tunai cepat dengan pecahan uang instan dan kalkulasi kembalian otomatis, QRIS dinamis, hingga pencatatan kasbon pelanggan.',
+        platform: 'mobile',
+      },
+      {
+        url: '/images/projects/bathi-pos/mobile-05-riwayat.png',
+        title: 'Riwayat Transaksi & Rekap Shift Kasir',
+        description:
+          'Pencatatan riwayat transaksi shift berjalan, filter metode pembayaran (Tunai & QRIS), dan cetak ulang struk via printer thermal bluetooth.',
+        platform: 'mobile',
+      },
+      {
+        url: '/images/projects/bathi-pos/mobile-06-shift-kas.png',
+        title: 'Manajemen Shift & Rekonsiliasi Kas Laci',
+        description:
+          'Monitoring uang tunai laci, pembagian omzet per shift (Tunai & QRIS), cetak rekap shift ke printer thermal, dan tutup shift rekonsiliasi kas.',
+        platform: 'mobile',
+      },
+      {
+        url: '/images/projects/bathi-pos/mobile-07-pengaturan.png',
+        title: 'Pengaturan Hardware Printer & Sinkronisasi Offline',
+        description:
+          'Konfigurasi printer thermal bluetooth (ESC/POS), tes cetak struk, pemantauan status antrean sinkronisasi offline-first, dan setting URL server backend.',
+        platform: 'mobile',
+      },
+    ],
+  },
+  {
+    title: 'Presensio Sistem Absensi',
     category: 'Enterprise Web Application',
     description:
       'Platform presensi terpadu dan manajemen operasional SDM berbasis Next.js 15. Dilengkapi validasi lokasi GPS (geofencing), verifikasi selfie anti-fraud, manajemen shift dinamis, pengajuan cuti, serta kalkulasi payroll otomatis.',
@@ -73,7 +182,7 @@ const projects: Project[] = [
     ],
   },
   {
-    title: 'TEPOKIN: Badminton Court Booking & Management',
+    title: 'TEPOKIN Booking Lapangan',
     category: 'Real-Time Web Application',
     description:
       'Platform reservasi lapangan badminton real-time dengan tema Athletic High-Contrast, proteksi anti-bentrok jadwal, sinkronisasi slot via WebSocket, sistem loyalitas member, dan simulasi pembayaran terintegrasi.',
@@ -127,7 +236,7 @@ const projects: Project[] = [
     ],
   },
   {
-    title: 'Ruaka: Sistem Reservasi Ruangan',
+    title: 'Ruaka (Sistem Reservasi Ruangan)',
     category: 'Fullstack Web Application',
     description:
       'Platform terpadu manajemen dan peminjaman ruang rapat secara real-time. Dilengkapi deteksi bentrok jadwal otomatis, persetujuan manajerial berjenjang, analitik utilisasi fasilitas, dan validasi kehadiran via QR Code.',
@@ -339,6 +448,9 @@ export default function Projects() {
         <div className="projects-v1__list">
           {projects.map((project, idx) => {
             const count = project.screenshots?.length || 1;
+            const mobileCount = project.screenshots?.filter((s) => s.platform === 'mobile').length || 0;
+            const webCount = project.screenshots?.filter((s) => s.platform !== 'mobile').length || count;
+            const hasBothPlatforms = mobileCount > 0 && webCount > 0;
             return (
               <article
                 key={project.title}
@@ -370,7 +482,7 @@ export default function Projects() {
                     {/* Screenshot Count Badge */}
                     <div className="projects-v1__badge-count" aria-hidden="true">
                       <Images size={12} strokeWidth={2.2} />
-                      <span>{count} Foto</span>
+                      <span>{hasBothPlatforms ? `${webCount} Web • ${mobileCount} Mobile` : `${count} Foto`}</span>
                     </div>
 
                     {/* Hover Overlay */}

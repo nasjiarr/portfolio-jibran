@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
+import { usePreloader } from '../context/PreloaderContext';
 import '../styles/bloop-preloader.css';
 
 export interface BloopPreloaderProps {
@@ -46,6 +47,8 @@ export default function BloopPreloader({
   onComplete,
   oncePerSession = false,
 }: BloopPreloaderProps) {
+  const { triggerReady } = usePreloader();
+
   const resolvedBg = backgroundColor !== '#0a0c13' ? backgroundColor : '#0a0c13';
   const resolvedFont = fontColor !== '#f8faff' ? fontColor : '#f8faff';
   const resolvedAccent = accentColor !== '#3b82f6' ? accentColor : '#3b82f6';
@@ -70,10 +73,18 @@ export default function BloopPreloader({
     onCompleteRef.current = onComplete;
   }, [onComplete]);
 
+  // If already done (e.g., from sessionStorage), trigger ready immediately
+  useEffect(() => {
+    if (stage === 'done') {
+      triggerReady();
+    }
+  }, [stage, triggerReady]);
+
   const dismiss = useCallback(() => {
     if (isDismissedRef.current) return;
     isDismissedRef.current = true;
     setStage('done');
+    triggerReady();
     document.body.style.overflow = '';
     if (oncePerSession) {
       try {
@@ -83,7 +94,7 @@ export default function BloopPreloader({
       }
     }
     onCompleteRef.current?.();
-  }, [oncePerSession]);
+  }, [oncePerSession, triggerReady]);
 
   useEffect(() => {
     if (isDismissedRef.current) return;
@@ -121,10 +132,11 @@ export default function BloopPreloader({
       setStage('figureComplete');
     }, 1450);
 
-    // Step 5: Transparent (unveil website)
+    // Step 5: Transparent (unveil website & trigger orchestrated entrance!)
     schedule(() => {
       setStage('transparent');
-    }, 1950);
+      triggerReady();
+    }, 1900);
 
     // Step 6: Final unmount
     schedule(() => {
@@ -150,7 +162,7 @@ export default function BloopPreloader({
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = prevOverflow;
     };
-  }, [dismiss]);
+  }, [dismiss, triggerReady]);
 
   if (stage === 'done') {
     return null;

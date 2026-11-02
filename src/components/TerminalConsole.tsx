@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Terminal, Copy, Check } from 'lucide-react';
+import { usePreloader } from '../context/PreloaderContext';
 import '../styles/terminal-console.css';
 
 interface TerminalCommand {
@@ -41,15 +42,30 @@ export interface TerminalConsoleProps {
 }
 
 export default function TerminalConsole({ className = '' }: TerminalConsoleProps) {
+  const { isReady } = usePreloader();
+  const [hasStarted, setHasStarted] = useState(false);
   const [commandIndex, setCommandIndex] = useState(0);
   const [typedText, setTypedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [showOutput, setShowOutput] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  // Synchronized boot-up: wait until preloader unveils and hero settles into place
+  useEffect(() => {
+    if (!isReady) return;
+
+    const startTimer = window.setTimeout(() => {
+      setHasStarted(true);
+    }, 450);
+
+    return () => clearTimeout(startTimer);
+  }, [isReady]);
+
   const currentCmd = commands[commandIndex];
 
   useEffect(() => {
+    if (!hasStarted) return;
+
     let timer: number;
 
     if (!isDeleting) {
@@ -89,7 +105,7 @@ export default function TerminalConsole({ className = '' }: TerminalConsoleProps
     }
 
     return () => clearTimeout(timer);
-  }, [typedText, isDeleting, commandIndex, currentCmd]);
+  }, [hasStarted, typedText, isDeleting, commandIndex, currentCmd]);
 
   const handleCopy = () => {
     const textToCopy = `${currentCmd.fullCommand}\n${currentCmd.output}`;

@@ -138,7 +138,7 @@
 
 .dt-lightbox__project-text {
   display: inline-block;
-  max-width: 320px;
+  max-width: 280px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -161,6 +161,67 @@
   padding: 4px 10px;
   border-radius: 999px;
   flex-shrink: 0;
+}
+
+/* Platform Switcher Tabs (Option 1: Web Dashboard vs Mobile Kasir) */
+.dt-lightbox__platform-tabs {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 3px;
+  border-radius: 999px;
+  gap: 3px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.dt-lightbox__platform-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.dt-lightbox__platform-tab:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.dt-lightbox__platform-tab.is-active {
+  background: var(--dt-primary);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 12px var(--dt-primary-glow);
+}
+
+.dt-lightbox__platform-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: inherit;
+  min-width: 14px;
+}
+
+.dt-lightbox__platform-tab.is-active .dt-lightbox__platform-count {
+  background: rgba(0, 0, 0, 0.25);
+  color: #ffffff;
 }
 
 .dt-lightbox__header-actions {
@@ -220,7 +281,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 0;
+  padding: 6px 0;
   min-height: 0;
   touch-action: pan-y;
   user-select: none;
@@ -327,6 +388,7 @@
   right: 6px;
 }
 
+/* Image Frames: Standard Web vs Clean Mobile Phone Mockup */
 .dt-lightbox__image-frame {
   max-width: 100%;
   max-height: 100%;
@@ -340,6 +402,28 @@
   will-change: transform;
 }
 
+/* Clean Phone Mockup Frame (Option 1: Preserving Notifications & Bottom Navigation) */
+.dt-lightbox__image-frame--mobile {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: min(340px, 78vw);
+  max-height: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  background: #040711;
+  box-shadow:
+    0 20px 50px -10px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 28px var(--dt-primary-glow);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 1;
+}
+
 .dt-lightbox__img {
   max-width: 100%;
   max-height: calc(85vh - 180px);
@@ -351,6 +435,17 @@
   user-select: none;
   -webkit-user-drag: none;
   animation: dtImgZoom 0.25s ease forwards;
+}
+
+/* Mobile Image Fits Entire Viewport without Squeezing or Cropping Status/Nav Bar */
+.dt-lightbox__image-frame--mobile .dt-lightbox__img {
+  max-height: calc(85vh - 200px);
+  max-height: calc(85dvh - 200px);
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+  display: block;
 }
 
 @keyframes dtImgZoom {
@@ -491,6 +586,13 @@
   flex-shrink: 0;
 }
 
+/* Portrait aspect ratio for mobile thumbnails */
+.dt-lightbox__thumb-btn--mobile {
+  width: 30px;
+  height: 46px;
+  border-radius: 6px;
+}
+
 .dt-lightbox__thumb-btn img {
   width: 100%;
   height: 100%;
@@ -536,7 +638,7 @@
   color: #cbd5e1;
 }
 
-/* Tablet & Mobile Responsive (Story Tap Mode) */
+/* Tablet & Mobile Responsive */
 @media (max-width: 768px) {
   .dt-lightbox__container {
     padding: 10px 12px 14px;
@@ -552,6 +654,7 @@
   .dt-lightbox__header {
     padding-bottom: 8px;
     gap: 8px;
+    flex-wrap: wrap;
   }
 
   .dt-lightbox__title-meta {
@@ -566,12 +669,29 @@
   }
 
   .dt-lightbox__project-text {
-    max-width: 140px;
+    max-width: 130px;
   }
 
   .dt-lightbox__counter {
     font-size: 0.72rem;
     padding: 3px 8px;
+  }
+
+  /* Segmented tabs on mobile take clean full-width pill bar below title/actions */
+  .dt-lightbox__platform-tabs {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-top: 2px;
+    padding: 2px;
+  }
+
+  .dt-lightbox__platform-tab {
+    flex: 1;
+    justify-content: center;
+    padding: 6px 10px;
+    font-size: 0.74rem;
+    gap: 5px;
   }
 
   .dt-lightbox__info-toggle,
@@ -587,8 +707,9 @@
   }
 
   .dt-lightbox__viewport {
-    padding: 4px 0 10px;
+    padding: 4px 0 8px;
     flex: 1;
+    min-height: 0;
     position: relative;
   }
 
@@ -598,6 +719,16 @@
     height: 100%;
   }
 
+  .dt-lightbox__image-frame--mobile {
+    width: auto;
+    height: auto;
+    max-width: min(300px, 80vw);
+    max-height: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.22);
+    border-radius: 14px;
+    padding: 0;
+  }
+
   /* Maximize screenshot viewport in Story Mode */
   .dt-lightbox__img {
     max-height: calc(100dvh - 170px);
@@ -605,11 +736,18 @@
     object-fit: contain;
   }
 
+  .dt-lightbox__image-frame--mobile .dt-lightbox__img {
+    max-height: calc(100dvh - 180px);
+    border-radius: 12px;
+    width: auto;
+    height: auto;
+  }
+
   /* Story Hint on Mobile */
   .dt-lightbox__story-hint {
     display: inline-flex;
     position: absolute;
-    top: 10px;
+    top: 8px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 0.68rem;
@@ -630,8 +768,9 @@
   /* Floating Caption Capsule */
   .dt-lightbox__caption-capsule {
     margin: 4px 0 0;
-    padding: 9px 12px;
+    padding: 8px 12px;
     border-radius: 12px;
+    flex-shrink: 0;
   }
 
   .dt-lightbox__capsule-title {
@@ -662,14 +801,22 @@
   }
 
   .dt-lightbox__project-text {
-    max-width: 125px;
+    max-width: 120px;
   }
 
   .dt-lightbox__img {
     max-height: calc(100dvh - 160px);
   }
 
+  .dt-lightbox__image-frame--mobile {
+    max-width: min(280px, 82vw);
+  }
+
+  .dt-lightbox__image-frame--mobile .dt-lightbox__img {
+    max-height: calc(100dvh - 170px);
+  }
+
   .dt-lightbox__caption-capsule {
-    padding: 8px 10px;
+    padding: 7px 10px;
   }
 }

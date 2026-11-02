@@ -1,11 +1,23 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
-import { X, ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Images, Sparkles, Info } from 'lucide-react';
+import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  ChevronDown,
+  Images,
+  Sparkles,
+  Info,
+  Monitor,
+  Smartphone,
+} from 'lucide-react';
 import '../styles/lightbox.css';
 
 export interface ProjectScreenshot {
   url: string;
   title: string;
   description?: string;
+  platform?: 'web' | 'mobile';
 }
 
 interface ProjectLightboxProps {
@@ -23,6 +35,7 @@ export default function ProjectLightbox({
   screenshots,
   initialIndex = 0,
 }: ProjectLightboxProps) {
+  const [activePlatform, setActivePlatform] = useState<'web' | 'mobile'>('web');
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [swipeOffset, setSwipeOffset] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
@@ -35,16 +48,45 @@ export default function ProjectLightbox({
   const hasMoved = useRef<boolean>(false);
   const feedbackTimeout = useRef<number | null>(null);
 
-  // Sync initialIndex when lightbox opens
+  const webScreenshots = useMemo(
+    () => screenshots.filter((s) => s.platform !== 'mobile'),
+    [screenshots]
+  );
+  const mobileScreenshots = useMemo(
+    () => screenshots.filter((s) => s.platform === 'mobile'),
+    [screenshots]
+  );
+  const hasFilter = webScreenshots.length > 0 && mobileScreenshots.length > 0;
+
+  // Active items based on selected tab (or full list if no filter)
+  const activeList = hasFilter
+    ? activePlatform === 'mobile'
+      ? mobileScreenshots
+      : webScreenshots
+    : screenshots;
+
+  // Sync initialIndex & platform when lightbox opens
   useEffect(() => {
-    if (isOpen) {
-      setCurrentIndex(initialIndex);
+    if (isOpen && screenshots.length > 0) {
+      const targetItem = screenshots[initialIndex] || screenshots[0];
+      const targetPlatform = targetItem?.platform === 'mobile' ? 'mobile' : 'web';
+      setActivePlatform(targetPlatform);
+
+      const targetList =
+        webScreenshots.length > 0 && mobileScreenshots.length > 0
+          ? targetPlatform === 'mobile'
+            ? mobileScreenshots
+            : webScreenshots
+          : screenshots;
+
+      const newIndex = targetList.findIndex((s) => s.url === targetItem?.url);
+      setCurrentIndex(newIndex >= 0 ? newIndex : 0);
       setSwipeOffset(0);
       setIsSwiping(false);
       setIsCaptionOpen(false);
       setTapFeedback(null);
     }
-  }, [isOpen, initialIndex]);
+  }, [isOpen, initialIndex, screenshots, webScreenshots, mobileScreenshots]);
 
   // Lock body scroll when open
   useEffect(() => {
@@ -58,6 +100,14 @@ export default function ProjectLightbox({
     };
   }, [isOpen]);
 
+  const switchPlatform = (platform: 'web' | 'mobile') => {
+    if (activePlatform === platform) return;
+    setActivePlatform(platform);
+    setCurrentIndex(0);
+    setSwipeOffset(0);
+    setIsCaptionOpen(false);
+  };
+
   const triggerFeedback = useCallback((dir: 'prev' | 'next') => {
     if (feedbackTimeout.current) clearTimeout(feedbackTimeout.current);
     setTapFeedback(dir);
@@ -67,18 +117,18 @@ export default function ProjectLightbox({
   }, []);
 
   const handlePrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : screenshots.length - 1));
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : activeList.length - 1));
     triggerFeedback('prev');
-  }, [screenshots.length, triggerFeedback]);
+  }, [activeList.length, triggerFeedback]);
 
   const handleNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev < screenshots.length - 1 ? prev + 1 : 0));
+    setCurrentIndex((prev) => (prev < activeList.length - 1 ? prev + 1 : 0));
     triggerFeedback('next');
-  }, [screenshots.length, triggerFeedback]);
+  }, [activeList.length, triggerFeedback]);
 
   // Touch swipe & tap handlers
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (screenshots.length <= 1) return;
+    if (activeList.length <= 1) return;
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
     touchStartTime.current = Date.now();
@@ -99,7 +149,6 @@ export default function ProjectLightbox({
 
     // Detect intentional horizontal swipe vs vertical scroll
     if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 8) {
-      // Dampen swipe drag for natural tactile rubber-band feel
       setSwipeOffset(deltaX * 0.45);
     }
   };
@@ -109,7 +158,7 @@ export default function ProjectLightbox({
     const startX = touchStartX.current;
 
     // Detect quick tap (Story Tap Mode) when user didn't drag
-    if (!hasMoved.current && elapsed < 320 && startX !== null && screenshots.length > 1) {
+    if (!hasMoved.current && elapsed < 320 && startX !== null && activeList.length > 1) {
       const screenWidth = window.innerWidth;
       if (startX < screenWidth * 0.35) {
         handlePrev();
@@ -150,10 +199,11 @@ export default function ProjectLightbox({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose, handlePrev, handleNext]);
 
-  if (!isOpen || !screenshots.length) return null;
+  if (!isOpen || !screenshots.length || !activeList.length) return null;
 
-  const currentItem = screenshots[currentIndex] || screenshots[0];
-  const hasMultiple = screenshots.length > 1;
+  const currentItem = activeList[currentIndex] || activeList[0];
+  const hasMultiple = activeList.length > 1;
+  const isMobileScreenshot = currentItem?.platform === 'mobile';
 
   return (
     <div
@@ -170,7 +220,7 @@ export default function ProjectLightbox({
         {/* Top Story Progress Bars (Instagram / Reels Style) */}
         {hasMultiple && (
           <div className="dt-lightbox__story-bars" aria-label="Progress slide cerita">
-            {screenshots.map((s, idx) => (
+            {activeList.map((s, idx) => (
               <button
                 key={`story-bar-${s.url}-${idx}`}
                 type="button"
@@ -202,9 +252,51 @@ export default function ProjectLightbox({
             </span>
             <span className="dt-lightbox__counter">
               <Images size={14} />
-              <span>{currentIndex + 1} / {screenshots.length}</span>
+              <span>
+                {currentIndex + 1} / {activeList.length}
+              </span>
             </span>
           </div>
+
+          {/* Platform Filter Tabs (Web Dashboard vs Mobile Kasir) */}
+          {hasFilter && (
+            <div
+              className="dt-lightbox__platform-tabs"
+              role="tablist"
+              aria-label="Pilih platform tampilan"
+            >
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activePlatform === 'web'}
+                className={`dt-lightbox__platform-tab ${
+                  activePlatform === 'web' ? 'is-active' : ''
+                }`}
+                onClick={() => switchPlatform('web')}
+              >
+                <Monitor size={14} strokeWidth={2.2} />
+                <span>Web Dashboard</span>
+                <span className="dt-lightbox__platform-count">
+                  {webScreenshots.length}
+                </span>
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activePlatform === 'mobile'}
+                className={`dt-lightbox__platform-tab ${
+                  activePlatform === 'mobile' ? 'is-active' : ''
+                }`}
+                onClick={() => switchPlatform('mobile')}
+              >
+                <Smartphone size={14} strokeWidth={2.2} />
+                <span>Mobile Kasir</span>
+                <span className="dt-lightbox__platform-count">
+                  {mobileScreenshots.length}
+                </span>
+              </button>
+            </div>
+          )}
 
           <div className="dt-lightbox__header-actions">
             {currentItem.description && (
@@ -259,12 +351,18 @@ export default function ProjectLightbox({
 
           {/* Tap Feedback Flash */}
           {tapFeedback === 'prev' && (
-            <div className="dt-lightbox__tap-indicator dt-lightbox__tap-indicator--left" aria-hidden="true">
+            <div
+              className="dt-lightbox__tap-indicator dt-lightbox__tap-indicator--left"
+              aria-hidden="true"
+            >
               <ChevronLeft size={36} strokeWidth={2.6} />
             </div>
           )}
           {tapFeedback === 'next' && (
-            <div className="dt-lightbox__tap-indicator dt-lightbox__tap-indicator--right" aria-hidden="true">
+            <div
+              className="dt-lightbox__tap-indicator dt-lightbox__tap-indicator--right"
+              aria-hidden="true"
+            >
               <ChevronRight size={36} strokeWidth={2.6} />
             </div>
           )}
@@ -282,9 +380,11 @@ export default function ProjectLightbox({
             </button>
           )}
 
-          {/* Centered Image Frame */}
+          {/* Centered Image Frame (with Clean Phone Mockup wrapper when viewing Mobile) */}
           <div
-            className="dt-lightbox__image-frame"
+            className={`dt-lightbox__image-frame ${
+              isMobileScreenshot ? 'dt-lightbox__image-frame--mobile' : ''
+            }`}
             style={{
               transform: `translateX(${swipeOffset}px)`,
               transition: isSwiping ? 'none' : 'transform 0.24s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -359,11 +459,13 @@ export default function ProjectLightbox({
         {hasMultiple && (
           <div className="dt-lightbox__desktop-strip">
             <div className="dt-lightbox__thumbnails">
-              {screenshots.map((s, idx) => (
+              {activeList.map((s, idx) => (
                 <button
                   key={s.url + idx}
                   type="button"
-                  className={`dt-lightbox__thumb-btn ${idx === currentIndex ? 'is-active' : ''}`}
+                  className={`dt-lightbox__thumb-btn ${
+                    idx === currentIndex ? 'is-active' : ''
+                  } ${s.platform === 'mobile' ? 'dt-lightbox__thumb-btn--mobile' : ''}`}
                   onClick={() => setCurrentIndex(idx)}
                   aria-label={`Lihat gambar ke-${idx + 1}: ${s.title}`}
                 >
@@ -374,7 +476,9 @@ export default function ProjectLightbox({
             </div>
 
             <div className="dt-lightbox__shortcut-hint">
-              <span>Tekan <kbd>←</kbd> <kbd>→</kbd> untuk beralih • <kbd>Esc</kbd> untuk keluar</span>
+              <span>
+                Tekan <kbd>←</kbd> <kbd>→</kbd> untuk beralih • <kbd>Esc</kbd> untuk keluar
+              </span>
             </div>
           </div>
         )}
