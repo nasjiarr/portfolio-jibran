@@ -134,6 +134,11 @@ export default function FluidTypography({
 
   const handlePointerMove = useCallback(
     (clientX: number, clientY: number) => {
+      // Don't trigger on touch-only / coarse pointer devices to keep native scrolling smooth at 60fps
+      if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+        return;
+      }
+
       isHoveredRef.current = true;
       const chars = charsRef.current;
       const states = statesRef.current;
@@ -171,16 +176,17 @@ export default function FluidTypography({
   );
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    // Only process on fine pointer devices (mouse/trackpad)
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+      return;
+    }
     handlePointerMove(e.clientX, e.clientY);
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (e.touches[0]) {
-      handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
-    }
-  };
-
   const handlePointerLeave = () => {
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+      return;
+    }
     isHoveredRef.current = false;
     statesRef.current.forEach((st) => {
       st.targetY = 0;
@@ -212,8 +218,6 @@ export default function FluidTypography({
       aria-label={text}
       onMouseMove={handleMouseMove}
       onMouseLeave={handlePointerLeave}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handlePointerLeave}
     >
       {wordElements}
     </Tag>

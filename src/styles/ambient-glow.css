@@ -169,3 +169,34 @@
     transform: translate(45px, 25px) scale(0.92);
   }
 }
+
+
+/* Performance Optimizations for Mobile Screens */
+@media (max-width: 768px), (pointer: coarse) and (max-width: 1024px) {
+  .ambient-glow-orb {
+    filter: blur(36px);
+    will-change: auto;
+    animation: none !important;
+  }
+
+  .ambient-glow-orb--cyan {
+    opacity: 0.55;
+    transform: none;
+  }
+
+  .ambient-glow-orb--indigo {
+    opacity: 0.5;
+    transform: none;
+  }
+
+  .ambient-glow-orb--teal {
+    opacity: 0.45;
+    transform: none;
+  }
+
+  .ambient-glow-spotlight {
+    filter: blur(32px);
+    height: 380px;
+    opacity: 0.7;
+  }
+}

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, User } from 'lucide-react';
 import { usePreloader } from '../context/PreloaderContext';
 import AmbientGlow from './AmbientGlow';
 import FloatingParticlesBackground from './FloatingParticlesBackground';
@@ -116,12 +116,13 @@ export default function Hero() {
             </div>
 
             <div className="hero-main__actions">
+              <Link to="/about" className="hero-main__btn hero-main__btn--secondary">
+                <User size={16} strokeWidth={2.2} />
+                <span>Tentang Saya</span>
+              </Link>
               <Link to="/projects" className="hero-main__btn hero-main__btn--primary">
                 <span>Jelajahi Proyek</span>
                 <ArrowRight size={16} strokeWidth={2.2} />
-              </Link>
-              <Link to="/contact" className="hero-main__btn hero-main__btn--secondary">
-                <span>Hubungi Saya</span>
               </Link>
             </div>
           </div>

@@ -867,3 +867,32 @@
     font-size: 0.78rem;
   }
 }
+
+
+/* Performance Optimizations for Touch & Mobile Viewports */
+@media (max-width: 768px), (pointer: coarse) and (max-width: 1024px) {
+  .fluid-typography-root {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .fluid-char {
+    will-change: auto;
+  }
+
+  .hero-main__title-portfolio .fluid-char {
+    filter: none !important;
+  }
+
+  .hero-main__name .fluid-char {
+    animation: none !important;
+    background-size: 100% auto;
+    filter: none !important;
+  }
+
+  .hero-main__star {
+    animation: none !important;
+    opacity: 0.65;
+  }
+}

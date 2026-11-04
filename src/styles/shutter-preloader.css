@@ -1,0 +1,241 @@
+/* ==========================================================================
+   Minimalist Dual-Shutter Reveal Preloader (Option 2)
+   Linear / Apple / Vercel Aesthetic
+   ========================================================================== */
+
+.shutter-preloader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999999;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Dual Shutter Curtain Panels */
+.shutter-preloader__curtain {
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  height: 50.5vh; /* 0.5vh overlap to avoid subpixel hairline gaps */
+  background: #090b12;
+  transition: transform 0.65s cubic-bezier(0.85, 0, 0.15, 1);
+  will-change: transform;
+}
+
+.shutter-preloader__curtain--top {
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.18);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  transform: translateY(0);
+}
+
+.shutter-preloader__curtain--bottom {
+  bottom: 0;
+  z-index: 10;
+  border-top: 1px solid rgba(59, 130, 246, 0.18);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.7);
+  transform: translateY(0);
+}
+
+/* Exiting state: Shutters split open vertically */
+.shutter-preloader.is-exiting .shutter-preloader__curtain--top {
+  transform: translateY(-100%);
+}
+
+.shutter-preloader.is-exiting .shutter-preloader__curtain--bottom {
+  transform: translateY(100%);
+}
+
+/* Centered Brand Content Stage */
+.shutter-preloader__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.shutter-preloader__center.is-visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.shutter-preloader__center.is-fading {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.94);
+}
+
+/* Monogram Badge */
+.shutter-preloader__monogram {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #131826 0%, #0d111a 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.8),
+              0 0 20px -4px rgba(59, 130, 246, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.shutter-preloader__monogram span {
+  font-family: var(--font-heading, 'Plus Jakarta Sans', system-ui, sans-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #f8faff 0%, #60a5fa 60%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Monogram Status Dot */
+.shutter-preloader__monogram-dot {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  border: 2px solid #090b12;
+  box-shadow: 0 0 8px #3b82f6;
+}
+
+/* Brand Name Heading */
+.shutter-preloader__title {
+  margin: 0;
+  font-family: var(--font-heading, 'Plus Jakarta Sans', system-ui, sans-serif);
+  font-size: clamp(1.3rem, 3.6vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f8faff;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.shutter-preloader__title span {
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle Pill / Eyebrow */
+.shutter-preloader__sub {
+  margin: 10px 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.shutter-preloader__sub-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+/* Minimal Laser Progress Line */
+.shutter-preloader__track {
+  margin-top: 22px;
+  width: 140px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.shutter-preloader__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #2563eb, #3b82f6, #93c5fd);
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+  transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Skip / Tap hint */
+.shutter-preloader__hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: #475569;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.shutter-preloader__center.is-visible ~ .shutter-preloader__hint {
+  opacity: 1;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 600px) {
+  .shutter-preloader__monogram {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  .shutter-preloader__monogram span {
+    font-size: 1rem;
+  }
+
+  .shutter-preloader__title {
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+  }
+
+  .shutter-preloader__sub {
+    font-size: 0.7rem;
+    margin-top: 8px;
+  }
+
+  .shutter-preloader__track {
+    width: 110px;
+    margin-top: 18px;
+  }
+
+  .shutter-preloader__hint {
+    bottom: 20px;
+    font-size: 0.62rem;
+  }
+}
+

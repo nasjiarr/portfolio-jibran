@@ -1,0 +1,305 @@
+/* ==========================================================================
+   Terminal Dev Bootup Preloader Styles (Option 1)
+   ========================================================================== */
+
+.terminal-preloader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #080a10;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1),
+              opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform, opacity;
+}
+
+/* Exit wipe animation */
+.terminal-preloader.is-exiting {
+  transform: translateY(-100%);
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+.terminal-preloader.is-done {
+  display: none !important;
+}
+
+/* Ambient Center Radial Glow (Very light CSS radial, 0 heavy blur filters) */
+.terminal-preloader__ambient {
+  position: absolute;
+  width: min(650px, 90vw);
+  height: min(450px, 70vw);
+  background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.12) 0%, rgba(15, 23, 42, 0.05) 55%, transparent 75%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Terminal Window Container */
+.terminal-preloader__window {
+  position: relative;
+  z-index: 2;
+  width: min(540px, calc(100vw - 32px));
+  background: #0f131f;
+  border: 1px solid #1e2638;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.85),
+              0 0 35px -8px rgba(59, 130, 246, 0.18);
+  overflow: hidden;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease;
+  will-change: transform, opacity;
+}
+
+.terminal-preloader.is-exiting .terminal-preloader__window {
+  transform: scale(0.96) translateY(20px);
+  opacity: 0.6;
+}
+
+/* Header Bar */
+.terminal-preloader__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #141a29;
+  border-bottom: 1px solid #1e2638;
+}
+
+.terminal-preloader__controls {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.terminal-preloader__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.terminal-preloader__dot--close { background-color: #ff5f56; }
+.terminal-preloader__dot--min { background-color: #ffbd2e; }
+.terminal-preloader__dot--max { background-color: #27c93f; }
+
+.terminal-preloader__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #75829e;
+  letter-spacing: -0.01em;
+}
+
+.terminal-preloader__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+.terminal-preloader__status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  box-shadow: 0 0 6px #3b82f6;
+  animation: terminalBootPulse 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes terminalBootPulse {
+  0% { opacity: 0.3; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Terminal Body Area */
+.terminal-preloader__body {
+  padding: 16px 18px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+/* Individual Log Lines */
+.terminal-preloader__line {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(4px);
+  animation: terminalLineSlideIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  word-break: break-word;
+}
+
+@keyframes terminalLineSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.terminal-preloader__prompt {
+  color: #3b82f6;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.terminal-preloader__cmd {
+  color: #f8faff;
+  font-weight: 600;
+}
+
+.terminal-preloader__badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.terminal-preloader__badge--info {
+  background: rgba(59, 130, 246, 0.18);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.terminal-preloader__badge--ok {
+  background: rgba(16, 185, 129, 0.18);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.terminal-preloader__text {
+  color: #94a3b8;
+}
+
+.terminal-preloader__text strong {
+  color: #f1f5f9;
+  font-weight: 600;
+}
+
+/* Progress Bar Line */
+.terminal-preloader__progress-line {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.terminal-preloader__progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.terminal-preloader__progress-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.terminal-preloader__progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+  transition: width 0.35s ease-out;
+}
+
+/* Terminal Cursor */
+.terminal-preloader__cursor {
+  display: inline-block;
+  width: 7px;
+  height: 1.15em;
+  background-color: #3b82f6;
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: terminalCursorBlink 0.8s infinite;
+  border-radius: 1px;
+}
+
+@keyframes terminalCursorBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Hint / Skip trigger at bottom */
+.terminal-preloader__hint {
+  margin-top: 18px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #475569;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+  z-index: 2;
+}
+
+.terminal-preloader:hover .terminal-preloader__hint {
+  color: #94a3b8;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .terminal-preloader__window {
+    width: calc(100vw - 28px);
+    border-radius: 10px;
+  }
+
+  .terminal-preloader__header {
+    padding: 8px 12px;
+  }
+
+  .terminal-preloader__title {
+    font-size: 0.68rem;
+  }
+
+  .terminal-preloader__status {
+    font-size: 0.62rem;
+    padding: 1px 6px;
+  }
+
+  .terminal-preloader__body {
+    padding: 12px 14px;
+    font-size: 0.76rem;
+    min-height: 135px;
+    gap: 7px;
+  }
+
+  .terminal-preloader__badge {
+    font-size: 0.68rem;
+  }
+
+  .terminal-preloader__hint {
+    margin-top: 14px;
+    font-size: 0.66rem;
+  }
+}
+

@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import WhatsAppButton from './components/WhatsAppButton';
 import SmoothCursor from './components/SmoothCursor';
-import BloopPreloader from './components/BloopPreloader';
+import ShutterPreloader from './components/ShutterPreloader';
 
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -24,7 +24,7 @@ export default function App() {
         <BrowserRouter>
           <ScrollToTop />
           <SmoothCursor innerColor="#ffffff" outerColor="#3b82f6" />
-          <BloopPreloader />
+          <ShutterPreloader />
           <div className="dt-app">
             <Navbar />
             <main>

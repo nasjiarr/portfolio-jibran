@@ -35,6 +35,7 @@ interface Particle {
  * FloatingParticlesBackground
  * Inspired by Framer module FloatingParticlesBackground
  * Floating dust / stardust particles background with mouse gravity, glow dynamics, and interaction
+ * Optimized with high-efficiency rendering on mobile touch devices.
  */
 export default function FloatingParticlesBackground({
   particleCount = 55,
@@ -58,6 +59,8 @@ export default function FloatingParticlesBackground({
   const mouseRef = useRef<{ x: number; y: number }>({ x: -9999, y: -9999 });
   const particlesRef = useRef<Particle[]>([]);
   const isDarkRef = useRef(true);
+  const isMobileRef = useRef(false);
+  const isVisibleRef = useRef(true);
   const [canvasSize, setCanvasSize] = useState({ width: 800, height: 600 });
   const [resolvedColor, setResolvedColor] = useState('#3b82f6');
 
@@ -88,8 +91,15 @@ export default function FloatingParticlesBackground({
 
   const initializeParticles = useCallback(
     (width: number, height: number) => {
-      // Scale count slightly down on narrow screens for silky 60fps performance
-      const effectiveCount = width < 600 ? Math.min(particleCount, 28) : particleCount;
+      const isMobile =
+        width < 768 ||
+        (typeof window !== 'undefined' &&
+          window.matchMedia &&
+          window.matchMedia('(pointer: coarse)').matches);
+      isMobileRef.current = isMobile;
+
+      // Scale count down significantly on narrow/touch screens for silky 60fps performance
+      const effectiveCount = isMobile ? Math.min(particleCount, 16) : particleCount;
 
       return Array.from({ length: effectiveCount }, (_, index) => ({
         x: Math.random() * width,
@@ -119,68 +129,71 @@ export default function FloatingParticlesBackground({
     (canvas: HTMLCanvasElement) => {
       const rect = canvas.getBoundingClientRect();
       const mouse = mouseRef.current;
+      const isMobile = isMobileRef.current;
 
       particlesRef.current.forEach((particle, index) => {
-        // Distance to mouse
-        const dx = mouse.x - particle.x;
-        const dy = mouse.y - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+        // Distance to mouse (only on desktop/fine pointers)
+        if (!isMobile) {
+          const dx = mouse.x - particle.x;
+          const dy = mouse.y - particle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Mouse influence and gravity
-        if (distance < mouseInfluence && distance > 0) {
-          const force = (mouseInfluence - distance) / mouseInfluence;
-          const normalizedDx = dx / distance;
-          const normalizedDy = dy / distance;
-          const gravityForce = force * (gravityStrength * 0.001);
+          // Mouse influence and gravity
+          if (distance < mouseInfluence && distance > 0) {
+            const force = (mouseInfluence - distance) / mouseInfluence;
+            const normalizedDx = dx / distance;
+            const normalizedDy = dy / distance;
+            const gravityForce = force * (gravityStrength * 0.001);
 
-          if (mouseGravity === 'attract') {
-            particle.vx += normalizedDx * gravityForce;
-            particle.vy += normalizedDy * gravityForce;
-          } else if (mouseGravity === 'repel') {
-            particle.vx -= normalizedDx * gravityForce;
-            particle.vy -= normalizedDy * gravityForce;
-          }
+            if (mouseGravity === 'attract') {
+              particle.vx += normalizedDx * gravityForce;
+              particle.vy += normalizedDy * gravityForce;
+            } else if (mouseGravity === 'repel') {
+              particle.vx -= normalizedDx * gravityForce;
+              particle.vy -= normalizedDy * gravityForce;
+            }
 
-          particle.opacity = Math.min(1, particle.baseOpacity + force * 0.4);
+            particle.opacity = Math.min(1, particle.baseOpacity + force * 0.4);
 
-          // Glow animation
-          const targetGlow = 1 + force * 2.2;
-          const currentGlow = particle.glowMultiplier || 1;
+            // Glow animation
+            const targetGlow = 1 + force * 2.2;
+            const currentGlow = particle.glowMultiplier || 1;
 
-          if (glowAnimation === 'instant') {
-            particle.glowMultiplier = targetGlow;
-          } else if (glowAnimation === 'ease') {
-            const easeSpeed = 0.15;
-            particle.glowMultiplier = currentGlow + (targetGlow - currentGlow) * easeSpeed;
-          } else if (glowAnimation === 'spring') {
-            const springForce = (targetGlow - currentGlow) * 0.2;
-            const damping = 0.85;
-            particle.glowVelocity = (particle.glowVelocity || 0) * damping + springForce;
-            particle.glowMultiplier = currentGlow + particle.glowVelocity;
-          }
-        } else {
-          const minOpacity = isDarkRef.current
-            ? particle.baseOpacity * 0.35
-            : Math.max(0.62, particle.baseOpacity * 0.9);
-          particle.opacity = Math.max(minOpacity, particle.opacity - 0.02);
-          const targetGlow = 1;
-          const currentGlow = particle.glowMultiplier || 1;
+            if (glowAnimation === 'instant') {
+              particle.glowMultiplier = targetGlow;
+            } else if (glowAnimation === 'ease') {
+              const easeSpeed = 0.15;
+              particle.glowMultiplier = currentGlow + (targetGlow - currentGlow) * easeSpeed;
+            } else if (glowAnimation === 'spring') {
+              const springForce = (targetGlow - currentGlow) * 0.2;
+              const damping = 0.85;
+              particle.glowVelocity = (particle.glowVelocity || 0) * damping + springForce;
+              particle.glowMultiplier = currentGlow + particle.glowVelocity;
+            }
+          } else {
+            const minOpacity = isDarkRef.current
+              ? particle.baseOpacity * 0.35
+              : Math.max(0.62, particle.baseOpacity * 0.9);
+            particle.opacity = Math.max(minOpacity, particle.opacity - 0.02);
+            const targetGlow = 1;
+            const currentGlow = particle.glowMultiplier || 1;
 
-          if (glowAnimation === 'instant') {
-            particle.glowMultiplier = targetGlow;
-          } else if (glowAnimation === 'ease') {
-            const easeSpeed = 0.08;
-            particle.glowMultiplier = Math.max(1, currentGlow + (targetGlow - currentGlow) * easeSpeed);
-          } else if (glowAnimation === 'spring') {
-            const springForce = (targetGlow - currentGlow) * 0.15;
-            const damping = 0.9;
-            particle.glowVelocity = (particle.glowVelocity || 0) * damping + springForce;
-            particle.glowMultiplier = Math.max(1, currentGlow + particle.glowVelocity);
+            if (glowAnimation === 'instant') {
+              particle.glowMultiplier = targetGlow;
+            } else if (glowAnimation === 'ease') {
+              const easeSpeed = 0.08;
+              particle.glowMultiplier = Math.max(1, currentGlow + (targetGlow - currentGlow) * easeSpeed);
+            } else if (glowAnimation === 'spring') {
+              const springForce = (targetGlow - currentGlow) * 0.15;
+              const damping = 0.9;
+              particle.glowVelocity = (particle.glowVelocity || 0) * damping + springForce;
+              particle.glowMultiplier = Math.max(1, currentGlow + particle.glowVelocity);
+            }
           }
         }
 
-        // Particle interaction (bounce or merge)
-        if (particleInteraction) {
+        // Particle interaction (bounce or merge) - skip on mobile to prevent O(N^2) calculations
+        if (particleInteraction && !isMobile) {
           for (let j = index + 1; j < particlesRef.current.length; j++) {
             const other = particlesRef.current[j];
             const odx = other.x - particle.x;
@@ -251,14 +264,18 @@ export default function FloatingParticlesBackground({
     (ctx: CanvasRenderingContext2D) => {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       const isDark = isDarkRef.current;
+      const isMobile = isMobileRef.current;
 
       particlesRef.current.forEach((particle) => {
         ctx.save();
         const currentGlowMultiplier = particle.glowMultiplier || 1;
 
         if (isDark) {
-          ctx.shadowColor = resolvedColor;
-          ctx.shadowBlur = glowIntensity * currentGlowMultiplier * 2;
+          // Only use shadowBlur on desktop to prevent mobile rasterization lag
+          if (!isMobile) {
+            ctx.shadowColor = resolvedColor;
+            ctx.shadowBlur = glowIntensity * currentGlowMultiplier * 2;
+          }
           ctx.globalAlpha = particle.opacity;
           ctx.fillStyle = resolvedColor;
           ctx.beginPath();
@@ -267,8 +284,10 @@ export default function FloatingParticlesBackground({
         } else {
           // Light Mode: crisp, defined particles with tight ambient halo
           const effectiveSize = particle.size * 1.25;
-          ctx.shadowColor = 'rgba(2, 132, 199, 0.4)';
-          ctx.shadowBlur = Math.min(6, glowIntensity * currentGlowMultiplier * 0.5);
+          if (!isMobile) {
+            ctx.shadowColor = 'rgba(2, 132, 199, 0.4)';
+            ctx.shadowBlur = Math.min(6, glowIntensity * currentGlowMultiplier * 0.5);
+          }
           ctx.globalAlpha = Math.max(0.62, particle.opacity);
           ctx.fillStyle = resolvedColor;
           ctx.beginPath();
@@ -283,6 +302,7 @@ export default function FloatingParticlesBackground({
   );
 
   const animate = useCallback(() => {
+    if (!isVisibleRef.current) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -294,6 +314,7 @@ export default function FloatingParticlesBackground({
   }, [updateParticles, drawParticles]);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
+    if (isMobileRef.current) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
@@ -312,26 +333,6 @@ export default function FloatingParticlesBackground({
     }
   }, []);
 
-  const handleTouchMove = useCallback((e: TouchEvent) => {
-    const canvas = canvasRef.current;
-    if (!canvas || !e.touches[0]) return;
-    const rect = canvas.getBoundingClientRect();
-    const touch = e.touches[0];
-    if (
-      touch.clientX < rect.left ||
-      touch.clientX > rect.right ||
-      touch.clientY < rect.top ||
-      touch.clientY > rect.bottom
-    ) {
-      mouseRef.current = { x: -9999, y: -9999 };
-    } else {
-      mouseRef.current = {
-        x: touch.clientX - rect.left,
-        y: touch.clientY - rect.top,
-      };
-    }
-  }, []);
-
   const handlePointerLeave = useCallback(() => {
     mouseRef.current = { x: -9999, y: -9999 };
   }, []);
@@ -346,6 +347,12 @@ export default function FloatingParticlesBackground({
     const newHeight = Math.floor(rect.height);
 
     if (newWidth === 0 || newHeight === 0) return;
+
+    isMobileRef.current =
+      newWidth < 768 ||
+      (typeof window !== 'undefined' &&
+        window.matchMedia &&
+        window.matchMedia('(pointer: coarse)').matches);
 
     canvas.width = newWidth;
     canvas.height = newHeight;
@@ -381,6 +388,33 @@ export default function FloatingParticlesBackground({
     });
   }, [particleOpacity, movementSpeed]);
 
+  // IntersectionObserver: automatically pause animation loop when hero is off-screen
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isIntersecting = entry.isIntersecting;
+        isVisibleRef.current = isIntersecting;
+        if (isIntersecting) {
+          if (!animationRef.current) {
+            animationRef.current = requestAnimationFrame(animate);
+          }
+        } else {
+          if (animationRef.current) {
+            cancelAnimationFrame(animationRef.current);
+            animationRef.current = null;
+          }
+        }
+      },
+      { threshold: 0.05 },
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [animate]);
+
   useEffect(() => {
     resizeCanvas();
     const container = containerRef.current;
@@ -388,8 +422,6 @@ export default function FloatingParticlesBackground({
     window.addEventListener('resize', resizeCanvas);
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mouseleave', handlePointerLeave);
-    window.addEventListener('touchmove', handleTouchMove, { passive: true });
-    window.addEventListener('touchend', handlePointerLeave);
 
     let resizeObserver: ResizeObserver | null = null;
     if (container && typeof ResizeObserver !== 'undefined') {
@@ -403,13 +435,11 @@ export default function FloatingParticlesBackground({
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handlePointerLeave);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handlePointerLeave);
       if (resizeObserver) {
         resizeObserver.disconnect();
       }
     };
-  }, [handleMouseMove, handleTouchMove, handlePointerLeave, resizeCanvas]);
+  }, [handleMouseMove, handlePointerLeave, resizeCanvas]);
 
   useEffect(() => {
     animate();
